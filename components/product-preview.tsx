@@ -30,7 +30,7 @@ export function ProductPreview() {
             </div>
             <div className="space-y-2">
               {[
-                { company: "Acme Corp", contacts: 5, priority: 98, touches: 7, hot: true },
+                { company: "Salesforce", contacts: 5, priority: 98, touches: 7, hot: true },
                 { company: "TechStart Inc", contacts: 3, priority: 94, touches: 4, hot: true },
                 { company: "CloudFlow", contacts: 4, priority: 87, touches: 2, hot: false },
                 { company: "DataSync", contacts: 2, priority: 82, touches: 1, hot: false },
@@ -63,6 +63,12 @@ export function ProductPreview() {
                   </div>
                 </div>
               ))}
+            </div>
+
+            {/* Account Notes */}
+            <div className="mt-4 p-3 rounded-lg bg-secondary/30 border border-border">
+              <p className="text-xs font-medium text-muted-foreground mb-2">Notes</p>
+              <p className="text-xs text-foreground leading-relaxed">Recent news, prior touches, POV angle</p>
             </div>
           </div>
 
@@ -117,7 +123,7 @@ export function ProductPreview() {
                 </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium text-foreground">Sarah Kim</p>
-                  <p className="text-xs text-muted-foreground">VP of Sales · Acme Corp</p>
+                  <p className="text-xs text-muted-foreground">VP of Sales · Salesforce</p>
                 </div>
                 <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-accent/20">
                   <Clock className="w-3 h-3 text-accent" />
@@ -168,8 +174,18 @@ export function ProductPreview() {
                 </span>
               </div>
               <div className="space-y-2">
+                {/* Sarah K. - Connected with notes */}
+                <div className="p-2 rounded-lg bg-accent/20 border border-accent/30">
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-accent"></div>
+                    <span className="text-sm text-foreground flex-1">Sarah K.</span>
+                    <span className="text-xs text-accent font-mono">2:34</span>
+                  </div>
+                  <p className="text-xs text-muted-foreground mt-2 pl-5 leading-relaxed">
+                    Answered - talked about x y z. Sending Google Calendar. Formulating case study.
+                  </p>
+                </div>
                 {[
-                  { name: "Sarah K.", status: "connected", duration: "2:34" },
                   { name: "Mike T.", status: "ringing", duration: null },
                   { name: "James L.", status: "ringing", duration: null },
                   { name: "Lisa M.", status: "queued", duration: null },
@@ -183,11 +199,7 @@ export function ProductPreview() {
                       className={`w-2 h-2 rounded-full ${line.status === "connected" ? "bg-accent" : line.status === "ringing" ? "bg-yellow-500 animate-pulse" : "bg-muted-foreground"}`}
                     ></div>
                     <span className="text-sm text-foreground flex-1">{line.name}</span>
-                    {line.duration ? (
-                      <span className="text-xs text-accent font-mono">{line.duration}</span>
-                    ) : (
-                      <span className="text-xs text-muted-foreground capitalize">{line.status}</span>
-                    )}
+                    <span className="text-xs text-muted-foreground capitalize">{line.status}</span>
                   </div>
                 ))}
               </div>
