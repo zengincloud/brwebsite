@@ -32,8 +32,8 @@ export function Header() {
           </nav>
 
           <div className="hidden md:flex items-center gap-4">
-            <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
-              Log in
+            <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground" asChild>
+              <a href="https://app.boilerroom.ai">Log in</a>
             </Button>
             <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90">
               Talk to sales
@@ -59,8 +59,8 @@ export function Header() {
               FAQ
             </Link>
             <div className="pt-4 border-t border-border space-y-2">
-              <Button variant="ghost" size="sm" className="w-full justify-start">
-                Log in
+              <Button variant="ghost" size="sm" className="w-full justify-start" asChild>
+                <a href="https://app.boilerroom.ai">Log in</a>
               </Button>
               <Button size="sm" className="w-full">
                 Talk to sales
