@@ -27,7 +27,7 @@ export function SolutionSection() {
             One Workflow for All of Outbound
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
-            Boilerroom brings prospecting, sequencing, dialing, and follow-up into a single execution flow — removing friction, reducing context switching, and helping every rep spend more time in live conversations.
+            boilerroom brings prospecting, sequencing, dialing, and follow-up into a single execution flow — removing friction, reducing context switching, and helping every rep spend more time in live conversations.
           </p>
         </div>
 

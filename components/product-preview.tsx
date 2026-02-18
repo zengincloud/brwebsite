@@ -10,7 +10,7 @@ export function ProductPreview() {
             <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
             <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
           </div>
-          <span className="text-xs text-muted-foreground ml-2">Boilerroom Dashboard</span>
+          <span className="text-xs text-muted-foreground ml-2">boilerroom Dashboard</span>
           <div className="ml-auto flex items-center gap-2">
             <span className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-accent/20 text-accent text-xs">
               <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>

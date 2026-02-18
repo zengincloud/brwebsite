@@ -24,7 +24,7 @@ export function Footer() {
             </Link>
           </nav>
 
-          <p className="text-sm text-muted-foreground">© 2026 Boilerroom. All rights reserved.</p>
+          <p className="text-sm text-muted-foreground">© 2026 boilerroom. All rights reserved.</p>
         </div>
       </div>
     </footer>

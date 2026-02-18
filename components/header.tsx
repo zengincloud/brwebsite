@@ -16,7 +16,7 @@ export function Header() {
             <div className="w-8 h-8 bg-accent rounded-md flex items-center justify-center">
               <span className="font-bold text-accent-foreground text-sm">B</span>
             </div>
-            <span className="font-semibold text-lg text-foreground">Boilerroom</span>
+            <span className="font-semibold text-lg text-foreground">boilerroom</span>
           </Link>
 
           <nav className="hidden md:flex items-center gap-8">

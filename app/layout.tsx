@@ -7,21 +7,21 @@ import "./globals.css"
 const _inter = Inter({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 export const metadata: Metadata = {
-  title: "Boilerroom | Execute Faster",
+  title: "boilerroom | Execute Faster",
   description:
-    "Boilerroom consolidates prospecting, sequencing, dialing, and follow-up into one workflow — so reps spend more time selling and teams generate pipeline more consistently.",
+    "boilerroom consolidates prospecting, sequencing, dialing, and follow-up into one workflow — so reps spend more time selling and teams generate pipeline more consistently.",
   generator: "v0.app",
 
   openGraph: {
-    title: "Boilerroom | Superhuman Outbounding",
+    title: "boilerroom | Superhuman Outbounding",
     description:
-      "Boilerroom consolidates prospecting, sequencing, dialing, and follow-up into one workflow — so reps spend more time selling and teams generate pipeline more consistently.",
+      "boilerroom consolidates prospecting, sequencing, dialing, and follow-up into one workflow — so reps spend more time selling and teams generate pipeline more consistently.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Boilerroom - Superhuman Outbounding",
+        alt: "boilerroom - Superhuman Outbounding",
       },
     ],
     type: "website",
@@ -29,9 +29,9 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Boilerroom | Superhuman Outbounding",
+    title: "boilerroom | Superhuman Outbounding",
     description:
-      "Boilerroom consolidates prospecting, sequencing, dialing, and follow-up into one workflow — so reps spend more time selling and teams generate pipeline more consistently.",
+      "boilerroom consolidates prospecting, sequencing, dialing, and follow-up into one workflow — so reps spend more time selling and teams generate pipeline more consistently.",
     images: ["/og-image.png"],
   },
 

@@ -2,12 +2,12 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 
 const faqs = [
   {
-    question: "Is Boilerroom replacing our sales tools?",
-    answer: "Boilerroom consolidates outbound execution into one workflow. It can replace parts of your stack or sit on top — your choice.",
+    question: "Is boilerroom replacing our sales tools?",
+    answer: "boilerroom consolidates outbound execution into one workflow. It can replace parts of your stack or sit on top — your choice.",
   },
   {
     question: "Does this automate outreach or messaging?",
-    answer: "No. Reps still sell. Boilerroom removes the friction around execution.",
+    answer: "No. Reps still sell. boilerroom removes the friction around execution.",
   },
   {
     question: "How long does setup take?",
