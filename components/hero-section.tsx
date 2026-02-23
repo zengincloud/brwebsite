@@ -29,9 +29,11 @@ export function HeroSection() {
               Join the waitlist
               <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
-            <Button variant="ghost" size="lg" className="text-muted-foreground hover:text-foreground h-12">
-              <Play className="mr-2 w-4 h-4" />
-              Watch a 90-Second Demo
+            <Button variant="ghost" size="lg" className="text-muted-foreground hover:text-foreground h-12" asChild>
+              <a href="https://boilerroom.navattic.com/ucy02l1" target="_blank" rel="noopener noreferrer">
+                <Play className="mr-2 w-4 h-4" />
+                Get a Taste
+              </a>
             </Button>
           </div>
         </div>

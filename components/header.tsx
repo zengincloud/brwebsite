@@ -35,8 +35,10 @@ export function Header() {
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground" asChild>
               <a href="https://app.boilerroom.ai">Log in</a>
             </Button>
-            <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90">
-              Talk to sales
+            <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90" asChild>
+              <a href="https://calendly.com/sadid-boilerroom/30min" target="_blank" rel="noopener noreferrer">
+                Talk to the founder
+              </a>
             </Button>
           </div>
 
@@ -62,8 +64,10 @@ export function Header() {
               <Button variant="ghost" size="sm" className="w-full justify-start" asChild>
                 <a href="https://app.boilerroom.ai">Log in</a>
               </Button>
-              <Button size="sm" className="w-full">
-                Talk to sales
+              <Button size="sm" className="w-full" asChild>
+                <a href="https://calendly.com/sadid-boilerroom/30min" target="_blank" rel="noopener noreferrer">
+                  Talk to the founder
+                </a>
               </Button>
             </div>
           </div>
