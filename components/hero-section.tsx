@@ -25,9 +25,11 @@ export function HeroSection() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 h-12 text-base">
-              Join the waitlist
-              <ArrowRight className="ml-2 w-4 h-4" />
+            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 h-12 text-base" asChild>
+              <a href="https://calendly.com/sadid-boilerroom/30min" target="_blank" rel="noopener noreferrer">
+                Talk to founding team
+                <ArrowRight className="ml-2 w-4 h-4" />
+              </a>
             </Button>
             <Button variant="ghost" size="lg" className="text-muted-foreground hover:text-foreground h-12" asChild>
               <a href="https://boilerroom.navattic.com/ucy02l1" target="_blank" rel="noopener noreferrer">
