@@ -37,7 +37,7 @@ export function Header() {
             </Button>
             <Button size="sm" className="bg-primary text-primary-foreground hover:bg-primary/90" asChild>
               <a href="https://calendly.com/sadid-boilerroom/30min" target="_blank" rel="noopener noreferrer">
-                Talk to the founder
+                Talk to Founder
               </a>
             </Button>
           </div>
@@ -66,7 +66,7 @@ export function Header() {
               </Button>
               <Button size="sm" className="w-full" asChild>
                 <a href="https://calendly.com/sadid-boilerroom/30min" target="_blank" rel="noopener noreferrer">
-                  Talk to the founder
+                  Talk to Founder
                 </a>
               </Button>
             </div>

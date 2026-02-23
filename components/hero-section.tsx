@@ -27,7 +27,7 @@ export function HeroSection() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 h-12 text-base" asChild>
               <a href="https://calendly.com/sadid-boilerroom/30min" target="_blank" rel="noopener noreferrer">
-                Talk to founding team
+                Talk to Founder
                 <ArrowRight className="ml-2 w-4 h-4" />
               </a>
             </Button>
