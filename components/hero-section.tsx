@@ -32,7 +32,7 @@ export function HeroSection() {
               </a>
             </Button>
             <Button variant="ghost" size="lg" className="text-muted-foreground hover:text-foreground h-12" asChild>
-              <a href="https://boilerroom.navattic.com/ucy02l1" target="_blank" rel="noopener noreferrer">
+              <a href="https://boilerroom.navattic.com/h1q0ur6?g=cmlzrrhkj002400ip5bjodc97&s=0" target="_blank" rel="noopener noreferrer">
                 <Play className="mr-2 w-4 h-4" />
                 Get a Taste
               </a>
