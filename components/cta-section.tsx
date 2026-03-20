@@ -9,7 +9,7 @@ export function CtaSection({ variant = "default" }: CtaSectionProps) {
   const isFinal = variant === "final"
 
   return (
-    <section className={`py-24 px-4 sm:px-6 lg:px-8 ${isFinal ? "bg-secondary/20 border-t border-border" : ""}`}>
+    <section className="py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto text-center">
         <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6 text-balance">
           {isFinal ? "More Pipeline Starts With Better Execution" : "Outbound Shouldn't Depend on 10 Tools"}

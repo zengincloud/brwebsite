@@ -45,7 +45,7 @@ export function PainSection() {
           {painPoints.map((point, i) => (
             <div
               key={i}
-              className="group relative p-5 rounded-lg border border-red-900/20 bg-red-950/5 hover:bg-red-950/15 hover:border-red-800/30 transition-all duration-300"
+              className="group relative p-5 rounded-lg border border-red-500/10 bg-white/[0.03] backdrop-blur-2xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)] hover:bg-white/[0.06] hover:border-red-500/20 transition-all duration-300"
             >
               {/* Red accent line on left */}
               <div className="absolute left-0 top-3 bottom-3 w-[2px] bg-red-500/40 rounded-full" />

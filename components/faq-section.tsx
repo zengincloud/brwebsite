@@ -29,7 +29,7 @@ export function FaqSection() {
       <div className="max-w-3xl mx-auto">
         <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-12 text-center">Frequently Asked Questions</h2>
 
-        <Accordion type="single" collapsible className="w-full">
+        <Accordion type="single" collapsible className="w-full rounded-xl overflow-hidden bg-white/10 backdrop-blur-2xl border border-white/20 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] px-6">
           {faqs.map((faq, index) => (
             <AccordionItem key={index} value={`item-${index}`} className="border-border">
               <AccordionTrigger className="text-left text-foreground hover:text-foreground hover:no-underline">
