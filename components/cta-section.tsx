@@ -36,7 +36,7 @@ export function CtaSection({ variant = "default" }: CtaSectionProps) {
 
         <Button size="3" radius="full" color="gray" highContrast variant="solid" asChild>
           <a href="https://calendly.com/sadid-boilerroom/30min" target="_blank" rel="noopener noreferrer">
-            Talk to Founder
+            Book a Demo
             <ArrowRight size={16} />
           </a>
         </Button>
