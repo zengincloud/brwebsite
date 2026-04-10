@@ -28,6 +28,11 @@ const features = [
     title: "CRM Sync",
     description: "Activity, notes, and outcomes push to your CRM automatically. Reps stop doing data entry and managers get a live, accurate view of pipeline.",
   },
+  {
+    number: "06",
+    title: "Chrome Extension",
+    description: "On any LinkedIn profile, pull verified contact info in one click — then sequence them, save as a contact, or do both. No copy-pasting, no switching tabs.",
+  },
 ]
 
 export function SolutionSection() {
