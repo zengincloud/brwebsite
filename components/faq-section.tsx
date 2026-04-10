@@ -22,6 +22,10 @@ const faqs = [
     question: "Who is this best for?",
     answer: "Outbound teams running volume who want more pipeline per rep without more tools.",
   },
+  {
+    question: "Does this work with our CRM?",
+    answer: "Yes. Activity, call notes, and outcomes sync to your CRM automatically — no manual logging, no data entry.",
+  },
 ]
 
 export function FaqSection() {

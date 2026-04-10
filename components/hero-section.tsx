@@ -74,7 +74,7 @@ export function HeroSection() {
             </motion.div>
           </div>
 
-          {/* Right: product preview */}
+          {/* Right: product preview — hidden on mobile */}
           <motion.div
             initial={{ opacity: 0, x: 32 }}
             animate={{ opacity: 1, x: 0 }}

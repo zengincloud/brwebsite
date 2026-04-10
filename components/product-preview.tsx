@@ -378,12 +378,156 @@ const views: Record<string, React.FC> = {
   reports: ReportsView,
 }
 
+function MobilePreview() {
+  const [active, setActive] = useState("dashboard")
+
+  const content: Record<string, React.ReactNode> = {
+    dashboard: (
+      <div className="space-y-3">
+        <div className="grid grid-cols-3 gap-2">
+          {[{ label: "Calls", value: "34", delta: "+8" }, { label: "Meetings", value: "8", delta: "+3" }, { label: "Pipeline", value: "$42k", delta: "+12%" }].map(s => (
+            <div key={s.label} className="bg-white border border-[var(--sand-5)] rounded-lg p-3 text-center">
+              <p className="text-[10px] text-[var(--sand-11)] mb-1">{s.label}</p>
+              <p className="text-lg font-bold text-[#1d1d1f] leading-none">{s.value}</p>
+              <p className="text-[10px] text-[var(--green-10)] mt-1">{s.delta}</p>
+            </div>
+          ))}
+        </div>
+        <div className="bg-white border border-[var(--sand-5)] rounded-lg px-4 py-3 flex items-center justify-between">
+          <span className="text-xs font-medium text-[#1d1d1f]">Daily Targets</span>
+          <span className="text-[10px] px-2 py-0.5 rounded-full bg-[var(--green-3)] text-[var(--green-11)]">On Track</span>
+        </div>
+      </div>
+    ),
+    prospecting: (
+      <div className="bg-white border border-[var(--sand-5)] rounded-lg px-4 py-3 flex items-center gap-3">
+        <div className="w-8 h-8 rounded-full bg-[var(--sand-4)] flex items-center justify-center text-sm font-semibold text-[var(--sand-11)] shrink-0">S</div>
+        <div className="flex-1 min-w-0">
+          <p className="text-xs font-medium text-[#1d1d1f]">Sarah Kim</p>
+          <p className="text-[10px] text-[var(--sand-11)]">VP of Sales · Salesforce</p>
+        </div>
+        <span className="text-[9px] px-2 py-0.5 rounded-full bg-[var(--green-3)] text-[var(--green-11)] shrink-0">High Intent</span>
+        <button className="text-[10px] px-2.5 py-1 rounded-md bg-[var(--green-9)] text-white font-medium shrink-0">+ Add</button>
+      </div>
+    ),
+    dialer: (
+      <div className="bg-white border border-[var(--sand-5)] rounded-lg overflow-hidden">
+        <div className="px-4 py-3 flex items-center gap-3 bg-[var(--green-1)]">
+          <div className="w-7 h-7 rounded-full bg-[var(--sand-4)] flex items-center justify-center text-xs font-semibold text-[var(--sand-11)] shrink-0">M</div>
+          <div className="flex-1">
+            <p className="text-xs font-medium text-[#1d1d1f]">Marc Benioff</p>
+            <p className="text-[10px] text-[var(--sand-10)]">CEO · Salesforce</p>
+          </div>
+          <span className="flex items-center gap-1 text-[9px] font-semibold text-[var(--green-10)]">
+            <span className="w-1.5 h-1.5 rounded-full bg-[var(--green-9)] animate-pulse" /> LIVE · 4:12
+          </span>
+        </div>
+        <div className="px-4 py-2.5 border-t border-[var(--sand-4)] bg-[var(--sand-2)] flex items-center gap-2">
+          <Mail className="w-3 h-3 text-[var(--green-10)] shrink-0" />
+          <p className="text-[10px] text-[var(--sand-11)]">Auto follow-up queued · Sends on hangup</p>
+        </div>
+      </div>
+    ),
+    emailer: (
+      <div className="bg-white border border-[var(--sand-5)] rounded-lg overflow-hidden">
+        <div className="px-4 py-3 border-b border-[var(--sand-4)]">
+          <div className="flex items-center justify-between mb-0.5">
+            <p className="text-xs font-medium text-[#1d1d1f]">Marcus Webb <span className="text-[var(--sand-10)] font-normal">· TechCorp</span></p>
+            <span className="text-[8px] px-1.5 py-0.5 rounded bg-red-50 text-red-600">High Priority</span>
+          </div>
+          <p className="text-[10px] text-[var(--sand-10)]">Following up on our conversation</p>
+        </div>
+        <div className="px-4 py-2.5 flex items-center justify-between">
+          <p className="text-[10px] text-[var(--sand-10)]">Visited pricing page 5× this week</p>
+          <button className="text-[9px] px-2.5 py-1 rounded bg-[var(--green-9)] text-white font-medium">Send</button>
+        </div>
+      </div>
+    ),
+    sequences: (
+      <div className="bg-white border border-[var(--sand-5)] rounded-lg px-4 py-3">
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[var(--green-9)]" />
+            <p className="text-xs font-semibold text-[#1d1d1f]">Cold Outbound</p>
+          </div>
+          <span className="text-[10px] px-2 py-0.5 rounded-full bg-[var(--green-3)] text-[var(--green-11)]">Active</span>
+        </div>
+        <div className="grid grid-cols-3 gap-3 text-[10px]">
+          <div><p className="text-[var(--sand-10)]">Steps</p><p className="text-[#1d1d1f] font-medium">5</p></div>
+          <div><p className="text-[var(--sand-10)]">Active</p><p className="text-[var(--green-10)] font-medium">52</p></div>
+          <div><p className="text-[var(--sand-10)]">Meeting Rate</p><p className="text-[#1d1d1f] font-medium">12%</p></div>
+        </div>
+      </div>
+    ),
+    reports: (
+      <div className="grid grid-cols-2 gap-2">
+        {[
+          { label: "Total Calls", value: "1,200", delta: "+18%", up: true },
+          { label: "Connect Rate", value: "14.8%", delta: "+2.1%", up: true },
+          { label: "Meetings", value: "24", delta: "+6", up: true },
+          { label: "Avg Talk Time", value: "3m 42s", delta: "-12s", up: false },
+        ].map(s => (
+          <div key={s.label} className="bg-white border border-[var(--sand-5)] rounded-lg p-3">
+            <p className="text-[9px] text-[var(--sand-11)] mb-1">{s.label}</p>
+            <p className="text-base font-bold text-[#1d1d1f]">{s.value}</p>
+            <p className={`text-[10px] mt-0.5 ${s.up ? "text-[var(--green-10)]" : "text-red-600"}`}>{s.delta}</p>
+          </div>
+        ))}
+      </div>
+    ),
+  }
+
+  return (
+    <div className="bg-white border border-[var(--sand-5)] shadow-sm rounded-xl overflow-hidden">
+      {/* Title bar */}
+      <div className="flex items-center gap-2 px-4 py-2.5 border-b border-[var(--sand-4)] bg-[var(--sand-2)]">
+        <div className="flex gap-1.5">
+          <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
+          <div className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
+          <div className="w-2.5 h-2.5 rounded-full bg-green-400" />
+        </div>
+        <span className="text-[10px] text-[var(--sand-10)] ml-1">boilerroom.ai</span>
+      </div>
+
+      {/* Tab strip */}
+      <div className="flex overflow-x-auto border-b border-[var(--sand-4)] bg-[var(--sand-2)] scrollbar-none">
+        {navItems.map((item) => (
+          <button
+            key={item.id}
+            onClick={() => setActive(item.id)}
+            className={`flex items-center gap-1.5 px-3 py-2 text-[10px] whitespace-nowrap shrink-0 border-b-2 transition-colors ${
+              active === item.id
+                ? "border-[var(--green-9)] text-[var(--green-11)] font-medium"
+                : "border-transparent text-[var(--sand-10)]"
+            }`}
+          >
+            <item.icon className="w-3 h-3" />
+            {item.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Content */}
+      <div className="p-4">
+        {content[active]}
+      </div>
+    </div>
+  )
+}
+
 export function ProductPreview() {
   const [active, setActive] = useState("dashboard")
   const ActiveView = views[active]
 
   return (
     <div className="relative max-w-5xl mx-auto">
+      {/* Mobile: simplified static view */}
+      <div className="lg:hidden">
+        <MobilePreview />
+      </div>
+
+      {/* Desktop: full interactive preview */}
+      <div className="hidden lg:block">
       <div className="bg-white border border-[var(--sand-5)] shadow-sm rounded-xl overflow-hidden">
         {/* Title bar */}
         <div className="flex items-center gap-2 px-4 py-3 border-b border-[var(--sand-4)] bg-[var(--sand-2)]">
@@ -422,6 +566,7 @@ export function ProductPreview() {
 
           <ActiveView />
         </div>
+      </div>
       </div>
     </div>
   )
