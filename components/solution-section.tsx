@@ -1,26 +1,32 @@
 "use client"
 
 import { Heading, Text } from "@radix-ui/themes"
-import { Cog, Shield, BarChart3 } from "lucide-react"
 
 const features = [
   {
-    icon: Cog,
     number: "01",
-    title: "More Selling Time",
-    description: "Prospects sourced, enriched, and sequenced automatically — no list-building, no gaps.",
+    title: "Power Dialer",
+    description: "Dial at volume with a wide selection of local area codes. Auto-skip bad numbers, leave pre-recorded voicemails, and move to the next prospect without breaking stride.",
   },
   {
-    icon: Shield,
     number: "02",
-    title: "Built-In Best Practices",
-    description: "Top-rep workflows are baked into the system so performance doesn't depend on hero reps.",
+    title: "Prospecting",
+    description: "Find and enrich contacts in seconds. Build targeted lists from firmographic and intent data — no spreadsheets, no manual research, no bounced emails.",
   },
   {
-    icon: BarChart3,
     number: "03",
-    title: "Managers See Reality",
-    description: "Know exactly where pipeline breaks — before the quarter does.",
+    title: "Sequencing",
+    description: "Coordinate calls, emails, and LinkedIn touches in a single automated sequence. Every step runs on schedule so no follow-up slips through the cracks.",
+  },
+  {
+    number: "04",
+    title: "Call Recording",
+    description: "Every call logged, recorded, and searchable. Coach reps on real conversations, surface winning talk tracks, and never lose context on a deal.",
+  },
+  {
+    number: "05",
+    title: "CRM Sync",
+    description: "Activity, notes, and outcomes push to your CRM automatically. Reps stop doing data entry and managers get a live, accurate view of pipeline.",
   },
 ]
 
@@ -37,10 +43,10 @@ export function SolutionSection() {
             How it works
           </Text>
           <Heading size="8" weight="bold" className="tracking-tight max-w-2xl">
-            One Workflow for All of Outbound
+            More Selling Time
           </Heading>
           <Text size="4" color="gray" className="mt-4 max-w-2xl block leading-relaxed">
-            boilerroom brings prospecting, sequencing, dialing, and follow-up into a single execution flow — removing friction and helping every rep spend more time in live conversations.
+            Prospects sourced, enriched, and sequenced automatically — no list-building, no gaps.
           </Text>
         </div>
 

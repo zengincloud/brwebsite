@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Phone, Mail, Calendar, Users, BarChart2, ListTodo, Zap, CheckSquare, Clock, Search, Filter, ArrowRight, TrendingUp } from "lucide-react"
+import { Phone, Mail, BarChart2, ListTodo, Search, TrendingUp, Zap, ArrowRight } from "lucide-react"
 
 const navItems = [
   { icon: BarChart2, label: "Dashboard", id: "dashboard" },
@@ -13,148 +13,48 @@ const navItems = [
 ]
 
 // ── Dashboard ────────────────────────────────────────────────────────────────
-function RadarChart() {
-  const cx = 80, cy = 80, r = 55
-  const target = [
-    [cx, cy - r],
-    [cx + r, cy],
-    [cx, cy + r],
-    [cx - r, cy],
-  ]
-  const pcts = [0.88, 0.80, 0.90, 0.75]
-  const progress = [
-    [cx, cy - r * pcts[0]],
-    [cx + r * pcts[1], cy],
-    [cx, cy + r * pcts[2]],
-    [cx - r * pcts[3], cy],
-  ]
-  const toPath = (pts: number[][]) => pts.map((p, i) => `${i === 0 ? "M" : "L"}${p[0]},${p[1]}`).join(" ") + " Z"
-
-  return (
-    <svg viewBox="0 0 160 160" className="w-full h-full">
-      {[0.25, 0.5, 0.75, 1].map((scale) => (
-        <path
-          key={scale}
-          d={toPath([
-            [cx, cy - r * scale],
-            [cx + r * scale, cy],
-            [cx, cy + r * scale],
-            [cx - r * scale, cy],
-          ])}
-          fill="none"
-          stroke="rgba(0,0,0,0.07)"
-          strokeWidth="1"
-        />
-      ))}
-      {target.map((pt, i) => (
-        <line key={i} x1={cx} y1={cy} x2={pt[0]} y2={pt[1]} stroke="rgba(0,0,0,0.09)" strokeWidth="1" />
-      ))}
-      <path d={toPath(target)} fill="rgba(0,0,0,0.03)" stroke="rgba(0,0,0,0.15)" strokeWidth="1" />
-      <path d={toPath(progress)} fill="rgba(34,197,94,0.12)" stroke="rgba(34,197,94,0.7)" strokeWidth="1.5" />
-      <text x={cx} y={cy - r - 6} textAnchor="middle" fill="rgba(0,0,0,0.4)" fontSize="8">Emails</text>
-      <text x={cx + r + 6} y={cy + 3} textAnchor="start" fill="rgba(0,0,0,0.4)" fontSize="8">Calls</text>
-      <text x={cx} y={cy + r + 12} textAnchor="middle" fill="rgba(0,0,0,0.4)" fontSize="8">Leads</text>
-      <text x={cx - r - 6} y={cy + 3} textAnchor="end" fill="rgba(0,0,0,0.4)" fontSize="8">LinkedIn</text>
-    </svg>
-  )
-}
-
 function DashboardView() {
   const stats = [
-    { label: "Active Prospects", value: "247", delta: "+12%" },
-    { label: "Calls Today", value: "34", delta: "+8" },
-    { label: "Emails Sent", value: "156", delta: "+23%" },
-    { label: "Meetings Booked", value: "8", delta: "+3" },
+    { label: "Calls Today", value: "34", delta: "+8 vs avg" },
+    { label: "Meetings Booked", value: "8", delta: "+3 this week" },
+    { label: "Active Cadences", value: "3", delta: "52 prospects" },
   ]
-  const bars = [
-    { label: "Emails", value: 35, total: 40, pct: 88 },
-    { label: "Calls", value: 400, total: 500, pct: 80 },
-    { label: "Leads", value: 45, total: 50, pct: 90 },
-    { label: "LinkedIn", value: 15, total: 20, pct: 75 },
+  const targets = [
+    { label: "Calls", value: 400, goal: 500, pct: 80 },
+    { label: "Emails", value: 35, goal: 40, pct: 88 },
+    { label: "LinkedIn", value: 15, goal: 20, pct: 75 },
   ]
   return (
-    <div className="flex-1 p-4 overflow-hidden flex flex-col gap-3">
+    <div className="flex-1 p-5 flex flex-col gap-4 overflow-hidden">
       <div className="flex items-center justify-between">
         <h2 className="text-sm font-semibold text-[#1d1d1f]">Dashboard</h2>
         <span className="text-[10px] px-2 py-0.5 rounded-full bg-[var(--green-3)] text-[var(--green-11)]">● System Active</span>
       </div>
 
-      <div className="grid grid-cols-4 gap-2">
+      <div className="grid grid-cols-3 gap-3">
         {stats.map((s) => (
-          <div key={s.label} className="bg-white border border-[var(--sand-5)] rounded-lg p-3">
-            <p className="text-[10px] text-[var(--sand-11)] mb-1">{s.label}</p>
-            <p className="text-lg font-bold text-[#1d1d1f] leading-none">{s.value}</p>
-            <p className="text-[10px] text-[var(--green-10)] mt-1">{s.delta}</p>
+          <div key={s.label} className="bg-white border border-[var(--sand-5)] rounded-lg p-4">
+            <p className="text-[10px] text-[var(--sand-11)] mb-2">{s.label}</p>
+            <p className="text-2xl font-bold text-[#1d1d1f] leading-none mb-1">{s.value}</p>
+            <p className="text-[10px] text-[var(--green-10)]">{s.delta}</p>
           </div>
         ))}
       </div>
 
-      <div className="bg-white border border-[var(--sand-5)] rounded-lg p-3 flex-1">
-        <div className="flex items-center justify-between mb-1">
-          <div>
-            <p className="text-xs font-medium text-[#1d1d1f]">Weekly SDR Performance</p>
-            <p className="text-[9px] text-[var(--sand-10)]">Progress toward 40 emails, 500 calls, 50 leads, 20 LinkedIn outreaches</p>
-          </div>
-          <span className="text-[10px] px-2 py-0.5 rounded-full bg-[var(--green-3)] text-[var(--green-11)] shrink-0">On Track</span>
+      <div className="bg-white border border-[var(--sand-5)] rounded-lg p-4 flex-1">
+        <div className="flex items-center justify-between mb-4">
+          <p className="text-xs font-medium text-[#1d1d1f]">Daily Targets</p>
+          <span className="text-[10px] px-2 py-0.5 rounded-full bg-[var(--green-3)] text-[var(--green-11)]">On Track</span>
         </div>
-
-        <div className="flex gap-4 items-center">
-          <div className="w-44 h-44 shrink-0">
-            <RadarChart />
-          </div>
-          <div className="flex-1 space-y-2.5">
-            {bars.map((b) => (
-              <div key={b.label}>
-                <div className="flex justify-between text-[10px] mb-1">
-                  <span className="text-[var(--sand-11)]">{b.label}</span>
-                  <span className="text-[var(--sand-10)]">{b.value} / {b.total} <span className="text-[var(--green-10)]">{b.pct}%</span></span>
-                </div>
-                <div className="h-1.5 bg-[var(--sand-4)] rounded-full overflow-hidden">
-                  <div className="h-full bg-[var(--green-9)] rounded-full" style={{ width: `${b.pct}%` }} />
-                </div>
+        <div className="space-y-4">
+          {targets.map((t) => (
+            <div key={t.label}>
+              <div className="flex justify-between text-[10px] mb-1.5">
+                <span className="text-[var(--sand-11)]">{t.label}</span>
+                <span className="text-[var(--sand-10)]">{t.value} <span className="text-[var(--sand-8)]">/ {t.goal}</span></span>
               </div>
-            ))}
-            <div className="flex items-center gap-4 pt-1">
-              <div className="flex items-center gap-1.5">
-                <div className="w-3 h-0.5 bg-[var(--sand-6)] rounded" />
-                <span className="text-[9px] text-[var(--sand-10)]">Target</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <div className="w-3 h-0.5 bg-[var(--green-9)] rounded" />
-                <span className="text-[9px] text-[var(--sand-10)]">Progress</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="bg-white border border-[var(--sand-5)] rounded-lg overflow-hidden">
-        <div className="flex items-center justify-between px-3 py-2 border-b border-[var(--sand-4)]">
-          <p className="text-xs font-medium text-[#1d1d1f]">Task Manager</p>
-          <span className="text-[10px] text-[var(--sand-10)]">3 due today</span>
-        </div>
-        <div className="grid grid-cols-3 divide-x divide-[var(--sand-4)]">
-          {[
-            { tag: "Follow Up", priority: "medium", title: "Demo for NextGen Solutions", desc: "CEO requested a personalized demo; connect with champion", person: "Robert Taylor", due: "Tuesday @ 11am" },
-            { tag: "Interested", priority: "high", title: "Schedule demo with CloudNine", desc: "Came inbound this morning", person: "Jessica Lee", due: "Today @ 8:00" },
-            { tag: "Hot Lead", priority: "high", title: "Connect with Sarah from TechCorp", desc: "High intent, visited website", person: "Sarah Johnson", due: "Today @ 3pm" },
-          ].map((card, i) => (
-            <div key={i} className="p-3">
-              <div className="flex items-center justify-between mb-1.5">
-                <span className="text-[9px] text-[var(--sand-11)] bg-[var(--sand-3)] px-1.5 py-0.5 rounded">{card.tag}</span>
-                <span className={`text-[9px] px-1.5 py-0.5 rounded font-medium ${card.priority === "high" ? "bg-red-50 text-red-600" : "bg-amber-50 text-amber-700"}`}>{card.priority}</span>
-              </div>
-              <p className="text-[10px] font-semibold text-[#1d1d1f] leading-tight mb-1">{card.title}</p>
-              <p className="text-[9px] text-[var(--sand-11)] leading-relaxed mb-2">{card.desc}</p>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-1">
-                  <div className="w-3.5 h-3.5 rounded-full bg-[var(--sand-4)] flex items-center justify-center text-[8px] text-[var(--sand-11)] font-medium">{card.person[0]}</div>
-                  <p className="text-[9px] text-[var(--sand-11)]">{card.person}</p>
-                </div>
-                <div className="flex items-center gap-1">
-                  <Clock className="w-2 h-2 text-[var(--sand-10)]" />
-                  <p className="text-[9px] text-[var(--sand-10)]">{card.due}</p>
-                </div>
+              <div className="h-2 bg-[var(--sand-4)] rounded-full overflow-hidden">
+                <div className="h-full bg-[var(--green-9)] rounded-full transition-all" style={{ width: `${t.pct}%` }} />
               </div>
             </div>
           ))}
@@ -167,69 +67,42 @@ function DashboardView() {
 // ── Prospecting ──────────────────────────────────────────────────────────────
 function ProspectingView() {
   const results = [
-    { name: "Sarah Kim", title: "VP of Sales", company: "Salesforce", location: "San Francisco, CA", intent: "High Intent" },
-    { name: "Marc Benioff", title: "Chair & CEO", company: "Salesforce", location: "San Francisco, CA", intent: "Medium Intent" },
-    { name: "Mike Torres", title: "Head of Revenue", company: "TechStart Inc", location: "Austin, TX", intent: "High Intent" },
+    { name: "Sarah Kim", title: "VP of Sales", company: "Salesforce", intent: "High Intent" },
+    { name: "Mike Torres", title: "Head of Revenue", company: "TechStart Inc", intent: "High Intent" },
+    { name: "Marc Benioff", title: "Chair & CEO", company: "Salesforce", intent: "Medium Intent" },
+    { name: "Elena Vasquez", title: "Dir. of Sales", company: "Growthline", intent: "High Intent" },
   ]
   return (
-    <div className="flex-1 overflow-hidden flex flex-col">
-      <div className="px-5 pt-5 pb-3 border-b border-[var(--sand-4)]">
-        <h2 className="text-sm font-semibold text-[#1d1d1f] mb-3">Outbound Prospecting</h2>
+    <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="px-5 pt-5 pb-4 border-b border-[var(--sand-4)]">
+        <h2 className="text-sm font-semibold text-[#1d1d1f] mb-3">Prospecting</h2>
         <div className="flex gap-2">
-          <div className="flex-1 flex items-center gap-2 bg-white border border-[var(--sand-5)] rounded-md px-3 py-1.5">
+          <div className="flex-1 flex items-center gap-2 bg-white border border-[var(--sand-5)] rounded-md px-3 py-2">
             <Search className="w-3 h-3 text-[var(--sand-10)] shrink-0" />
-            <span className="text-xs text-[var(--sand-10)]">marc benioff</span>
+            <span className="text-xs text-[var(--sand-10)]">VP Sales · SaaS · 50–500 employees</span>
           </div>
-          <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[var(--green-9)] text-white text-xs font-medium">
-            <Search className="w-3 h-3" /> Search
-          </button>
-          <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[var(--sand-3)] text-[var(--sand-11)] text-xs border border-[var(--sand-5)]">
-            <Filter className="w-3 h-3" /> Filter
+          <button className="flex items-center gap-1.5 px-3 py-2 rounded-md bg-[var(--green-9)] text-white text-xs font-medium">
+            Search
           </button>
         </div>
       </div>
-      <div className="flex flex-1 overflow-hidden">
-        <div className="w-36 shrink-0 border-r border-[var(--sand-4)] p-3 space-y-3">
-          <div>
-            <p className="text-[10px] font-semibold text-[var(--sand-11)] uppercase tracking-wider mb-2">Company</p>
-            <div className="bg-white border border-[var(--sand-5)] rounded px-2 py-1 text-[10px] text-[var(--sand-10)]">Company name</div>
-            <p className="text-[10px] text-[var(--sand-10)] mt-2 mb-1">Headcount</p>
-            <div className="h-1 bg-[var(--sand-4)] rounded-full"><div className="h-full bg-[var(--green-9)] rounded-full w-full" /></div>
-            <div className="flex justify-between text-[9px] text-[var(--sand-10)] mt-0.5"><span>10</span><span>10,000+</span></div>
-          </div>
-          <div>
-            <p className="text-[10px] font-semibold text-[var(--sand-11)] uppercase tracking-wider mb-2">Role</p>
-            <div className="bg-white border border-[var(--sand-5)] rounded px-2 py-1 text-[10px] text-[var(--sand-10)]">Select function</div>
-          </div>
-          <div>
-            <p className="text-[10px] font-semibold text-[var(--sand-11)] uppercase tracking-wider mb-1.5">Seniority</p>
-            {["C-Suite", "VP", "Director"].map(l => (
-              <div key={l} className="flex items-center gap-1.5 py-0.5">
-                <div className="w-2.5 h-2.5 rounded border border-[var(--sand-6)]" />
-                <span className="text-[10px] text-[var(--sand-11)]">{l}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="flex-1 p-3 space-y-2 overflow-hidden">
-          <p className="text-[10px] text-[var(--sand-10)] mb-2">3 leads found matching your criteria</p>
-          {results.map((r, i) => (
-            <div key={i} className="bg-white border border-[var(--sand-5)] rounded-lg px-3 py-2.5 flex items-center gap-3">
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-0.5">
-                  <p className="text-xs font-medium text-[#1d1d1f]">{r.name}</p>
-                  <span className={`text-[9px] px-1.5 py-0.5 rounded-full ${r.intent === "High Intent" ? "bg-[var(--green-3)] text-[var(--green-11)]" : "bg-amber-50 text-amber-700"}`}>{r.intent}</span>
-                </div>
-                <p className="text-[10px] text-[var(--sand-11)]">{r.title} · {r.company}</p>
-                <p className="text-[9px] text-[var(--sand-10)]">{r.location}</p>
-              </div>
-              <div className="flex items-center gap-1.5 shrink-0">
-                <button className="text-[10px] px-2 py-1 rounded bg-white text-[var(--sand-11)] border border-[var(--sand-5)]">LinkedIn</button>
-                <button className="text-[10px] px-2 py-1 rounded bg-[var(--green-9)] text-white font-medium">+ Add</button>
-              </div>
+      <div className="flex-1 p-4 space-y-2 overflow-hidden">
+        <p className="text-[10px] text-[var(--sand-10)] mb-3">4 leads found</p>
+        {results.map((r, i) => (
+          <div key={i} className="bg-white border border-[var(--sand-5)] rounded-lg px-4 py-3 flex items-center gap-3">
+            <div className="w-7 h-7 rounded-full bg-[var(--sand-4)] flex items-center justify-center text-[11px] font-semibold text-[var(--sand-11)] shrink-0">
+              {r.name[0]}
             </div>
-          ))}
-        </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-xs font-medium text-[#1d1d1f]">{r.name}</p>
+              <p className="text-[10px] text-[var(--sand-11)]">{r.title} · {r.company}</p>
+            </div>
+            <span className={`text-[9px] px-2 py-0.5 rounded-full shrink-0 ${r.intent === "High Intent" ? "bg-[var(--green-3)] text-[var(--green-11)]" : "bg-amber-50 text-amber-700"}`}>
+              {r.intent}
+            </span>
+            <button className="text-[10px] px-2.5 py-1 rounded-md bg-[var(--green-9)] text-white font-medium shrink-0">+ Add</button>
+          </div>
+        ))}
       </div>
     </div>
   )
@@ -237,122 +110,76 @@ function ProspectingView() {
 
 // ── Dialer ───────────────────────────────────────────────────────────────────
 function DialerView() {
-  const dialerStats = [
-    { label: "Total Calls", value: "34" },
+  const queue = [
+    { name: "Marc Benioff", role: "CEO", company: "Salesforce", status: "live" },
+    { name: "Thomas Weaver", role: "Director of Sales", company: "VisualVisitor", status: "next" },
+    { name: "Nicole Roessner", role: "Dir. Sales Dev.", company: "Pipewise", status: "queued" },
+    { name: "Jenny Park", role: "VP Revenue", company: "Clearbit", status: "queued" },
+  ]
+  const stats = [
+    { label: "Calls", value: "34" },
     { label: "Connected", value: "12" },
-    { label: "Connect Rate", value: "35%" },
-    { label: "Conversation Rate", value: "18%" },
-    { label: "Intros Booked", value: "3" },
+    { label: "Meetings", value: "3" },
   ]
   return (
-    <div className="flex-1 p-4 overflow-hidden flex flex-col gap-3">
+    <div className="flex-1 p-5 flex flex-col gap-4 overflow-hidden">
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-sm font-semibold text-[#1d1d1f]">Power Dialer</h2>
-          <p className="text-[10px] text-[var(--sand-11)]">Dial prospects one at a time</p>
+          <p className="text-[10px] text-[var(--sand-11)] mt-0.5">Area code: 415 (SF)</p>
         </div>
         <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[var(--green-9)] text-white text-xs font-medium">
           <Phone className="w-3 h-3" /> Start Session
         </button>
       </div>
 
-      <div className="grid grid-cols-5 gap-2">
-        {dialerStats.map((s) => (
-          <div key={s.label} className="bg-white border border-[var(--sand-5)] rounded-lg p-2.5">
-            <p className="text-[9px] text-[var(--sand-11)] mb-1">{s.label}</p>
-            <p className="text-base font-bold text-[#1d1d1f]">{s.value}</p>
+      <div className="grid grid-cols-3 gap-3">
+        {stats.map((s) => (
+          <div key={s.label} className="bg-white border border-[var(--sand-5)] rounded-lg p-3 text-center">
+            <p className="text-[10px] text-[var(--sand-11)] mb-1">{s.label}</p>
+            <p className="text-xl font-bold text-[#1d1d1f]">{s.value}</p>
           </div>
         ))}
       </div>
 
       <div className="bg-white border border-[var(--sand-5)] rounded-lg overflow-hidden flex-1">
-        <div className="grid grid-cols-[20px_1fr_90px] gap-3 px-3 py-1.5 border-b border-[var(--sand-4)] text-[9px] text-[var(--sand-10)] uppercase tracking-wider">
-          <span>#</span><span>Name</span><span>Company</span>
+        <div className="px-4 py-2 border-b border-[var(--sand-4)] flex items-center justify-between">
+          <p className="text-[10px] font-medium text-[#1d1d1f]">Call Queue</p>
+          <span className="text-[10px] text-[var(--sand-10)]">4 prospects</span>
+        </div>
+        <div className="divide-y divide-[var(--sand-3)]">
+          {queue.map((r, i) => (
+            <div key={i} className={`flex items-center gap-3 px-4 py-3 ${r.status === "live" ? "bg-[var(--green-1)]" : ""}`}>
+              <div className="w-6 h-6 rounded-full bg-[var(--sand-4)] flex items-center justify-center text-[10px] font-semibold text-[var(--sand-11)] shrink-0">
+                {r.name[0]}
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-xs font-medium text-[#1d1d1f]">{r.name}</p>
+                <p className="text-[10px] text-[var(--sand-10)]">{r.role} · {r.company}</p>
+              </div>
+              {r.status === "live" && (
+                <span className="flex items-center gap-1 text-[9px] font-semibold text-[var(--green-10)] shrink-0">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--green-9)] animate-pulse" /> LIVE · 4:12
+                </span>
+              )}
+              {r.status === "next" && (
+                <span className="text-[9px] text-[var(--sand-10)] shrink-0">Next</span>
+              )}
+            </div>
+          ))}
         </div>
 
-        <div className="border-b border-[var(--green-5)] bg-[var(--green-1)]">
-          <div className="grid grid-cols-[20px_1fr_90px] gap-3 px-3 py-2 items-center">
-            <span className="text-[10px] text-[var(--sand-10)]">1</span>
-            <div className="flex items-center gap-2">
-              <span className="flex items-center gap-1 text-[9px] font-semibold text-[var(--green-10)] shrink-0">
-                <span className="w-1.5 h-1.5 rounded-full bg-[var(--green-9)] animate-pulse" /> LIVE
-              </span>
-              <span className="text-[10px] font-mono text-[var(--sand-10)]">4:12</span>
-              <p className="text-[10px] font-medium text-[#1d1d1f]">Marc Benioff</p>
-              <span className="text-[8px] font-bold px-1 py-0.5 rounded bg-[#0A66C2]/10 text-[#0A66C2] border border-[#0A66C2]/20">in</span>
-              <span className="text-[9px] text-[var(--sand-10)]">CEO</span>
-              <button className="ml-auto p-1 rounded bg-red-50 text-red-600 border border-red-200">
-                <Phone className="w-2.5 h-2.5" />
-              </button>
-            </div>
-            <p className="text-[10px] text-[var(--sand-10)]">Salesforce</p>
-          </div>
-
-          <div className="grid grid-cols-2 divide-x divide-[var(--sand-4)] border-t border-[var(--green-4)] mx-3 mb-3 rounded-lg overflow-hidden bg-white border border-[var(--sand-5)]">
-            <div className="p-3 flex flex-col gap-2">
-              <div className="bg-amber-50 border border-amber-200 rounded-md px-2.5 py-1.5">
-                <p className="text-[9px] text-amber-600 uppercase tracking-wider mb-0.5">Context</p>
-                <p className="text-[10px] text-[#1d1d1f] leading-relaxed">Colleague spoke w/ Marc <span className="text-amber-600">3 months ago</span> — mentioned pressure to grow revenue &amp; scale SDR org in Q2. Tooling sprawl was a pain point.</p>
-              </div>
-              <div>
-                <p className="text-[9px] text-[var(--sand-10)] uppercase tracking-wider mb-1.5">Transcript</p>
-                <div>
-                  <p className="text-[9px] text-[var(--sand-10)] mb-1">Marc</p>
-                  <div className="space-y-1">
-                    <p className="text-[10px] text-[#1d1d1f] leading-relaxed">"We're spread across a lot of tools — my reps don't know where to look."</p>
-                    <p className="text-[10px] text-[var(--sand-10)]">...</p>
-                    <p className="text-[10px] text-[var(--green-10)] leading-relaxed">"Show me the ROI and I'm in. Free Tuesday at 3?"</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-3 flex flex-col gap-2">
-              <p className="text-[9px] text-[var(--sand-10)] uppercase tracking-wider">Suggested Next Steps</p>
-              <button className="w-full text-left bg-[var(--sand-2)] hover:bg-[var(--sand-3)] border border-[var(--sand-5)] rounded-md p-2.5 transition-colors">
-                <div className="flex items-center gap-2 mb-1">
-                  <Mail className="w-3 h-3 text-[var(--green-9)] shrink-0" />
-                  <p className="text-[10px] font-medium text-[#1d1d1f]">Send email based on this call?</p>
-                </div>
-                <p className="text-[9px] text-[var(--sand-11)] leading-relaxed pl-5">ROI one-pager + case study tailored to Salesforce's SDR org</p>
-              </button>
-              <div className="bg-[var(--green-2)] border border-[var(--green-5)] rounded-md p-2.5">
-                <div className="flex items-center gap-2 mb-2">
-                  <Calendar className="w-3 h-3 text-[var(--green-9)] shrink-0" />
-                  <p className="text-[10px] font-medium text-[#1d1d1f]">Marc proposed Tue @ 3pm</p>
-                </div>
-                <div className="flex gap-1.5 pl-5">
-                  <button className="flex items-center gap-1 px-2 py-1 rounded bg-[var(--green-9)] text-white text-[9px] font-medium">
-                    <Calendar className="w-2.5 h-2.5" /> Send GCal Invite
-                  </button>
-                  <button className="flex items-center gap-1 px-2 py-1 rounded bg-white border border-[var(--sand-5)] text-[var(--sand-11)] text-[9px]">
-                    Auto-log in CRM
-                  </button>
-                </div>
-              </div>
-              <div className="mt-auto pt-1 border-t border-[var(--sand-4)]">
-                <p className="text-[9px] text-[var(--sand-10)] leading-relaxed">Auto-logs call, updates CRM, and queues follow-up on hangup.</p>
-              </div>
+        {/* Auto follow-up strip */}
+        <div className="border-t border-[var(--sand-4)] bg-[var(--sand-2)] px-4 py-2.5 flex items-center justify-between gap-3">
+          <div className="flex items-center gap-2 min-w-0">
+            <Mail className="w-3 h-3 text-[var(--green-10)] shrink-0" />
+            <div className="min-w-0">
+              <p className="text-[10px] font-medium text-[#1d1d1f] truncate">Auto follow-up queued for Marc Benioff</p>
+              <p className="text-[9px] text-[var(--sand-10)]">"ROI one-pager + case study" · Sends on hangup</p>
             </div>
           </div>
+          <span className="text-[9px] px-2 py-0.5 rounded-full bg-[var(--green-3)] text-[var(--green-11)] shrink-0 whitespace-nowrap">Auto-send on</span>
         </div>
-
-        {[
-          { n: "Thomas Weaver", role: "Director of Sales", co: "VisualVisitor" },
-          { n: "Nicole Roessner", role: "Dir. Sales Dev.", co: "Pipewise" },
-        ].map((r, i) => (
-          <div key={i} className="grid grid-cols-[20px_1fr_90px] gap-3 px-3 py-2 items-center border-t border-[var(--sand-3)]">
-            <span className="text-[10px] text-[var(--sand-10)]">{i + 2}</span>
-            <div>
-              <div className="flex items-center gap-1.5">
-                <p className="text-[10px] text-[#1d1d1f]">{r.n}</p>
-                <span className="text-[8px] font-bold px-1 py-0.5 rounded bg-[#0A66C2]/10 text-[#0A66C2] border border-[#0A66C2]/20">in</span>
-              </div>
-              <p className="text-[9px] text-[var(--sand-10)]">{r.role}</p>
-            </div>
-            <p className="text-[10px] text-[var(--sand-10)]">{r.co}</p>
-          </div>
-        ))}
       </div>
     </div>
   )
@@ -360,101 +187,58 @@ function DialerView() {
 
 // ── Emailer ──────────────────────────────────────────────────────────────────
 function EmailerView() {
-  const statCards = [
-    { label: "Pending Emails", value: "42", sub: "Across all sequences" },
-    { label: "High Priority", value: "8", sub: "Require immediate attention" },
-    { label: "Follow-ups Due", value: "15", sub: "Due in the next 24 hours" },
-    { label: "Draft Emails", value: "0", sub: "Saved from dialer" },
-  ]
   const emails = [
-    { name: "Marcus Webb", company: "TechCorp", time: "Today, 2:30 PM", subject: "Following up on our conversation", preview: "I wanted to follow up on our discussion about...", tags: ["Enterprise Outreach", "First Personalized Email"], priority: "High Priority", insight: "Visited pricing page 5 times in the last week" },
-    { name: "Sarah Smith", company: "Innovate LLC", time: "Today, 4:15 PM", subject: "Your recent demo request", preview: null, tags: ["Product Demo Request", "Demo Follow-up"], priority: null, insight: "Requested a demo through website form" },
-    { name: "Michael Chen", company: "Global Industries", time: "Tomorrow, 9:00 AM", subject: "Introducing our enterprise solution", preview: null, tags: ["Enterprise Outreach", "Second Automated Email"], priority: null, insight: "Downloaded whitepaper on data security" },
+    { name: "Marcus Webb", company: "TechCorp", subject: "Following up on our conversation", time: "2:30 PM", tag: "High Priority", tagColor: "bg-red-50 text-red-600", active: true },
+    { name: "Sarah Smith", company: "Innovate LLC", subject: "Your recent demo request", time: "4:15 PM", tag: "Demo Follow-up", tagColor: "bg-[var(--sand-3)] text-[var(--sand-11)]", active: false },
+    { name: "Michael Chen", company: "Global Industries", subject: "Introducing our enterprise solution", time: "Tomorrow", tag: "Sequence Step 2", tagColor: "bg-[var(--sand-3)] text-[var(--sand-11)]", active: false },
   ]
   return (
-    <div className="flex-1 overflow-hidden flex flex-col">
-      <div className="px-5 pt-5 pb-3">
-        <h2 className="text-sm font-semibold text-[#1d1d1f] mb-3">Emailer</h2>
-        <div className="grid grid-cols-4 gap-2 mb-3">
-          {statCards.map((s) => (
-            <div key={s.label} className="bg-white border border-[var(--sand-5)] rounded-lg p-2.5">
-              <p className="text-[9px] text-[var(--sand-11)] mb-0.5">{s.label}</p>
-              <p className="text-lg font-bold text-[#1d1d1f]">{s.value}</p>
-              <p className="text-[9px] text-[var(--sand-10)]">{s.sub}</p>
-            </div>
-          ))}
+    <div className="flex-1 flex overflow-hidden">
+      {/* Email list */}
+      <div className="w-52 shrink-0 border-r border-[var(--sand-4)] flex flex-col overflow-hidden">
+        <div className="px-4 pt-5 pb-3 border-b border-[var(--sand-4)]">
+          <h2 className="text-sm font-semibold text-[#1d1d1f]">Emailer</h2>
+          <p className="text-[10px] text-[var(--sand-11)] mt-0.5">42 pending · 8 high priority</p>
         </div>
-        <div className="flex gap-1 mb-0">
-          {["Drafts", "Sequence Emails", "Priority Follow-ups", "Email Templates"].map((t, i) => (
-            <button key={t} className={`text-[10px] px-2.5 py-1 rounded-md ${i === 1 ? "bg-[var(--sand-4)] text-[#1d1d1f]" : "text-[var(--sand-10)]"}`}>{t}</button>
+        <div className="flex-1 divide-y divide-[var(--sand-3)] overflow-hidden">
+          {emails.map((e, i) => (
+            <div key={i} className={`px-4 py-3 ${e.active ? "bg-[var(--green-1)]" : ""}`}>
+              <div className="flex justify-between items-start mb-0.5">
+                <p className="text-[10px] font-semibold text-[#1d1d1f]">{e.name}</p>
+                <span className="text-[9px] text-[var(--sand-10)] shrink-0 ml-1">{e.time}</span>
+              </div>
+              <p className="text-[10px] text-[var(--sand-10)] truncate mb-1.5">{e.subject}</p>
+              <span className={`text-[8px] px-1.5 py-0.5 rounded ${e.tagColor}`}>{e.tag}</span>
+            </div>
           ))}
         </div>
       </div>
-      <div className="flex flex-1 border-t border-[var(--sand-4)] overflow-hidden">
-        <div className="w-56 border-r border-[var(--sand-4)] overflow-hidden divide-y divide-[var(--sand-3)]">
-          {emails.map((e, i) => (
-            <div key={i} className={`p-3 ${i === 0 ? "bg-[var(--green-1)]" : ""}`}>
-              <div className="flex justify-between mb-0.5">
-                <span className="text-[10px] font-medium text-[#1d1d1f]">{e.name} <span className="text-[var(--sand-10)] font-normal">{e.company}</span></span>
-                <span className="text-[9px] text-[var(--sand-10)]">{e.time.split(",")[1]?.trim()}</span>
-              </div>
-              <p className="text-[10px] text-[#1d1d1f] font-medium truncate mb-0.5">{e.subject}</p>
-              {e.preview ? (
-                <p className="text-[9px] text-[var(--sand-10)] truncate">{e.preview}</p>
-              ) : (
-                <svg viewBox="0 0 120 10" className="w-full h-2 mt-0.5" preserveAspectRatio="none">
-                  <path d="M0,5 Q8,1 16,5 Q24,9 32,5 Q40,1 48,5 Q56,9 64,5 Q72,1 80,5 Q88,9 96,5 Q104,1 112,5 Q118,8 120,5" fill="none" stroke="rgba(0,0,0,0.12)" strokeWidth="1.2" />
-                  <path d="M0,5 Q6,2 12,5 Q18,8 24,5 Q30,2 36,5 Q42,8 48,5" fill="none" stroke="rgba(0,0,0,0.07)" strokeWidth="1" />
-                </svg>
-              )}
-              <div className="flex gap-1 mt-1.5 flex-wrap">
-                {e.tags.map(t => <span key={t} className="text-[8px] px-1.5 py-0.5 rounded bg-[var(--sand-3)] text-[var(--sand-11)]">{t}</span>)}
-                {e.priority && <span className="text-[8px] px-1.5 py-0.5 rounded bg-red-50 text-red-600">{e.priority}</span>}
-              </div>
+
+      {/* Compose pane */}
+      <div className="flex-1 flex flex-col overflow-hidden">
+        <div className="px-5 pt-5 pb-4 border-b border-[var(--sand-4)]">
+          <div className="flex items-center justify-between mb-3">
+            <p className="text-xs font-medium text-[#1d1d1f]">Following up on our conversation</p>
+            <div className="flex gap-1.5">
+              <button className="text-[9px] px-2.5 py-1 rounded bg-white text-[var(--sand-11)] border border-[var(--sand-5)]">Save Draft</button>
+              <button className="text-[9px] px-2.5 py-1 rounded bg-[var(--green-9)] text-white font-medium">Send</button>
             </div>
-          ))}
+          </div>
+          <div className="space-y-1.5 text-[10px]">
+            <div className="flex gap-2"><span className="text-[var(--sand-10)] w-6">To</span><span className="text-[#1d1d1f]">marcus.webb@techcorp.com</span></div>
+          </div>
         </div>
-        <div className="flex-1 flex flex-col overflow-hidden">
-          <div className="px-4 pt-3 pb-2 border-b border-[var(--sand-4)]">
-            <div className="flex items-center justify-between mb-2">
-              <p className="text-[10px] font-medium text-[#1d1d1f]">Following up on our conversation</p>
-              <div className="flex gap-1.5">
-                <button className="text-[9px] px-2 py-1 rounded bg-white text-[var(--sand-11)] border border-[var(--sand-5)]">Save Draft</button>
-                <button className="text-[9px] px-2 py-1 rounded bg-[var(--green-9)] text-white font-medium">Send</button>
-              </div>
-            </div>
-            <div className="space-y-1">
-              <div className="flex items-center gap-2 text-[10px]">
-                <span className="text-[var(--sand-10)] w-6 shrink-0">To</span>
-                <span className="text-[#1d1d1f]">marcus.webb@techcorp.com</span>
-              </div>
-              <div className="flex items-center gap-2 text-[10px]">
-                <span className="text-[var(--sand-10)] w-6 shrink-0">CC</span>
-                <span className="text-[var(--sand-8)]">Add CC...</span>
-              </div>
-            </div>
+        <div className="px-5 py-4 flex-1 overflow-hidden">
+          <div className="space-y-2.5 text-[10px] text-[#1d1d1f] leading-relaxed">
+            <p>Hi Marcus,</p>
+            <p>I wanted to follow up on our discussion about consolidating your outbound stack. You mentioned your team was juggling Outreach, Apollo, and a couple of other tools — and that visibility into rep activity was a real gap.</p>
+            <p>boilerroom brings everything into a single workflow. Worth a 20-minute look?</p>
+            <p className="text-[var(--sand-10)]">Best,<br />Sadid</p>
           </div>
-
-          <div className="px-4 py-1.5 border-b border-[var(--sand-3)] flex gap-1.5">
-            <span className="text-[8px] px-1.5 py-0.5 rounded bg-[var(--sand-3)] text-[var(--sand-11)]">Enterprise Outreach</span>
-            <span className="text-[8px] px-1.5 py-0.5 rounded bg-[var(--sand-3)] text-[var(--sand-11)]">First Personalized Email</span>
-            <span className="text-[8px] px-1.5 py-0.5 rounded bg-red-50 text-red-600">High Priority</span>
-          </div>
-
-          <div className="px-4 py-3 flex-1 overflow-hidden">
-            <div className="space-y-2 text-[10px] text-[#1d1d1f] leading-relaxed">
-              <p>Hi Marcus,</p>
-              <p>I wanted to follow up on our discussion about consolidating your outbound stack. You mentioned your team was juggling Outreach, Apollo, and a couple of other tools — and that visibility into rep activity was a real gap.</p>
-              <p>boilerroom brings prospecting, sequencing, dialing, and follow-up into a single workflow. Your reps stay in one place, and you get full pipeline visibility without chasing spreadsheets.</p>
-              <p>Worth a 20-minute look? I can walk you through exactly how teams your size are running it.</p>
-              <p className="text-[var(--sand-10)]">Best,<br />Sadid</p>
-            </div>
-          </div>
-
-          <div className="px-4 py-2 border-t border-[var(--sand-3)] flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-[var(--green-9)] shrink-0" />
-            <p className="text-[9px] text-[var(--sand-10)]">Visited pricing page 5 times in the last week</p>
-          </div>
+        </div>
+        <div className="px-5 py-2.5 border-t border-[var(--sand-3)] flex items-center gap-2">
+          <span className="w-1.5 h-1.5 rounded-full bg-[var(--green-9)] shrink-0" />
+          <p className="text-[9px] text-[var(--sand-10)]">Visited pricing page 5× this week</p>
         </div>
       </div>
     </div>
@@ -464,49 +248,44 @@ function EmailerView() {
 // ── Sequences ────────────────────────────────────────────────────────────────
 function SequencesView() {
   const seqs = [
-    { name: "Upmarket SMB", steps: ["Call Step 1", "Call Step 2", "Call Step 3", "Call Step 4", "Call Step 5"], total: 5, completed: 25, totalProspects: 77, active: 52, status: "Active" },
-    { name: "Startup SMB", steps: ["Call Step 1", "Call Step 2", "Call Step 3", "Call Step 4", "Call Step 5", "Call Step 6", "Call Step 7"], total: 7, completed: 0, totalProspects: 2, active: 2, status: "Active" },
-    { name: "Consulting Companies", steps: ["Call Step 1", "Call Step 2", "Call Step 3", "Call Step 4", "Call Step 5", "Call Step 6"], total: 6, completed: 4, totalProspects: 18, active: 12, status: "Active" },
+    { name: "Cold Outbound", steps: 5, active: 52, completed: 25, rate: "12%" },
+    { name: "Warm Inbound Follow-up", steps: 7, active: 2, completed: 0, rate: "—" },
+    { name: "Churned Leads", steps: 6, active: 12, completed: 4, rate: "9%" },
   ]
+  const stepTypes = ["Call", "Email", "LinkedIn", "Call", "Email"]
   return (
-    <div className="flex-1 p-5 overflow-hidden">
-      <div className="flex items-center justify-between mb-4">
+    <div className="flex-1 p-5 flex flex-col gap-4 overflow-hidden">
+      <div className="flex items-center justify-between">
         <h2 className="text-sm font-semibold text-[#1d1d1f]">Sequences</h2>
-        <button className="px-3 py-1.5 rounded-md bg-[var(--green-9)] text-white text-xs font-medium">+ Create Sequence</button>
+        <button className="px-3 py-1.5 rounded-md bg-[var(--green-9)] text-white text-xs font-medium">+ New Sequence</button>
       </div>
-      <div className="space-y-3 overflow-hidden">
+
+      {/* Step type legend */}
+      <div className="flex items-center gap-1.5">
+        {stepTypes.map((t, i) => (
+          <div key={i} className="flex items-center gap-1">
+            <span className="text-[9px] px-2 py-0.5 rounded-full bg-[var(--sand-3)] text-[var(--sand-11)] border border-[var(--sand-5)]">{t}</span>
+            {i < stepTypes.length - 1 && <ArrowRight className="w-2.5 h-2.5 text-[var(--sand-7)]" />}
+          </div>
+        ))}
+        <span className="text-[9px] text-[var(--sand-9)] ml-1">+ more</span>
+      </div>
+
+      <div className="space-y-2.5 flex-1 overflow-hidden">
         {seqs.map((s) => (
-          <div key={s.name} className="bg-white border border-[var(--sand-5)] rounded-lg p-3">
-            <div className="flex items-center justify-between mb-2">
+          <div key={s.name} className="bg-white border border-[var(--sand-5)] rounded-lg px-4 py-3">
+            <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-[var(--green-9)]" />
                 <p className="text-xs font-semibold text-[#1d1d1f]">{s.name}</p>
               </div>
               <span className="text-[10px] px-2 py-0.5 rounded-full bg-[var(--green-3)] text-[var(--green-11)]">Active</span>
             </div>
-            <div className="flex gap-1 flex-wrap mb-2.5">
-              {s.steps.slice(0, 5).map((step, i) => (
-                <div key={i} className="flex items-center gap-1">
-                  <span className="text-[9px] px-1.5 py-0.5 rounded bg-[var(--sand-3)] border border-[var(--sand-5)] text-[var(--sand-11)] flex items-center gap-1">
-                    <Phone className="w-2 h-2" />{step}
-                  </span>
-                  {i < s.steps.slice(0, 5).length - 1 && <ArrowRight className="w-2 h-2 text-[var(--sand-8)]" />}
-                </div>
-              ))}
-            </div>
-            <div className="grid grid-cols-3 gap-3 text-[10px]">
-              <div>
-                <p className="text-[var(--sand-10)]">Total Steps</p>
-                <p className="text-[#1d1d1f] font-medium">{s.total}</p>
-              </div>
-              <div>
-                <p className="text-[var(--sand-10)]">Completed</p>
-                <p className="text-[#1d1d1f] font-medium">{s.completed}</p>
-              </div>
-              <div>
-                <p className="text-[var(--sand-10)]">Active Prospects</p>
-                <p className="text-[var(--green-10)] font-medium">{s.active}</p>
-              </div>
+            <div className="grid grid-cols-4 gap-3 text-[10px]">
+              <div><p className="text-[var(--sand-10)]">Steps</p><p className="text-[#1d1d1f] font-medium">{s.steps}</p></div>
+              <div><p className="text-[var(--sand-10)]">Active</p><p className="text-[var(--green-10)] font-medium">{s.active}</p></div>
+              <div><p className="text-[var(--sand-10)]">Completed</p><p className="text-[#1d1d1f] font-medium">{s.completed}</p></div>
+              <div><p className="text-[var(--sand-10)]">Meeting Rate</p><p className="text-[#1d1d1f] font-medium">{s.rate}</p></div>
             </div>
           </div>
         ))}
@@ -518,10 +297,10 @@ function SequencesView() {
 // ── Reports ──────────────────────────────────────────────────────────────────
 function ReportsView() {
   const reps = [
-    { name: "Jordan Lee", calls: 312, connects: 48, emails: 210, meetings: 7, rate: "15.4%" },
-    { name: "Priya Nair", calls: 289, connects: 41, emails: 198, meetings: 5, rate: "14.2%" },
-    { name: "Chris Mendez", calls: 401, connects: 62, emails: 244, meetings: 9, rate: "15.5%" },
-    { name: "Taylor Brooks", calls: 198, connects: 22, emails: 155, meetings: 3, rate: "11.1%" },
+    { name: "Chris Mendez", calls: 401, meetings: 9, rate: "15.5%" },
+    { name: "Jordan Lee", calls: 312, meetings: 7, rate: "15.4%" },
+    { name: "Priya Nair", calls: 289, meetings: 5, rate: "14.2%" },
+    { name: "Taylor Brooks", calls: 198, meetings: 3, rate: "11.1%" },
   ]
   const weekly = [
     { day: "Mon", calls: 72 },
@@ -532,21 +311,21 @@ function ReportsView() {
   ]
   const max = Math.max(...weekly.map(w => w.calls))
   return (
-    <div className="flex-1 p-5 overflow-hidden">
-      <div className="flex items-center justify-between mb-4">
+    <div className="flex-1 p-5 flex flex-col gap-4 overflow-hidden">
+      <div className="flex items-center justify-between">
         <h2 className="text-sm font-semibold text-[#1d1d1f]">Reports</h2>
-        <div className="flex gap-1.5">
-          {["This Week", "This Month", "Q1"].map((t, i) => (
+        <div className="flex gap-1">
+          {["Week", "Month", "Q1"].map((t, i) => (
             <button key={t} className={`text-[10px] px-2.5 py-1 rounded-md ${i === 1 ? "bg-[var(--sand-4)] text-[#1d1d1f]" : "text-[var(--sand-10)]"}`}>{t}</button>
           ))}
         </div>
       </div>
 
-      <div className="grid grid-cols-4 gap-2 mb-4">
+      <div className="grid grid-cols-4 gap-2">
         {[
           { label: "Total Calls", value: "1,200", delta: "+18%", up: true },
           { label: "Connect Rate", value: "14.8%", delta: "+2.1%", up: true },
-          { label: "Meetings Booked", value: "24", delta: "+6", up: true },
+          { label: "Meetings", value: "24", delta: "+6", up: true },
           { label: "Avg Talk Time", value: "3m 42s", delta: "-12s", up: false },
         ].map(s => (
           <div key={s.label} className="bg-white border border-[var(--sand-5)] rounded-lg p-3">
@@ -557,14 +336,14 @@ function ReportsView() {
         ))}
       </div>
 
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-2 gap-3 flex-1">
         <div className="bg-white border border-[var(--sand-5)] rounded-lg p-3">
           <p className="text-[10px] font-medium text-[#1d1d1f] mb-3">Calls This Week</p>
           <div className="flex items-end gap-2 h-20">
             {weekly.map(w => (
               <div key={w.day} className="flex-1 flex flex-col items-center gap-1">
                 <span className="text-[9px] text-[var(--sand-10)]">{w.calls}</span>
-                <div className="w-full bg-[var(--green-9)] rounded-sm" style={{ height: `${(w.calls / max) * 56}px` }} />
+                <div className="w-full bg-[var(--green-9)] rounded-sm" style={{ height: `${(w.calls / max) * 52}px` }} />
                 <span className="text-[9px] text-[var(--sand-10)]">{w.day}</span>
               </div>
             ))}
@@ -577,11 +356,9 @@ function ReportsView() {
           </div>
           <div className="divide-y divide-[var(--sand-3)]">
             {reps.map((r, i) => (
-              <div key={r.name} className="flex items-center gap-2 px-3 py-1.5">
+              <div key={r.name} className="flex items-center gap-2 px-3 py-2">
                 <span className={`text-[10px] font-bold w-4 shrink-0 ${i === 0 ? "text-[var(--green-10)]" : "text-[var(--sand-10)]"}`}>{i + 1}</span>
                 <p className="text-[10px] text-[#1d1d1f] flex-1">{r.name}</p>
-                <span className="text-[10px] text-[var(--sand-10)]">{r.calls} calls</span>
-                <span className="text-[10px] text-[var(--sand-10)]">{r.meetings} mtgs</span>
                 <span className={`text-[10px] font-medium ${i < 2 ? "text-[var(--green-10)]" : "text-[var(--sand-10)]"}`}>{r.rate}</span>
               </div>
             ))}
@@ -618,7 +395,7 @@ export function ProductPreview() {
           <span className="text-xs text-[var(--sand-10)] ml-2">boilerroom.ai</span>
         </div>
 
-        <div className="flex min-h-[440px]">
+        <div className="flex min-h-[420px]">
           {/* Sidebar */}
           <div className="w-40 shrink-0 border-r border-[var(--sand-4)] bg-[var(--sand-2)] p-3 flex flex-col gap-0.5">
             <div className="flex items-center gap-2 px-2 py-2 mb-3">
