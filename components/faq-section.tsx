@@ -1,3 +1,4 @@
+import { Heading, Text } from "@radix-ui/themes"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 const faqs = [
@@ -25,17 +26,28 @@ const faqs = [
 
 export function FaqSection() {
   return (
-    <section id="faq" className="py-24 px-4 sm:px-6 lg:px-8 border-t border-border">
+    <section id="faq" className="py-28 px-4 sm:px-6 lg:px-8 bg-white">
       <div className="max-w-3xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-12 text-center">Frequently Asked Questions</h2>
+        <Text
+          size="1"
+          weight="medium"
+          className="uppercase tracking-[0.08em] text-[var(--sand-11)] block mb-3"
+        >
+          Common questions
+        </Text>
+        <Heading size="8" weight="bold" className="tracking-tight mb-12">
+          Frequently Asked Questions
+        </Heading>
 
-        <Accordion type="single" collapsible className="w-full rounded-xl overflow-hidden bg-white/10 backdrop-blur-2xl border border-white/20 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] px-6">
+        <Accordion type="single" collapsible className="w-full divide-y divide-[var(--sand-5)]">
           {faqs.map((faq, index) => (
-            <AccordionItem key={index} value={`item-${index}`} className="border-border">
-              <AccordionTrigger className="text-left text-foreground hover:text-foreground hover:no-underline">
+            <AccordionItem key={index} value={`item-${index}`} className="border-[var(--sand-5)]">
+              <AccordionTrigger className="text-left text-[#1d1d1f] hover:text-[#1d1d1f] hover:no-underline font-medium">
                 {faq.question}
               </AccordionTrigger>
-              <AccordionContent className="text-muted-foreground">{faq.answer}</AccordionContent>
+              <AccordionContent className="text-[var(--sand-11)]">
+                {faq.answer}
+              </AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>

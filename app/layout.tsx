@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Inter, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { Theme } from "@radix-ui/themes"
 import "./globals.css"
 
 const _inter = Inter({ subsets: ["latin"] })
@@ -49,7 +50,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`font-sans antialiased`}>
-        {children}
+        <Theme accentColor="green" grayColor="sand" appearance="light" radius="large" scaling="100%">
+          {children}
+        </Theme>
         <Analytics />
       </body>
     </html>

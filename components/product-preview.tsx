@@ -15,12 +15,11 @@ const navItems = [
 // ── Dashboard ────────────────────────────────────────────────────────────────
 function RadarChart() {
   const cx = 80, cy = 80, r = 55
-  // axes: top=Emails, right=Calls, bottom=Leads, left=LinkedIn
   const target = [
-    [cx, cy - r],         // top
-    [cx + r, cy],         // right
-    [cx, cy + r],         // bottom
-    [cx - r, cy],         // left
+    [cx, cy - r],
+    [cx + r, cy],
+    [cx, cy + r],
+    [cx - r, cy],
   ]
   const pcts = [0.88, 0.80, 0.90, 0.75]
   const progress = [
@@ -33,7 +32,6 @@ function RadarChart() {
 
   return (
     <svg viewBox="0 0 160 160" className="w-full h-full">
-      {/* Grid rings */}
       {[0.25, 0.5, 0.75, 1].map((scale) => (
         <path
           key={scale}
@@ -44,23 +42,19 @@ function RadarChart() {
             [cx - r * scale, cy],
           ])}
           fill="none"
-          stroke="rgba(255,255,255,0.06)"
+          stroke="rgba(0,0,0,0.07)"
           strokeWidth="1"
         />
       ))}
-      {/* Axis lines */}
       {target.map((pt, i) => (
-        <line key={i} x1={cx} y1={cy} x2={pt[0]} y2={pt[1]} stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
+        <line key={i} x1={cx} y1={cy} x2={pt[0]} y2={pt[1]} stroke="rgba(0,0,0,0.09)" strokeWidth="1" />
       ))}
-      {/* Target diamond */}
-      <path d={toPath(target)} fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
-      {/* Progress diamond */}
-      <path d={toPath(progress)} fill="rgba(132,204,22,0.15)" stroke="rgba(132,204,22,0.7)" strokeWidth="1.5" />
-      {/* Axis labels */}
-      <text x={cx} y={cy - r - 6} textAnchor="middle" fill="rgba(255,255,255,0.45)" fontSize="8">Emails</text>
-      <text x={cx + r + 6} y={cy + 3} textAnchor="start" fill="rgba(255,255,255,0.45)" fontSize="8">Calls</text>
-      <text x={cx} y={cy + r + 12} textAnchor="middle" fill="rgba(255,255,255,0.45)" fontSize="8">Leads</text>
-      <text x={cx - r - 6} y={cy + 3} textAnchor="end" fill="rgba(255,255,255,0.45)" fontSize="8">LinkedIn</text>
+      <path d={toPath(target)} fill="rgba(0,0,0,0.03)" stroke="rgba(0,0,0,0.15)" strokeWidth="1" />
+      <path d={toPath(progress)} fill="rgba(34,197,94,0.12)" stroke="rgba(34,197,94,0.7)" strokeWidth="1.5" />
+      <text x={cx} y={cy - r - 6} textAnchor="middle" fill="rgba(0,0,0,0.4)" fontSize="8">Emails</text>
+      <text x={cx + r + 6} y={cy + 3} textAnchor="start" fill="rgba(0,0,0,0.4)" fontSize="8">Calls</text>
+      <text x={cx} y={cy + r + 12} textAnchor="middle" fill="rgba(0,0,0,0.4)" fontSize="8">Leads</text>
+      <text x={cx - r - 6} y={cy + 3} textAnchor="end" fill="rgba(0,0,0,0.4)" fontSize="8">LinkedIn</text>
     </svg>
   )
 }
@@ -81,72 +75,65 @@ function DashboardView() {
   return (
     <div className="flex-1 p-4 overflow-hidden flex flex-col gap-3">
       <div className="flex items-center justify-between">
-        <h2 className="text-sm font-semibold text-foreground">Dashboard</h2>
-        <span className="text-[10px] px-2 py-0.5 rounded-full bg-accent/20 text-accent">● System Active</span>
+        <h2 className="text-sm font-semibold text-[#1d1d1f]">Dashboard</h2>
+        <span className="text-[10px] px-2 py-0.5 rounded-full bg-[var(--green-3)] text-[var(--green-11)]">● System Active</span>
       </div>
 
-      {/* Stat cards */}
       <div className="grid grid-cols-4 gap-2">
         {stats.map((s) => (
-          <div key={s.label} className="bg-white/[0.09] border border-white/[0.14] rounded-lg p-3">
-            <p className="text-[10px] text-muted-foreground mb-1">{s.label}</p>
-            <p className="text-lg font-bold text-foreground leading-none">{s.value}</p>
-            <p className="text-[10px] text-accent mt-1">{s.delta}</p>
+          <div key={s.label} className="bg-white border border-[var(--sand-5)] rounded-lg p-3">
+            <p className="text-[10px] text-[var(--sand-11)] mb-1">{s.label}</p>
+            <p className="text-lg font-bold text-[#1d1d1f] leading-none">{s.value}</p>
+            <p className="text-[10px] text-[var(--green-10)] mt-1">{s.delta}</p>
           </div>
         ))}
       </div>
 
-      {/* Weekly performance */}
-      <div className="bg-white/[0.06] border border-white/[0.12] rounded-lg p-3 flex-1">
+      <div className="bg-white border border-[var(--sand-5)] rounded-lg p-3 flex-1">
         <div className="flex items-center justify-between mb-1">
           <div>
-            <p className="text-xs font-medium text-foreground">Weekly SDR Performance</p>
-            <p className="text-[9px] text-muted-foreground/70">Progress toward 40 emails, 500 calls, 50 leads, 20 LinkedIn outreaches</p>
+            <p className="text-xs font-medium text-[#1d1d1f]">Weekly SDR Performance</p>
+            <p className="text-[9px] text-[var(--sand-10)]">Progress toward 40 emails, 500 calls, 50 leads, 20 LinkedIn outreaches</p>
           </div>
-          <span className="text-[10px] px-2 py-0.5 rounded-full bg-accent/20 text-accent shrink-0">On Track</span>
+          <span className="text-[10px] px-2 py-0.5 rounded-full bg-[var(--green-3)] text-[var(--green-11)] shrink-0">On Track</span>
         </div>
 
         <div className="flex gap-4 items-center">
-          {/* Radar chart */}
           <div className="w-44 h-44 shrink-0">
             <RadarChart />
           </div>
-
-          {/* Progress bars */}
           <div className="flex-1 space-y-2.5">
             {bars.map((b) => (
               <div key={b.label}>
                 <div className="flex justify-between text-[10px] mb-1">
-                  <span className="text-muted-foreground">{b.label}</span>
-                  <span className="text-muted-foreground/80">{b.value} / {b.total} <span className="text-accent">{b.pct}%</span></span>
+                  <span className="text-[var(--sand-11)]">{b.label}</span>
+                  <span className="text-[var(--sand-10)]">{b.value} / {b.total} <span className="text-[var(--green-10)]">{b.pct}%</span></span>
                 </div>
-                <div className="h-1.5 bg-white/[0.06] rounded-full overflow-hidden">
-                  <div className="h-full bg-accent rounded-full" style={{ width: `${b.pct}%` }} />
+                <div className="h-1.5 bg-[var(--sand-4)] rounded-full overflow-hidden">
+                  <div className="h-full bg-[var(--green-9)] rounded-full" style={{ width: `${b.pct}%` }} />
                 </div>
               </div>
             ))}
-            {/* Legend */}
             <div className="flex items-center gap-4 pt-1">
               <div className="flex items-center gap-1.5">
-                <div className="w-3 h-0.5 bg-white/20 rounded" />
-                <span className="text-[9px] text-muted-foreground/70">Target</span>
+                <div className="w-3 h-0.5 bg-[var(--sand-6)] rounded" />
+                <span className="text-[9px] text-[var(--sand-10)]">Target</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <div className="w-3 h-0.5 bg-accent rounded" />
-                <span className="text-[9px] text-muted-foreground/70">Progress</span>
+                <div className="w-3 h-0.5 bg-[var(--green-9)] rounded" />
+                <span className="text-[9px] text-[var(--sand-10)]">Progress</span>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Task Manager */}
-      <div className="bg-white/[0.06] border border-white/[0.12] rounded-lg overflow-hidden">
-        <div className="flex items-center justify-between px-3 py-2 border-b border-white/[0.12]">
-          <p className="text-xs font-medium text-foreground">Task Manager</p>
-          <span className="text-[10px] text-muted-foreground/70">3 due today</span>
+      <div className="bg-white border border-[var(--sand-5)] rounded-lg overflow-hidden">
+        <div className="flex items-center justify-between px-3 py-2 border-b border-[var(--sand-4)]">
+          <p className="text-xs font-medium text-[#1d1d1f]">Task Manager</p>
+          <span className="text-[10px] text-[var(--sand-10)]">3 due today</span>
         </div>
-        <div className="grid grid-cols-3 divide-x divide-white/[0.08]">
+        <div className="grid grid-cols-3 divide-x divide-[var(--sand-4)]">
           {[
             { tag: "Follow Up", priority: "medium", title: "Demo for NextGen Solutions", desc: "CEO requested a personalized demo; connect with champion", person: "Robert Taylor", due: "Tuesday @ 11am" },
             { tag: "Interested", priority: "high", title: "Schedule demo with CloudNine", desc: "Came inbound this morning", person: "Jessica Lee", due: "Today @ 8:00" },
@@ -154,19 +141,19 @@ function DashboardView() {
           ].map((card, i) => (
             <div key={i} className="p-3">
               <div className="flex items-center justify-between mb-1.5">
-                <span className="text-[9px] text-muted-foreground/80 bg-white/[0.08] px-1.5 py-0.5 rounded">{card.tag}</span>
-                <span className={`text-[9px] px-1.5 py-0.5 rounded font-medium ${card.priority === "high" ? "bg-red-500/20 text-red-400" : "bg-yellow-500/20 text-yellow-400"}`}>{card.priority}</span>
+                <span className="text-[9px] text-[var(--sand-11)] bg-[var(--sand-3)] px-1.5 py-0.5 rounded">{card.tag}</span>
+                <span className={`text-[9px] px-1.5 py-0.5 rounded font-medium ${card.priority === "high" ? "bg-red-50 text-red-600" : "bg-amber-50 text-amber-700"}`}>{card.priority}</span>
               </div>
-              <p className="text-[10px] font-semibold text-foreground leading-tight mb-1">{card.title}</p>
-              <p className="text-[9px] text-muted-foreground/80 leading-relaxed mb-2">{card.desc}</p>
+              <p className="text-[10px] font-semibold text-[#1d1d1f] leading-tight mb-1">{card.title}</p>
+              <p className="text-[9px] text-[var(--sand-11)] leading-relaxed mb-2">{card.desc}</p>
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-1">
-                  <div className="w-3.5 h-3.5 rounded-full bg-white/[0.10] flex items-center justify-center text-[8px] text-muted-foreground font-medium">{card.person[0]}</div>
-                  <p className="text-[9px] text-muted-foreground/80">{card.person}</p>
+                  <div className="w-3.5 h-3.5 rounded-full bg-[var(--sand-4)] flex items-center justify-center text-[8px] text-[var(--sand-11)] font-medium">{card.person[0]}</div>
+                  <p className="text-[9px] text-[var(--sand-11)]">{card.person}</p>
                 </div>
                 <div className="flex items-center gap-1">
-                  <Clock className="w-2 h-2 text-muted-foreground/70" />
-                  <p className="text-[9px] text-muted-foreground/70">{card.due}</p>
+                  <Clock className="w-2 h-2 text-[var(--sand-10)]" />
+                  <p className="text-[9px] text-[var(--sand-10)]">{card.due}</p>
                 </div>
               </div>
             </div>
@@ -186,61 +173,59 @@ function ProspectingView() {
   ]
   return (
     <div className="flex-1 overflow-hidden flex flex-col">
-      <div className="px-5 pt-5 pb-3 border-b border-white/[0.12]">
-        <h2 className="text-sm font-semibold text-foreground mb-3">Outbound Prospecting</h2>
+      <div className="px-5 pt-5 pb-3 border-b border-[var(--sand-4)]">
+        <h2 className="text-sm font-semibold text-[#1d1d1f] mb-3">Outbound Prospecting</h2>
         <div className="flex gap-2">
-          <div className="flex-1 flex items-center gap-2 bg-white/[0.09] border border-white/[0.14] rounded-md px-3 py-1.5">
-            <Search className="w-3 h-3 text-muted-foreground/70 shrink-0" />
-            <span className="text-xs text-muted-foreground/70">marc benioff</span>
+          <div className="flex-1 flex items-center gap-2 bg-white border border-[var(--sand-5)] rounded-md px-3 py-1.5">
+            <Search className="w-3 h-3 text-[var(--sand-10)] shrink-0" />
+            <span className="text-xs text-[var(--sand-10)]">marc benioff</span>
           </div>
-          <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-accent text-accent-foreground text-xs font-medium">
+          <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[var(--green-9)] text-white text-xs font-medium">
             <Search className="w-3 h-3" /> Search
           </button>
-          <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-white/[0.06] text-muted-foreground text-xs">
+          <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[var(--sand-3)] text-[var(--sand-11)] text-xs border border-[var(--sand-5)]">
             <Filter className="w-3 h-3" /> Filter
           </button>
         </div>
       </div>
       <div className="flex flex-1 overflow-hidden">
-        {/* Filters sidebar */}
-        <div className="w-36 shrink-0 border-r border-white/[0.12] p-3 space-y-3">
+        <div className="w-36 shrink-0 border-r border-[var(--sand-4)] p-3 space-y-3">
           <div>
-            <p className="text-[10px] font-semibold text-muted-foreground/80 uppercase tracking-wider mb-2">Company</p>
-            <div className="bg-white/[0.08] border border-white/[0.12] rounded px-2 py-1 text-[10px] text-muted-foreground/70">Company name</div>
-            <p className="text-[10px] text-muted-foreground/70 mt-2 mb-1">Headcount</p>
-            <div className="h-1 bg-white/[0.06] rounded-full"><div className="h-full bg-accent rounded-full w-full" /></div>
-            <div className="flex justify-between text-[9px] text-muted-foreground/80 mt-0.5"><span>10</span><span>10,000+</span></div>
+            <p className="text-[10px] font-semibold text-[var(--sand-11)] uppercase tracking-wider mb-2">Company</p>
+            <div className="bg-white border border-[var(--sand-5)] rounded px-2 py-1 text-[10px] text-[var(--sand-10)]">Company name</div>
+            <p className="text-[10px] text-[var(--sand-10)] mt-2 mb-1">Headcount</p>
+            <div className="h-1 bg-[var(--sand-4)] rounded-full"><div className="h-full bg-[var(--green-9)] rounded-full w-full" /></div>
+            <div className="flex justify-between text-[9px] text-[var(--sand-10)] mt-0.5"><span>10</span><span>10,000+</span></div>
           </div>
           <div>
-            <p className="text-[10px] font-semibold text-muted-foreground/80 uppercase tracking-wider mb-2">Role</p>
-            <div className="bg-white/[0.08] border border-white/[0.12] rounded px-2 py-1 text-[10px] text-muted-foreground/70">Select function</div>
+            <p className="text-[10px] font-semibold text-[var(--sand-11)] uppercase tracking-wider mb-2">Role</p>
+            <div className="bg-white border border-[var(--sand-5)] rounded px-2 py-1 text-[10px] text-[var(--sand-10)]">Select function</div>
           </div>
           <div>
-            <p className="text-[10px] font-semibold text-muted-foreground/80 uppercase tracking-wider mb-1.5">Seniority</p>
+            <p className="text-[10px] font-semibold text-[var(--sand-11)] uppercase tracking-wider mb-1.5">Seniority</p>
             {["C-Suite", "VP", "Director"].map(l => (
               <div key={l} className="flex items-center gap-1.5 py-0.5">
-                <div className="w-2.5 h-2.5 rounded border border-white/20" />
-                <span className="text-[10px] text-muted-foreground/80">{l}</span>
+                <div className="w-2.5 h-2.5 rounded border border-[var(--sand-6)]" />
+                <span className="text-[10px] text-[var(--sand-11)]">{l}</span>
               </div>
             ))}
           </div>
         </div>
-        {/* Results */}
         <div className="flex-1 p-3 space-y-2 overflow-hidden">
-          <p className="text-[10px] text-muted-foreground/70 mb-2">3 leads found matching your criteria</p>
+          <p className="text-[10px] text-[var(--sand-10)] mb-2">3 leads found matching your criteria</p>
           {results.map((r, i) => (
-            <div key={i} className="bg-white/[0.08] border border-white/[0.12] rounded-lg px-3 py-2.5 flex items-center gap-3">
+            <div key={i} className="bg-white border border-[var(--sand-5)] rounded-lg px-3 py-2.5 flex items-center gap-3">
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-0.5">
-                  <p className="text-xs font-medium text-foreground">{r.name}</p>
-                  <span className={`text-[9px] px-1.5 py-0.5 rounded-full ${r.intent === "High Intent" ? "bg-accent/20 text-accent" : "bg-yellow-500/20 text-yellow-400"}`}>{r.intent}</span>
+                  <p className="text-xs font-medium text-[#1d1d1f]">{r.name}</p>
+                  <span className={`text-[9px] px-1.5 py-0.5 rounded-full ${r.intent === "High Intent" ? "bg-[var(--green-3)] text-[var(--green-11)]" : "bg-amber-50 text-amber-700"}`}>{r.intent}</span>
                 </div>
-                <p className="text-[10px] text-muted-foreground/80">{r.title} · {r.company}</p>
-                <p className="text-[9px] text-muted-foreground/80">{r.location}</p>
+                <p className="text-[10px] text-[var(--sand-11)]">{r.title} · {r.company}</p>
+                <p className="text-[9px] text-[var(--sand-10)]">{r.location}</p>
               </div>
               <div className="flex items-center gap-1.5 shrink-0">
-                <button className="text-[10px] px-2 py-1 rounded bg-white/[0.06] text-muted-foreground border border-white/[0.14]">LinkedIn</button>
-                <button className="text-[10px] px-2 py-1 rounded bg-accent text-accent-foreground font-medium">+ Add</button>
+                <button className="text-[10px] px-2 py-1 rounded bg-white text-[var(--sand-11)] border border-[var(--sand-5)]">LinkedIn</button>
+                <button className="text-[10px] px-2 py-1 rounded bg-[var(--green-9)] text-white font-medium">+ Add</button>
               </div>
             </div>
           ))}
@@ -263,117 +248,109 @@ function DialerView() {
     <div className="flex-1 p-4 overflow-hidden flex flex-col gap-3">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-sm font-semibold text-foreground">Power Dialer</h2>
-          <p className="text-[10px] text-muted-foreground">Dial prospects one at a time</p>
+          <h2 className="text-sm font-semibold text-[#1d1d1f]">Power Dialer</h2>
+          <p className="text-[10px] text-[var(--sand-11)]">Dial prospects one at a time</p>
         </div>
-        <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-accent text-accent-foreground text-xs font-medium">
+        <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[var(--green-9)] text-white text-xs font-medium">
           <Phone className="w-3 h-3" /> Start Session
         </button>
       </div>
 
       <div className="grid grid-cols-5 gap-2">
         {dialerStats.map((s) => (
-          <div key={s.label} className="bg-white/[0.09] border border-white/[0.14] rounded-lg p-2.5">
-            <p className="text-[9px] text-muted-foreground mb-1">{s.label}</p>
-            <p className="text-base font-bold text-foreground">{s.value}</p>
+          <div key={s.label} className="bg-white border border-[var(--sand-5)] rounded-lg p-2.5">
+            <p className="text-[9px] text-[var(--sand-11)] mb-1">{s.label}</p>
+            <p className="text-base font-bold text-[#1d1d1f]">{s.value}</p>
           </div>
         ))}
       </div>
 
-      {/* Queue */}
-      <div className="bg-white/[0.06] border border-white/[0.12] rounded-lg overflow-hidden flex-1">
-        {/* Column headers */}
-        <div className="grid grid-cols-[20px_1fr_90px] gap-3 px-3 py-1.5 border-b border-white/[0.12] text-[9px] text-muted-foreground/70 uppercase tracking-wider">
+      <div className="bg-white border border-[var(--sand-5)] rounded-lg overflow-hidden flex-1">
+        <div className="grid grid-cols-[20px_1fr_90px] gap-3 px-3 py-1.5 border-b border-[var(--sand-4)] text-[9px] text-[var(--sand-10)] uppercase tracking-wider">
           <span>#</span><span>Name</span><span>Company</span>
         </div>
 
-        {/* Marc — expanded active row */}
-        <div className="border-b border-accent/20 bg-accent/5">
-          {/* Row */}
+        <div className="border-b border-[var(--green-5)] bg-[var(--green-1)]">
           <div className="grid grid-cols-[20px_1fr_90px] gap-3 px-3 py-2 items-center">
-            <span className="text-[10px] text-muted-foreground/80">1</span>
+            <span className="text-[10px] text-[var(--sand-10)]">1</span>
             <div className="flex items-center gap-2">
-              <span className="flex items-center gap-1 text-[9px] font-semibold text-accent shrink-0">
-                <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" /> LIVE
+              <span className="flex items-center gap-1 text-[9px] font-semibold text-[var(--green-10)] shrink-0">
+                <span className="w-1.5 h-1.5 rounded-full bg-[var(--green-9)] animate-pulse" /> LIVE
               </span>
-              <span className="text-[10px] font-mono text-foreground/50">4:12</span>
-              <p className="text-[10px] font-medium text-foreground">Marc Benioff</p>
-              <span className="text-[8px] font-bold px-1 py-0.5 rounded bg-[#0A66C2]/25 text-[#0A66C2] border border-[#0A66C2]/25">in</span>
-              <span className="text-[9px] text-muted-foreground/70">CEO</span>
-              <button className="ml-auto p-1 rounded bg-red-500/20 text-red-400 border border-red-500/20">
+              <span className="text-[10px] font-mono text-[var(--sand-10)]">4:12</span>
+              <p className="text-[10px] font-medium text-[#1d1d1f]">Marc Benioff</p>
+              <span className="text-[8px] font-bold px-1 py-0.5 rounded bg-[#0A66C2]/10 text-[#0A66C2] border border-[#0A66C2]/20">in</span>
+              <span className="text-[9px] text-[var(--sand-10)]">CEO</span>
+              <button className="ml-auto p-1 rounded bg-red-50 text-red-600 border border-red-200">
                 <Phone className="w-2.5 h-2.5" />
               </button>
             </div>
-            <p className="text-[10px] text-muted-foreground/70">Salesforce</p>
+            <p className="text-[10px] text-[var(--sand-10)]">Salesforce</p>
           </div>
 
-          {/* Expanded content */}
-          <div className="grid grid-cols-2 divide-x divide-white/[0.06] border-t border-accent/10 mx-3 mb-3 rounded-lg overflow-hidden bg-white/[0.06] border border-white/[0.12]">
-            {/* Left: context + transcript */}
+          <div className="grid grid-cols-2 divide-x divide-[var(--sand-4)] border-t border-[var(--green-4)] mx-3 mb-3 rounded-lg overflow-hidden bg-white border border-[var(--sand-5)]">
             <div className="p-3 flex flex-col gap-2">
-              <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-md px-2.5 py-1.5">
-                <p className="text-[9px] text-yellow-400 uppercase tracking-wider mb-0.5">Context</p>
-                <p className="text-[10px] text-foreground leading-relaxed">Colleague spoke w/ Marc <span className="text-yellow-400">3 months ago</span> — mentioned pressure to grow revenue &amp; scale SDR org in Q2. Tooling sprawl was a pain point.</p>
+              <div className="bg-amber-50 border border-amber-200 rounded-md px-2.5 py-1.5">
+                <p className="text-[9px] text-amber-600 uppercase tracking-wider mb-0.5">Context</p>
+                <p className="text-[10px] text-[#1d1d1f] leading-relaxed">Colleague spoke w/ Marc <span className="text-amber-600">3 months ago</span> — mentioned pressure to grow revenue &amp; scale SDR org in Q2. Tooling sprawl was a pain point.</p>
               </div>
               <div>
-                <p className="text-[9px] text-muted-foreground/70 uppercase tracking-wider mb-1.5">Transcript</p>
+                <p className="text-[9px] text-[var(--sand-10)] uppercase tracking-wider mb-1.5">Transcript</p>
                 <div>
-                  <p className="text-[9px] text-muted-foreground/70 mb-1">Marc</p>
+                  <p className="text-[9px] text-[var(--sand-10)] mb-1">Marc</p>
                   <div className="space-y-1">
-                    <p className="text-[10px] text-foreground/90 leading-relaxed">"We're spread across a lot of tools — my reps don't know where to look."</p>
-                    <p className="text-[10px] text-muted-foreground/80">...</p>
-                    <p className="text-[10px] text-accent leading-relaxed">"Show me the ROI and I'm in. Free Tuesday at 3?"</p>
+                    <p className="text-[10px] text-[#1d1d1f] leading-relaxed">"We're spread across a lot of tools — my reps don't know where to look."</p>
+                    <p className="text-[10px] text-[var(--sand-10)]">...</p>
+                    <p className="text-[10px] text-[var(--green-10)] leading-relaxed">"Show me the ROI and I'm in. Free Tuesday at 3?"</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Right: actions */}
             <div className="p-3 flex flex-col gap-2">
-              <p className="text-[9px] text-muted-foreground/70 uppercase tracking-wider">Suggested Next Steps</p>
-              <button className="w-full text-left bg-white/[0.09] hover:bg-white/[0.08] border border-white/[0.10] rounded-md p-2.5 transition-colors">
+              <p className="text-[9px] text-[var(--sand-10)] uppercase tracking-wider">Suggested Next Steps</p>
+              <button className="w-full text-left bg-[var(--sand-2)] hover:bg-[var(--sand-3)] border border-[var(--sand-5)] rounded-md p-2.5 transition-colors">
                 <div className="flex items-center gap-2 mb-1">
-                  <Mail className="w-3 h-3 text-accent shrink-0" />
-                  <p className="text-[10px] font-medium text-foreground">Send email based on this call?</p>
+                  <Mail className="w-3 h-3 text-[var(--green-9)] shrink-0" />
+                  <p className="text-[10px] font-medium text-[#1d1d1f]">Send email based on this call?</p>
                 </div>
-                <p className="text-[9px] text-muted-foreground/80 leading-relaxed pl-5">ROI one-pager + case study tailored to Salesforce's SDR org</p>
+                <p className="text-[9px] text-[var(--sand-11)] leading-relaxed pl-5">ROI one-pager + case study tailored to Salesforce's SDR org</p>
               </button>
-              <div className="bg-accent/10 border border-accent/25 rounded-md p-2.5">
+              <div className="bg-[var(--green-2)] border border-[var(--green-5)] rounded-md p-2.5">
                 <div className="flex items-center gap-2 mb-2">
-                  <Calendar className="w-3 h-3 text-accent shrink-0" />
-                  <p className="text-[10px] font-medium text-foreground">Marc proposed Tue @ 3pm</p>
+                  <Calendar className="w-3 h-3 text-[var(--green-9)] shrink-0" />
+                  <p className="text-[10px] font-medium text-[#1d1d1f]">Marc proposed Tue @ 3pm</p>
                 </div>
                 <div className="flex gap-1.5 pl-5">
-                  <button className="flex items-center gap-1 px-2 py-1 rounded bg-accent text-accent-foreground text-[9px] font-medium">
+                  <button className="flex items-center gap-1 px-2 py-1 rounded bg-[var(--green-9)] text-white text-[9px] font-medium">
                     <Calendar className="w-2.5 h-2.5" /> Send GCal Invite
                   </button>
-                  <button className="flex items-center gap-1 px-2 py-1 rounded bg-white/[0.08] border border-white/[0.10] text-muted-foreground text-[9px]">
+                  <button className="flex items-center gap-1 px-2 py-1 rounded bg-white border border-[var(--sand-5)] text-[var(--sand-11)] text-[9px]">
                     Auto-log in CRM
                   </button>
                 </div>
               </div>
-              <div className="mt-auto pt-1 border-t border-white/[0.12]">
-                <p className="text-[9px] text-muted-foreground/80 leading-relaxed">Auto-logs call, updates CRM, and queues follow-up on hangup.</p>
+              <div className="mt-auto pt-1 border-t border-[var(--sand-4)]">
+                <p className="text-[9px] text-[var(--sand-10)] leading-relaxed">Auto-logs call, updates CRM, and queues follow-up on hangup.</p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Remaining queue */}
         {[
           { n: "Thomas Weaver", role: "Director of Sales", co: "VisualVisitor" },
           { n: "Nicole Roessner", role: "Dir. Sales Dev.", co: "Pipewise" },
         ].map((r, i) => (
-          <div key={i} className="grid grid-cols-[20px_1fr_90px] gap-3 px-3 py-2 items-center border-t border-white/[0.04]">
-            <span className="text-[10px] text-muted-foreground/80">{i + 2}</span>
+          <div key={i} className="grid grid-cols-[20px_1fr_90px] gap-3 px-3 py-2 items-center border-t border-[var(--sand-3)]">
+            <span className="text-[10px] text-[var(--sand-10)]">{i + 2}</span>
             <div>
               <div className="flex items-center gap-1.5">
-                <p className="text-[10px] text-foreground">{r.n}</p>
-                <span className="text-[8px] font-bold px-1 py-0.5 rounded bg-[#0A66C2]/20 text-[#0A66C2] border border-[#0A66C2]/20">in</span>
+                <p className="text-[10px] text-[#1d1d1f]">{r.n}</p>
+                <span className="text-[8px] font-bold px-1 py-0.5 rounded bg-[#0A66C2]/10 text-[#0A66C2] border border-[#0A66C2]/20">in</span>
               </div>
-              <p className="text-[9px] text-muted-foreground/70">{r.role}</p>
+              <p className="text-[9px] text-[var(--sand-10)]">{r.role}</p>
             </div>
-            <p className="text-[10px] text-muted-foreground/70">{r.co}</p>
+            <p className="text-[10px] text-[var(--sand-10)]">{r.co}</p>
           </div>
         ))}
       </div>
@@ -397,90 +374,86 @@ function EmailerView() {
   return (
     <div className="flex-1 overflow-hidden flex flex-col">
       <div className="px-5 pt-5 pb-3">
-        <h2 className="text-sm font-semibold text-foreground mb-3">Emailer</h2>
+        <h2 className="text-sm font-semibold text-[#1d1d1f] mb-3">Emailer</h2>
         <div className="grid grid-cols-4 gap-2 mb-3">
           {statCards.map((s) => (
-            <div key={s.label} className="bg-white/[0.09] border border-white/[0.14] rounded-lg p-2.5">
-              <p className="text-[9px] text-muted-foreground/80 mb-0.5">{s.label}</p>
-              <p className="text-lg font-bold text-foreground">{s.value}</p>
-              <p className="text-[9px] text-muted-foreground/80">{s.sub}</p>
+            <div key={s.label} className="bg-white border border-[var(--sand-5)] rounded-lg p-2.5">
+              <p className="text-[9px] text-[var(--sand-11)] mb-0.5">{s.label}</p>
+              <p className="text-lg font-bold text-[#1d1d1f]">{s.value}</p>
+              <p className="text-[9px] text-[var(--sand-10)]">{s.sub}</p>
             </div>
           ))}
         </div>
         <div className="flex gap-1 mb-0">
           {["Drafts", "Sequence Emails", "Priority Follow-ups", "Email Templates"].map((t, i) => (
-            <button key={t} className={`text-[10px] px-2.5 py-1 rounded-md ${i === 1 ? "bg-white/[0.08] text-foreground" : "text-muted-foreground/80"}`}>{t}</button>
+            <button key={t} className={`text-[10px] px-2.5 py-1 rounded-md ${i === 1 ? "bg-[var(--sand-4)] text-[#1d1d1f]" : "text-[var(--sand-10)]"}`}>{t}</button>
           ))}
         </div>
       </div>
-      <div className="flex flex-1 border-t border-white/[0.12] overflow-hidden">
-        <div className="w-56 border-r border-white/[0.12] overflow-hidden divide-y divide-white/[0.04]">
+      <div className="flex flex-1 border-t border-[var(--sand-4)] overflow-hidden">
+        <div className="w-56 border-r border-[var(--sand-4)] overflow-hidden divide-y divide-[var(--sand-3)]">
           {emails.map((e, i) => (
-            <div key={i} className={`p-3 ${i === 0 ? "bg-accent/5" : ""}`}>
+            <div key={i} className={`p-3 ${i === 0 ? "bg-[var(--green-1)]" : ""}`}>
               <div className="flex justify-between mb-0.5">
-                <span className="text-[10px] font-medium text-foreground">{e.name} <span className="text-muted-foreground/70 font-normal">{e.company}</span></span>
-                <span className="text-[9px] text-muted-foreground/80">{e.time.split(",")[1]?.trim()}</span>
+                <span className="text-[10px] font-medium text-[#1d1d1f]">{e.name} <span className="text-[var(--sand-10)] font-normal">{e.company}</span></span>
+                <span className="text-[9px] text-[var(--sand-10)]">{e.time.split(",")[1]?.trim()}</span>
               </div>
-              <p className="text-[10px] text-foreground font-medium truncate mb-0.5">{e.subject}</p>
+              <p className="text-[10px] text-[#1d1d1f] font-medium truncate mb-0.5">{e.subject}</p>
               {e.preview ? (
-                <p className="text-[9px] text-muted-foreground/70 truncate">{e.preview}</p>
+                <p className="text-[9px] text-[var(--sand-10)] truncate">{e.preview}</p>
               ) : (
                 <svg viewBox="0 0 120 10" className="w-full h-2 mt-0.5" preserveAspectRatio="none">
-                  <path d="M0,5 Q8,1 16,5 Q24,9 32,5 Q40,1 48,5 Q56,9 64,5 Q72,1 80,5 Q88,9 96,5 Q104,1 112,5 Q118,8 120,5" fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="1.2" />
-                  <path d="M0,5 Q6,2 12,5 Q18,8 24,5 Q30,2 36,5 Q42,8 48,5" fill="none" stroke="rgba(255,255,255,0.09)" strokeWidth="1" />
+                  <path d="M0,5 Q8,1 16,5 Q24,9 32,5 Q40,1 48,5 Q56,9 64,5 Q72,1 80,5 Q88,9 96,5 Q104,1 112,5 Q118,8 120,5" fill="none" stroke="rgba(0,0,0,0.12)" strokeWidth="1.2" />
+                  <path d="M0,5 Q6,2 12,5 Q18,8 24,5 Q30,2 36,5 Q42,8 48,5" fill="none" stroke="rgba(0,0,0,0.07)" strokeWidth="1" />
                 </svg>
               )}
               <div className="flex gap-1 mt-1.5 flex-wrap">
-                {e.tags.map(t => <span key={t} className="text-[8px] px-1.5 py-0.5 rounded bg-white/[0.06] text-muted-foreground/80">{t}</span>)}
-                {e.priority && <span className="text-[8px] px-1.5 py-0.5 rounded bg-red-500/20 text-red-400">{e.priority}</span>}
+                {e.tags.map(t => <span key={t} className="text-[8px] px-1.5 py-0.5 rounded bg-[var(--sand-3)] text-[var(--sand-11)]">{t}</span>)}
+                {e.priority && <span className="text-[8px] px-1.5 py-0.5 rounded bg-red-50 text-red-600">{e.priority}</span>}
               </div>
             </div>
           ))}
         </div>
         <div className="flex-1 flex flex-col overflow-hidden">
-          {/* Email header */}
-          <div className="px-4 pt-3 pb-2 border-b border-white/[0.12]">
+          <div className="px-4 pt-3 pb-2 border-b border-[var(--sand-4)]">
             <div className="flex items-center justify-between mb-2">
-              <p className="text-[10px] font-medium text-foreground">Following up on our conversation</p>
+              <p className="text-[10px] font-medium text-[#1d1d1f]">Following up on our conversation</p>
               <div className="flex gap-1.5">
-                <button className="text-[9px] px-2 py-1 rounded bg-white/[0.06] text-muted-foreground border border-white/[0.12]">Save Draft</button>
-                <button className="text-[9px] px-2 py-1 rounded bg-accent text-accent-foreground font-medium">Send</button>
+                <button className="text-[9px] px-2 py-1 rounded bg-white text-[var(--sand-11)] border border-[var(--sand-5)]">Save Draft</button>
+                <button className="text-[9px] px-2 py-1 rounded bg-[var(--green-9)] text-white font-medium">Send</button>
               </div>
             </div>
             <div className="space-y-1">
               <div className="flex items-center gap-2 text-[10px]">
-                <span className="text-muted-foreground/70 w-6 shrink-0">To</span>
-                <span className="text-foreground/90">marcus.webb@techcorp.com</span>
+                <span className="text-[var(--sand-10)] w-6 shrink-0">To</span>
+                <span className="text-[#1d1d1f]">marcus.webb@techcorp.com</span>
               </div>
               <div className="flex items-center gap-2 text-[10px]">
-                <span className="text-muted-foreground/70 w-6 shrink-0">CC</span>
-                <span className="text-muted-foreground/30">Add CC...</span>
+                <span className="text-[var(--sand-10)] w-6 shrink-0">CC</span>
+                <span className="text-[var(--sand-8)]">Add CC...</span>
               </div>
             </div>
           </div>
 
-          {/* Tags */}
-          <div className="px-4 py-1.5 border-b border-white/[0.04] flex gap-1.5">
-            <span className="text-[8px] px-1.5 py-0.5 rounded bg-white/[0.06] text-muted-foreground/80">Enterprise Outreach</span>
-            <span className="text-[8px] px-1.5 py-0.5 rounded bg-white/[0.06] text-muted-foreground/80">First Personalized Email</span>
-            <span className="text-[8px] px-1.5 py-0.5 rounded bg-red-500/20 text-red-400">High Priority</span>
+          <div className="px-4 py-1.5 border-b border-[var(--sand-3)] flex gap-1.5">
+            <span className="text-[8px] px-1.5 py-0.5 rounded bg-[var(--sand-3)] text-[var(--sand-11)]">Enterprise Outreach</span>
+            <span className="text-[8px] px-1.5 py-0.5 rounded bg-[var(--sand-3)] text-[var(--sand-11)]">First Personalized Email</span>
+            <span className="text-[8px] px-1.5 py-0.5 rounded bg-red-50 text-red-600">High Priority</span>
           </div>
 
-          {/* Body */}
           <div className="px-4 py-3 flex-1 overflow-hidden">
-            <div className="space-y-2 text-[10px] text-foreground/90 leading-relaxed">
+            <div className="space-y-2 text-[10px] text-[#1d1d1f] leading-relaxed">
               <p>Hi Marcus,</p>
               <p>I wanted to follow up on our discussion about consolidating your outbound stack. You mentioned your team was juggling Outreach, Apollo, and a couple of other tools — and that visibility into rep activity was a real gap.</p>
               <p>boilerroom brings prospecting, sequencing, dialing, and follow-up into a single workflow. Your reps stay in one place, and you get full pipeline visibility without chasing spreadsheets.</p>
               <p>Worth a 20-minute look? I can walk you through exactly how teams your size are running it.</p>
-              <p className="text-foreground/50">Best,<br />Sadid</p>
+              <p className="text-[var(--sand-10)]">Best,<br />Sadid</p>
             </div>
           </div>
 
-          {/* Insight bar */}
-          <div className="px-4 py-2 border-t border-white/[0.04] flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
-            <p className="text-[9px] text-muted-foreground/70">Visited pricing page 5 times in the last week</p>
+          <div className="px-4 py-2 border-t border-[var(--sand-3)] flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[var(--green-9)] shrink-0" />
+            <p className="text-[9px] text-[var(--sand-10)]">Visited pricing page 5 times in the last week</p>
           </div>
         </div>
       </div>
@@ -498,82 +471,42 @@ function SequencesView() {
   return (
     <div className="flex-1 p-5 overflow-hidden">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-sm font-semibold text-foreground">Sequences</h2>
-        <button className="px-3 py-1.5 rounded-md bg-accent text-accent-foreground text-xs font-medium">+ Create Sequence</button>
+        <h2 className="text-sm font-semibold text-[#1d1d1f]">Sequences</h2>
+        <button className="px-3 py-1.5 rounded-md bg-[var(--green-9)] text-white text-xs font-medium">+ Create Sequence</button>
       </div>
       <div className="space-y-3 overflow-hidden">
         {seqs.map((s) => (
-          <div key={s.name} className="bg-white/[0.08] border border-white/[0.14] rounded-lg p-3">
+          <div key={s.name} className="bg-white border border-[var(--sand-5)] rounded-lg p-3">
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-                <p className="text-xs font-semibold text-foreground">{s.name}</p>
+                <span className="w-1.5 h-1.5 rounded-full bg-[var(--green-9)]" />
+                <p className="text-xs font-semibold text-[#1d1d1f]">{s.name}</p>
               </div>
-              <span className="text-[10px] px-2 py-0.5 rounded-full bg-accent/20 text-accent">Active</span>
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-[var(--green-3)] text-[var(--green-11)]">Active</span>
             </div>
             <div className="flex gap-1 flex-wrap mb-2.5">
               {s.steps.slice(0, 5).map((step, i) => (
                 <div key={i} className="flex items-center gap-1">
-                  <span className="text-[9px] px-1.5 py-0.5 rounded bg-white/[0.06] border border-white/[0.14] text-muted-foreground/70 flex items-center gap-1">
+                  <span className="text-[9px] px-1.5 py-0.5 rounded bg-[var(--sand-3)] border border-[var(--sand-5)] text-[var(--sand-11)] flex items-center gap-1">
                     <Phone className="w-2 h-2" />{step}
                   </span>
-                  {i < s.steps.slice(0, 5).length - 1 && <ArrowRight className="w-2 h-2 text-muted-foreground/30" />}
+                  {i < s.steps.slice(0, 5).length - 1 && <ArrowRight className="w-2 h-2 text-[var(--sand-8)]" />}
                 </div>
               ))}
             </div>
             <div className="grid grid-cols-3 gap-3 text-[10px]">
               <div>
-                <p className="text-muted-foreground/70">Total Steps</p>
-                <p className="text-foreground font-medium">{s.total}</p>
+                <p className="text-[var(--sand-10)]">Total Steps</p>
+                <p className="text-[#1d1d1f] font-medium">{s.total}</p>
               </div>
               <div>
-                <p className="text-muted-foreground/70">Completed</p>
-                <p className="text-foreground font-medium">{s.completed}</p>
+                <p className="text-[var(--sand-10)]">Completed</p>
+                <p className="text-[#1d1d1f] font-medium">{s.completed}</p>
               </div>
               <div>
-                <p className="text-muted-foreground/70">Active Prospects</p>
-                <p className="text-accent font-medium">{s.active}</p>
+                <p className="text-[var(--sand-10)]">Active Prospects</p>
+                <p className="text-[var(--green-10)] font-medium">{s.active}</p>
               </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}
-
-// ── Tasks (Kanban) ───────────────────────────────────────────────────────────
-function TasksView() {
-  const cards = [
-    { tag: "Follow Up", priority: "medium", title: "Demo for NextGen Solutions", desc: "CEO requested a personalized demo; connect with champion", person: "Robert Taylor", role: "CEO", due: "Tuesday @ 11am" },
-    { tag: "Interested", priority: "high", title: "Schedule demo with CloudNine", desc: "Came inbound this morning", person: "Jessica Lee", role: "Head of Operations", due: "Today @ 8:00" },
-    { tag: "Hot Lead", priority: "high", title: "Connect with Sarah from TechCorp", desc: "High intent, visited website", person: "Sarah Johnson", role: "CTO", due: "Today @ 3pm" },
-  ]
-  return (
-    <div className="flex-1 p-4 overflow-hidden">
-      <div className="flex items-center justify-between mb-3">
-        <h2 className="text-sm font-semibold text-foreground">Tasks</h2>
-        <span className="text-[10px] text-muted-foreground/70">3 due today</span>
-      </div>
-      <div className="grid grid-cols-3 gap-3">
-        {cards.map((card, i) => (
-          <div key={i} className="bg-white/[0.09] border border-white/[0.12] rounded-lg p-3">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-[9px] text-muted-foreground/80 bg-white/[0.08] px-1.5 py-0.5 rounded">{card.tag}</span>
-              <span className={`text-[9px] px-1.5 py-0.5 rounded font-medium ${card.priority === "high" ? "bg-red-500/20 text-red-400" : "bg-yellow-500/20 text-yellow-400"}`}>{card.priority}</span>
-            </div>
-            <p className="text-[11px] font-semibold text-foreground leading-tight mb-1.5">{card.title}</p>
-            <p className="text-[9px] text-muted-foreground/80 leading-relaxed mb-3">{card.desc}</p>
-            <div className="flex items-center gap-1.5 mb-1.5">
-              <div className="w-4 h-4 rounded-full bg-white/[0.10] flex items-center justify-center text-[8px] text-muted-foreground font-medium">{card.person[0]}</div>
-              <div>
-                <p className="text-[9px] text-muted-foreground/90">{card.person}</p>
-                <p className="text-[8px] text-muted-foreground/60">{card.role}</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-1">
-              <Clock className="w-2.5 h-2.5 text-muted-foreground/70" />
-              <p className="text-[9px] text-muted-foreground/70">{card.due}</p>
             </div>
           </div>
         ))}
@@ -601,15 +534,14 @@ function ReportsView() {
   return (
     <div className="flex-1 p-5 overflow-hidden">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-sm font-semibold text-foreground">Reports</h2>
+        <h2 className="text-sm font-semibold text-[#1d1d1f]">Reports</h2>
         <div className="flex gap-1.5">
           {["This Week", "This Month", "Q1"].map((t, i) => (
-            <button key={t} className={`text-[10px] px-2.5 py-1 rounded-md ${i === 1 ? "bg-white/[0.08] text-foreground" : "text-muted-foreground/80"}`}>{t}</button>
+            <button key={t} className={`text-[10px] px-2.5 py-1 rounded-md ${i === 1 ? "bg-[var(--sand-4)] text-[#1d1d1f]" : "text-[var(--sand-10)]"}`}>{t}</button>
           ))}
         </div>
       </div>
 
-      {/* Top KPIs */}
       <div className="grid grid-cols-4 gap-2 mb-4">
         {[
           { label: "Total Calls", value: "1,200", delta: "+18%", up: true },
@@ -617,42 +549,40 @@ function ReportsView() {
           { label: "Meetings Booked", value: "24", delta: "+6", up: true },
           { label: "Avg Talk Time", value: "3m 42s", delta: "-12s", up: false },
         ].map(s => (
-          <div key={s.label} className="bg-white/[0.09] border border-white/[0.14] rounded-lg p-3">
-            <p className="text-[9px] text-muted-foreground/80 mb-1">{s.label}</p>
-            <p className="text-base font-bold text-foreground">{s.value}</p>
-            <p className={`text-[10px] mt-0.5 ${s.up ? "text-accent" : "text-red-400"}`}>{s.delta}</p>
+          <div key={s.label} className="bg-white border border-[var(--sand-5)] rounded-lg p-3">
+            <p className="text-[9px] text-[var(--sand-11)] mb-1">{s.label}</p>
+            <p className="text-base font-bold text-[#1d1d1f]">{s.value}</p>
+            <p className={`text-[10px] mt-0.5 ${s.up ? "text-[var(--green-10)]" : "text-red-600"}`}>{s.delta}</p>
           </div>
         ))}
       </div>
 
       <div className="grid grid-cols-2 gap-3">
-        {/* Bar chart */}
-        <div className="bg-white/[0.06] border border-white/[0.12] rounded-lg p-3">
-          <p className="text-[10px] font-medium text-foreground mb-3">Calls This Week</p>
+        <div className="bg-white border border-[var(--sand-5)] rounded-lg p-3">
+          <p className="text-[10px] font-medium text-[#1d1d1f] mb-3">Calls This Week</p>
           <div className="flex items-end gap-2 h-20">
             {weekly.map(w => (
               <div key={w.day} className="flex-1 flex flex-col items-center gap-1">
-                <span className="text-[9px] text-muted-foreground/70">{w.calls}</span>
-                <div className="w-full bg-accent/80 rounded-sm" style={{ height: `${(w.calls / max) * 56}px` }} />
-                <span className="text-[9px] text-muted-foreground/70">{w.day}</span>
+                <span className="text-[9px] text-[var(--sand-10)]">{w.calls}</span>
+                <div className="w-full bg-[var(--green-9)] rounded-sm" style={{ height: `${(w.calls / max) * 56}px` }} />
+                <span className="text-[9px] text-[var(--sand-10)]">{w.day}</span>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Rep leaderboard */}
-        <div className="bg-white/[0.06] border border-white/[0.12] rounded-lg overflow-hidden">
-          <div className="px-3 py-2 border-b border-white/[0.12]">
-            <p className="text-[10px] font-medium text-foreground">Rep Leaderboard</p>
+        <div className="bg-white border border-[var(--sand-5)] rounded-lg overflow-hidden">
+          <div className="px-3 py-2 border-b border-[var(--sand-4)]">
+            <p className="text-[10px] font-medium text-[#1d1d1f]">Rep Leaderboard</p>
           </div>
-          <div className="divide-y divide-white/[0.04]">
+          <div className="divide-y divide-[var(--sand-3)]">
             {reps.map((r, i) => (
               <div key={r.name} className="flex items-center gap-2 px-3 py-1.5">
-                <span className={`text-[10px] font-bold w-4 shrink-0 ${i === 0 ? "text-accent" : "text-muted-foreground/80"}`}>{i + 1}</span>
-                <p className="text-[10px] text-foreground flex-1">{r.name}</p>
-                <span className="text-[10px] text-muted-foreground/80">{r.calls} calls</span>
-                <span className="text-[10px] text-muted-foreground/80">{r.meetings} mtgs</span>
-                <span className={`text-[10px] font-medium ${i < 2 ? "text-accent" : "text-muted-foreground"}`}>{r.rate}</span>
+                <span className={`text-[10px] font-bold w-4 shrink-0 ${i === 0 ? "text-[var(--green-10)]" : "text-[var(--sand-10)]"}`}>{i + 1}</span>
+                <p className="text-[10px] text-[#1d1d1f] flex-1">{r.name}</p>
+                <span className="text-[10px] text-[var(--sand-10)]">{r.calls} calls</span>
+                <span className="text-[10px] text-[var(--sand-10)]">{r.meetings} mtgs</span>
+                <span className={`text-[10px] font-medium ${i < 2 ? "text-[var(--green-10)]" : "text-[var(--sand-10)]"}`}>{r.rate}</span>
               </div>
             ))}
           </div>
@@ -668,7 +598,6 @@ const views: Record<string, React.FC> = {
   dialer: DialerView,
   emailer: EmailerView,
   sequences: SequencesView,
-
   reports: ReportsView,
 }
 
@@ -678,25 +607,25 @@ export function ProductPreview() {
 
   return (
     <div className="relative max-w-5xl mx-auto">
-      <div className="bg-white/[0.07] backdrop-blur-2xl border border-white/20 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.08),0_32px_80px_rgba(0,0,0,0.5)] rounded-xl overflow-hidden">
+      <div className="bg-white border border-[var(--sand-5)] shadow-sm rounded-xl overflow-hidden">
         {/* Title bar */}
-        <div className="flex items-center gap-2 px-4 py-3 border-b border-white/[0.14] bg-white/[0.06]">
+        <div className="flex items-center gap-2 px-4 py-3 border-b border-[var(--sand-4)] bg-[var(--sand-2)]">
           <div className="flex gap-1.5">
-            <div className="w-3 h-3 rounded-full bg-red-500/80" />
-            <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-            <div className="w-3 h-3 rounded-full bg-green-500/80" />
+            <div className="w-3 h-3 rounded-full bg-red-400" />
+            <div className="w-3 h-3 rounded-full bg-yellow-400" />
+            <div className="w-3 h-3 rounded-full bg-green-400" />
           </div>
-          <span className="text-xs text-muted-foreground ml-2">boilerroom.ai</span>
+          <span className="text-xs text-[var(--sand-10)] ml-2">boilerroom.ai</span>
         </div>
 
         <div className="flex min-h-[440px]">
           {/* Sidebar */}
-          <div className="w-40 shrink-0 border-r border-white/[0.12] bg-white/[0.02] p-3 flex flex-col gap-0.5">
+          <div className="w-40 shrink-0 border-r border-[var(--sand-4)] bg-[var(--sand-2)] p-3 flex flex-col gap-0.5">
             <div className="flex items-center gap-2 px-2 py-2 mb-3">
-              <div className="w-6 h-6 bg-accent rounded flex items-center justify-center">
-                <Zap className="w-3 h-3 text-accent-foreground" />
+              <div className="w-6 h-6 bg-[var(--green-9)] rounded flex items-center justify-center">
+                <Zap className="w-3 h-3 text-white" />
               </div>
-              <span className="text-xs font-semibold text-foreground">boilerroom</span>
+              <span className="text-xs font-semibold text-[#1d1d1f]">boilerroom</span>
             </div>
             {navItems.map((item) => (
               <button
@@ -704,8 +633,8 @@ export function ProductPreview() {
                 onClick={() => setActive(item.id)}
                 className={`flex items-center gap-2 px-2 py-1.5 rounded-md text-xs transition-colors text-left w-full ${
                   active === item.id
-                    ? "bg-accent/15 text-accent"
-                    : "text-muted-foreground hover:text-foreground hover:bg-white/[0.08]"
+                    ? "bg-[var(--green-3)] text-[var(--green-11)]"
+                    : "text-[var(--sand-11)] hover:text-[#1d1d1f] hover:bg-[var(--sand-3)]"
                 }`}
               >
                 <item.icon className="w-3.5 h-3.5 shrink-0" />
@@ -717,8 +646,6 @@ export function ProductPreview() {
           <ActiveView />
         </div>
       </div>
-
-      <div className="absolute -inset-4 bg-accent/5 blur-3xl -z-10 rounded-3xl" />
     </div>
   )
 }

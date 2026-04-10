@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button"
+import { Button, Heading, Text } from "@radix-ui/themes"
 import { ArrowRight } from "lucide-react"
 
 interface CtaSectionProps {
@@ -9,14 +9,36 @@ export function CtaSection({ variant = "default" }: CtaSectionProps) {
   const isFinal = variant === "final"
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8">
+    <section
+      className={`py-32 px-4 sm:px-6 lg:px-8 ${
+        isFinal ? "bg-[var(--green-9)]" : "bg-[#1d1d1f]"
+      }`}
+    >
       <div className="max-w-3xl mx-auto text-center">
-        <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6 text-balance">
-          {isFinal ? "More Pipeline Starts With Better Execution" : "Outbound Shouldn't Depend on 10 Tools"}
-        </h2>
-        <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 h-12 text-base">
-          {isFinal ? "Join the waitlist" : "Join the waitlist"}
-          <ArrowRight className="ml-2 w-4 h-4" />
+        <Heading
+          size="8"
+          weight="bold"
+          align="center"
+          className={`mb-4 tracking-tight ${isFinal ? "text-white" : "text-white"}`}
+        >
+          {isFinal
+            ? "More Pipeline Starts With Better Execution"
+            : "Outbound Shouldn't Depend on 10 Tools"}
+        </Heading>
+
+        {!isFinal && (
+          <Text size="4" align="center" className="text-white/70 block mb-8">
+            No 10-tab setup. No handoffs between tools. One workflow for the whole team.
+          </Text>
+        )}
+
+        {isFinal && <div className="mb-8" />}
+
+        <Button size="3" radius="full" color="gray" highContrast variant="solid" asChild>
+          <a href="https://calendly.com/sadid-boilerroom/30min" target="_blank" rel="noopener noreferrer">
+            Talk to Founder
+            <ArrowRight size={16} />
+          </a>
         </Button>
       </div>
     </section>

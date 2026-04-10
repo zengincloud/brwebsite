@@ -1,84 +1,63 @@
 "use client"
 
-import { X } from "lucide-react"
-
-const painPoints = [
-  {
-    stat: "68%",
-    statLabel: "of rep time",
-    text: "wasted on list building, not talking to buyers",
-  },
-  {
-    stat: "3.5hrs",
-    statLabel: "per day",
-    text: "burned on setup before a single call is made",
-  },
-  {
-    stat: "2-5x",
-    statLabel: "performance gap",
-    text: "between your best rep and everyone else",
-  },
-  {
-    stat: "Weeks",
-    statLabel: "too late",
-    text: "before managers see pipeline is dying",
-  },
-]
+import { Heading, Text, Flex, Grid } from "@radix-ui/themes"
 
 export function PainSection() {
   return (
-    <section className="relative py-24 px-4 sm:px-6 lg:px-8 border-t border-red-900/30 overflow-hidden">
-      {/* Subtle red ambient glow */}
-      <div className="absolute inset-0 bg-gradient-to-b from-red-950/10 via-transparent to-transparent pointer-events-none" />
+    <section className="py-28 px-4 sm:px-6 lg:px-8 bg-[var(--sand-2)]">
+      <div className="max-w-5xl mx-auto">
+        <Text
+          size="1"
+          weight="medium"
+          className="uppercase tracking-[0.08em] text-[var(--sand-11)] block mb-3"
+        >
+          The ugly truth
+        </Text>
+        <Heading size="8" weight="bold" className="tracking-tight mb-16">
+          Outbound is Broken.
+        </Heading>
 
-      <div className="relative max-w-5xl mx-auto">
-        <div className="text-center mb-16">
-          <p className="text-red-400/80 text-sm font-mono uppercase tracking-[0.2em] mb-4">
-            The ugly truth
-          </p>
-          <h2 className="text-3xl sm:text-5xl font-bold text-foreground mb-3">
-            Outbound is <span className="text-red-400">Broken.</span>
-          </h2>
-        </div>
+        {/* Two hero stats */}
+        <Grid columns={{ initial: "1", sm: "2" }} gap="9" className="mb-14">
+          <div>
+            <Heading size="9" weight="bold" className="text-[#1d1d1f] mb-2">
+              68%
+            </Heading>
+            <Text size="3" color="gray">
+              of rep time wasted on list building, not talking to buyers
+            </Text>
+          </div>
+          <div>
+            <Heading size="9" weight="bold" className="text-[#1d1d1f] mb-2">
+              3.5 hrs
+            </Heading>
+            <Text size="3" color="gray">
+              burned on setup before a single call is made
+            </Text>
+          </div>
+        </Grid>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-16">
-          {painPoints.map((point, i) => (
-            <div
-              key={i}
-              className="group relative p-5 rounded-lg border border-red-500/10 bg-white/[0.03] backdrop-blur-2xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)] hover:bg-white/[0.06] hover:border-red-500/20 transition-all duration-300"
-            >
-              {/* Red accent line on left */}
-              <div className="absolute left-0 top-3 bottom-3 w-[2px] bg-red-500/40 rounded-full" />
+        {/* Two supporting stats */}
+        <Flex
+          gap="8"
+          wrap="wrap"
+          className="border-t border-[var(--sand-5)] pt-8"
+        >
+          <Text size="3" color="gray">
+            <strong className="text-[#1d1d1f] font-semibold">2–5× gap</strong>{" "}
+            between your best rep and everyone else
+          </Text>
+          <Text size="3" color="gray">
+            <strong className="text-[#1d1d1f] font-semibold">Weeks</strong>{" "}
+            before managers see pipeline is dying
+          </Text>
+        </Flex>
 
-              <div className="flex items-start gap-4 pl-3">
-                <div className="shrink-0">
-                  <span className="text-2xl sm:text-3xl font-bold text-red-400 leading-none">
-                    {point.stat}
-                  </span>
-                  <p className="text-[11px] uppercase tracking-wider text-red-400/50 mt-0.5">
-                    {point.statLabel}
-                  </p>
-                </div>
-                <div className="pt-1">
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {point.text}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Bottom line */}
-        <div className="flex items-center justify-center gap-3">
-          <X className="w-4 h-4 text-red-500/60 shrink-0" />
-          <p className="text-center text-base sm:text-lg text-muted-foreground">
+        <div className="mt-10">
+          <Text size="4" className="text-[var(--sand-11)]">
             Your pipeline is{" "}
-            <span className="text-foreground font-medium">
-              not waiting for you to fix it.
-            </span>
-          </p>
-          <X className="w-4 h-4 text-red-500/60 shrink-0" />
+            <strong className="text-[#1d1d1f]">not waiting for you to fix it.</strong>
+          </Text>
         </div>
       </div>
     </section>
