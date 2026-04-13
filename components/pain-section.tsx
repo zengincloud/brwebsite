@@ -1,62 +1,111 @@
 "use client"
 
-import { Heading, Text, Flex, Grid } from "@radix-ui/themes"
+import { useState } from "react"
+import { Heading, Text, Grid } from "@radix-ui/themes"
+
+function formatARR(value: number): string {
+  if (value >= 1_000_000) return `$${(value / 1_000_000).toFixed(1)}M`
+  if (value >= 1_000) return `$${Math.round(value / 1_000)}k`
+  return `$${value}`
+}
 
 export function PainSection() {
+  const [reps, setReps] = useState(5)
+  const [closeRate, setCloseRate] = useState(20)
+  const [acv, setAcv] = useState(15000)
+
+  const additionalARR = reps * 4 * (closeRate / 100) * acv * 12
+
   return (
     <section className="py-28 px-4 sm:px-6 lg:px-8 bg-[var(--sand-2)]">
       <div className="max-w-5xl mx-auto">
-        <Text
-          size="1"
-          weight="medium"
-          className="uppercase tracking-[0.08em] text-[var(--sand-11)] block mb-3"
-        >
-          The ugly truth
-        </Text>
-        <Heading size="8" weight="bold" className="tracking-tight mb-16">
-          Outbound is Broken.
-        </Heading>
-
         {/* Two hero stats */}
-        <Grid columns={{ initial: "1", sm: "2" }} gap="9" className="mb-14">
-          <div>
-            <Heading size="9" weight="bold" className="text-[#1d1d1f] mb-2">
-              68%
-            </Heading>
-            <Text size="3" color="gray">
-              of rep time wasted on list building, not talking to buyers
-            </Text>
-          </div>
-          <div>
-            <Heading size="9" weight="bold" className="text-[#1d1d1f] mb-2">
-              3.5 hrs
-            </Heading>
-            <Text size="3" color="gray">
-              burned on setup before a single call is made
-            </Text>
-          </div>
-        </Grid>
+        <div className="relative mb-14">
+          <div className="hidden sm:block absolute left-1/2 top-0 bottom-0 w-px bg-[var(--sand-5)]" />
+          <Grid columns={{ initial: "1", sm: "2" }} gap="9">
+            <div>
+              <Text
+                size="1"
+                weight="medium"
+                className="uppercase tracking-[0.08em] text-[var(--sand-11)] block mb-3"
+              >
+                The ugly truth
+              </Text>
+              <Heading size="8" weight="bold" className="tracking-tight mb-4">
+                Outbound is Broken.
+              </Heading>
+              <Heading size="9" weight="bold" className="text-[#1d1d1f] mb-2">
+                68%
+              </Heading>
+              <Text size="3" color="gray">
+                of rep time wasted on admin, research, and prep
+              </Text>
+            </div>
+            <div>
+              <Text
+                size="1"
+                weight="medium"
+                className="uppercase tracking-[0.08em] block mb-3 invisible"
+                aria-hidden="true"
+              >
+                placeholder
+              </Text>
+              <Heading size="8" weight="bold" className="tracking-tight mb-4">
+                Only
+              </Heading>
+              <Heading size="9" weight="bold" className="text-[#1d1d1f] mb-2">
+                2 hrs
+              </Heading>
+              <Text size="3" color="gray">
+                per day spent making cold calls/emails
+              </Text>
+            </div>
+          </Grid>
+        </div>
 
-        {/* Two supporting stats */}
-        <Flex
-          gap="8"
-          wrap="wrap"
-          className="border-t border-[var(--sand-5)] pt-8"
-        >
-          <Text size="3" color="gray">
-            <strong className="text-[#1d1d1f] font-semibold">2–5× gap</strong>{" "}
-            between your best rep and everyone else
+        {/* ARR Calculator */}
+        <div className="border-t border-[var(--sand-5)] pt-10">
+          <Text size="5" weight="bold" className="text-[#1d1d1f] block mb-1">
+            Your team is leaving pipeline on the table, every quarter.
           </Text>
-          <Text size="3" color="gray">
-            <strong className="text-[#1d1d1f] font-semibold">Weeks</strong>{" "}
-            before managers see pipeline is dying
+          <Text size="3" className="text-[var(--sand-11)] block mb-6">
+            at a modest 1 extra meeting per rep/week
           </Text>
-        </Flex>
 
-        <div className="mt-10">
-          <Text size="4" className="text-[var(--sand-11)]">
-            Your pipeline is{" "}
-            <strong className="text-[#1d1d1f]">not waiting for you to fix it.</strong>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
+            <div>
+              <div className="flex justify-between mb-1">
+                <label className="text-xs text-[var(--sand-11)]">Number of reps</label>
+                <span className="text-xs font-semibold text-[#1d1d1f]">{reps}</span>
+              </div>
+              <input type="range" min={1} max={50} value={reps} onChange={e => setReps(Number(e.target.value))} className="w-full accent-[#1d1d1f]" />
+            </div>
+            <div>
+              <div className="flex justify-between mb-1">
+                <label className="text-xs text-[var(--sand-11)]">Close rate</label>
+                <span className="text-xs font-semibold text-[#1d1d1f]">{closeRate}%</span>
+              </div>
+              <input type="range" min={1} max={60} value={closeRate} onChange={e => setCloseRate(Number(e.target.value))} className="w-full accent-[#1d1d1f]" />
+            </div>
+            <div>
+              <div className="flex justify-between mb-1">
+                <label className="text-xs text-[var(--sand-11)]">ACV</label>
+                <span className="text-xs font-semibold text-[#1d1d1f]">{formatARR(acv)}</span>
+              </div>
+              <input type="range" min={1000} max={200000} step={1000} value={acv} onChange={e => setAcv(Number(e.target.value))} className="w-full accent-[#1d1d1f]" />
+            </div>
+          </div>
+
+          <div className="mb-4">
+            <Heading size="9" weight="bold" className="text-[#1d1d1f] mb-1">
+              {formatARR(additionalARR)}
+            </Heading>
+            <Text size="3" color="gray">left on the table per year</Text>
+          </div>
+
+          <Text size="3" className="text-[var(--sand-11)]">
+            That&apos;s not a forecast.{" "}
+            <strong className="text-[#1d1d1f]">That&apos;s time you&apos;re already paying for.</strong>
           </Text>
         </div>
       </div>
