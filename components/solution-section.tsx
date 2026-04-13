@@ -45,13 +45,16 @@ export function SolutionSection() {
             weight="medium"
             className="uppercase tracking-[0.08em] text-[var(--sand-11)] block mb-3"
           >
-            How it works
+            So how do you get more meetings?
           </Text>
           <Heading size="8" weight="bold" className="tracking-tight max-w-2xl">
-            More Selling Time
+            Simple. Let your reps live in one place for everything.
           </Heading>
           <Text size="4" color="gray" className="mt-4 max-w-2xl block leading-relaxed">
-            Prospects sourced, enriched, and sequenced automatically — no list-building, no gaps.
+            Prospect, dial, sequence, record, and sync — all in one place.
+          </Text>
+          <Text size="4" color="gray" className="mt-3 max-w-2xl block leading-relaxed">
+            Surface prior conversations, reference recent news/social activity, and reach out with real context. No generic AI spray-and-pray blasts. No bloated stack.
           </Text>
         </div>
 
@@ -67,7 +70,7 @@ export function SolutionSection() {
                 </Text>
               </div>
               <div>
-                <Heading size="5" weight="semibold" className="mb-2">
+                <Heading size="5" weight="bold" className="mb-2">
                   {feature.title}
                 </Heading>
                 <Text size="3" color="gray" className="leading-relaxed">
@@ -76,6 +79,12 @@ export function SolutionSection() {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="pt-12">
+          <Text size="5" weight="bold" className="block text-[#1d1d1f] text-center leading-relaxed italic">
+            Methodical outreach that actually converts and lets you focus on growing your top-line
+          </Text>
         </div>
       </div>
     </section>
