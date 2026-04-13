@@ -104,8 +104,8 @@ export function PainSection() {
           </div>
 
           <Text size="3" className="text-[var(--sand-11)]">
-            That&apos;s not a forecast.{" "}
-            <strong className="text-[#1d1d1f]">That&apos;s time you&apos;re already paying for.</strong>
+            Not even your best rep can fix this.{" "}
+            <strong className="text-[#1d1d1f]">Neither can hiring another one.</strong>
           </Text>
         </div>
       </div>

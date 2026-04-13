@@ -48,7 +48,7 @@ export function SolutionSection() {
             So how do you get more meetings?
           </Text>
           <Heading size="8" weight="bold" className="tracking-tight max-w-2xl">
-            Simple. Let your reps live in one place for everything.
+            Let your reps live in one place for everything.
           </Heading>
           <Text size="4" color="gray" className="mt-4 max-w-2xl block leading-relaxed">
             Prospect, dial, sequence, record, and sync — all in one place.
@@ -83,7 +83,7 @@ export function SolutionSection() {
 
         <div className="pt-12">
           <Text size="5" weight="bold" className="block text-[#1d1d1f] text-center leading-relaxed italic">
-            Methodical outreach that actually converts and lets you focus on growing your top-line
+            Methodical outreach that lets you focus on increasing real sales conversations
           </Text>
         </div>
       </div>
