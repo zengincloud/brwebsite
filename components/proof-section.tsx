@@ -1,4 +1,5 @@
 import { Heading, Text, Grid, Card } from "@radix-ui/themes"
+import { SectionBadge } from "@/components/section-badge"
 
 const metrics = [
   { value: "50%", label: "Less time on manual work — research, data entry, and tool-switching" },
@@ -11,13 +12,7 @@ export function ProofSection() {
   return (
     <section id="proof" className="py-28 px-4 sm:px-6 lg:px-8 bg-[var(--sand-2)]">
       <div className="max-w-5xl mx-auto">
-        <Text
-          size="1"
-          weight="medium"
-          className="uppercase tracking-[0.08em] text-[var(--sand-11)] block mb-3"
-        >
-          But how does less tools mean more meetings?
-        </Text>
+        <SectionBadge>But how does fewer tools mean more meetings?</SectionBadge>
         <Heading size="8" weight="bold" className="tracking-tight mb-14">
           By narrowing your sellers' scope to just revenue generating activities.
         </Heading>

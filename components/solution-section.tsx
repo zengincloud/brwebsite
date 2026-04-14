@@ -1,6 +1,7 @@
 "use client"
 
 import { Heading, Text } from "@radix-ui/themes"
+import { SectionBadge } from "@/components/section-badge"
 
 const features = [
   {
@@ -40,13 +41,7 @@ export function SolutionSection() {
     <section id="solution" className="py-28 px-4 sm:px-6 lg:px-8 bg-white">
       <div className="max-w-5xl mx-auto">
         <div className="mb-16">
-          <Text
-            size="1"
-            weight="medium"
-            className="uppercase tracking-[0.08em] text-[var(--sand-11)] block mb-3"
-          >
-            So how do you get more meetings?
-          </Text>
+          <SectionBadge>So how do you get more meetings?</SectionBadge>
           <Heading size="8" weight="bold" className="tracking-tight max-w-2xl">
             Let your reps live in one place for everything.
           </Heading>

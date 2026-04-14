@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { Heading, Text, Grid } from "@radix-ui/themes"
+import { SectionBadge } from "@/components/section-badge"
 
 function formatARR(value: number): string {
   if (value >= 1_000_000) return `$${(value / 1_000_000).toFixed(1)}M`
@@ -24,13 +25,7 @@ export function PainSection() {
           <div className="hidden sm:block absolute left-1/2 top-0 bottom-0 w-px bg-[var(--sand-5)]" />
           <Grid columns={{ initial: "1", sm: "2" }} gap="9">
             <div>
-              <Text
-                size="1"
-                weight="medium"
-                className="uppercase tracking-[0.08em] text-[var(--sand-11)] block mb-3"
-              >
-                The ugly truth
-              </Text>
+              <SectionBadge>The ugly truth</SectionBadge>
               <Heading size="8" weight="bold" className="tracking-tight mb-4">
                 Outbound is Broken.
               </Heading>

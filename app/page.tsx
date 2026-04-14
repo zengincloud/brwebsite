@@ -3,6 +3,7 @@ import { HeroSection } from "@/components/hero-section"
 import { PainSection } from "@/components/pain-section"
 import { SolutionSection } from "@/components/solution-section"
 import { ProofSection } from "@/components/proof-section"
+import { IntegrationsSection } from "@/components/integrations-section"
 import { FaqSection } from "@/components/faq-section"
 import { CtaSection } from "@/components/cta-section"
 import { Footer } from "@/components/footer"
@@ -23,6 +24,7 @@ export default function Home() {
         <PainSection />
         <SolutionSection />
         <ProofSection />
+        <IntegrationsSection />
         <CtaSection />
         <FaqSection />
         <CtaSection variant="final" />
