@@ -1,9 +1,10 @@
 import { Heading, Text, Grid, Card } from "@radix-ui/themes"
 
 const metrics = [
-  { value: "40–60%", label: "Less manual outbound work" },
-  { value: "2–3×", label: "More talk time per rep" },
-  { value: "More", label: "Pipeline without adding headcount" },
+  { value: "50%", label: "Less time on manual work — research, data entry, and tool-switching" },
+  { value: "2×", label: "More time actually talking to prospects, not prepping to talk to them" },
+  { value: "1.5×", label: "Territory coverage per rep — same headcount, more ground covered" },
+  { value: "More", label: "Pipeline built without adding a single new hire" },
 ]
 
 export function ProofSection() {
@@ -15,13 +16,13 @@ export function ProofSection() {
           weight="medium"
           className="uppercase tracking-[0.08em] text-[var(--sand-11)] block mb-3"
         >
-          What teams see
+          But how does less tools mean more meetings?
         </Text>
         <Heading size="8" weight="bold" className="tracking-tight mb-14">
-          Real results, fast.
+          By narrowing your sellers' scope to just revenue generating activities.
         </Heading>
 
-        <Grid columns={{ initial: "1", sm: "3" }} gap="5" className="mb-16">
+        <Grid columns={{ initial: "1", sm: "2", lg: "4" }} gap="5" className="mb-16">
           {metrics.map((metric) => (
             <Card key={metric.label} size="3">
               <Heading size="8" weight="bold" className="mb-2">

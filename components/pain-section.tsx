@@ -66,10 +66,10 @@ export function PainSection() {
         {/* ARR Calculator */}
         <div className="border-t border-[var(--sand-5)] pt-10">
           <Text size="5" weight="bold" className="text-[#1d1d1f] block mb-1">
-            Your team is leaving pipeline on the table, every quarter.
+            Admin tasks are bogging down your reps, and letting high-potential meetings slip by
           </Text>
           <Text size="3" className="text-[var(--sand-11)] block mb-6">
-            at a modest 1 extra meeting per rep/week
+            Recovering lost revenue activities, at a modest 1 extra meeting per rep/per week, could mean:
           </Text>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
