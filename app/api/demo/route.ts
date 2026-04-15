@@ -1,11 +1,18 @@
 import { NextRequest, NextResponse } from "next/server"
 import { Resend } from "resend"
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 export async function POST(req: NextRequest) {
+  const resend = new Resend(process.env.RESEND_API_KEY)
   try {
     const { firstName, company, email, phone, role, comments } = await req.json()
+
+    await fetch(process.env.SLACK_WEBHOOK_URL!, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        text: `🔥 *New demo request*\n*Name:* ${firstName}\n*Company:* ${company}\n*Email:* ${email}\n*Phone:* ${phone}\n*Role:* ${role}\n*Comments:* ${comments}`,
+      }),
+    })
 
     await resend.emails.send({
       from: "boilerroom <sadid@boilerroom.ai>",
