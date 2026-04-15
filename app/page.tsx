@@ -31,7 +31,6 @@ export default function Home() {
         <IntegrationsSection />
         <CtaSection />
         <FaqSection />
-        <CtaSection variant="final" />
       </main>
       <Footer />
     </div>
