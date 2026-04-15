@@ -10,11 +10,19 @@ export function CtaSection({ variant = "default" }: CtaSectionProps) {
 
   return (
     <section
-      className={`py-32 px-4 sm:px-6 lg:px-8 ${
-        isFinal ? "bg-[var(--green-9)]" : "bg-[#1d1d1f]"
+      className={`py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden ${
+        isFinal ? "bg-[var(--green-9)]" : "bg-black"
       }`}
     >
-      <div className="max-w-3xl mx-auto text-center">
+      {!isFinal && (
+        <img
+          src="/handshakegreen.png"
+          alt=""
+          className="absolute bottom-0 left-0 w-[640px] opacity-40 pointer-events-none"
+          style={{ transform: 'translate(-10%, 10%) rotate(-80deg)', transformOrigin: 'center center' }}
+        />
+      )}
+      <div className="relative z-10 max-w-3xl mx-auto text-center">
         <Heading
           size="8"
           weight="bold"
@@ -23,19 +31,18 @@ export function CtaSection({ variant = "default" }: CtaSectionProps) {
         >
           {isFinal
             ? "More Pipeline Starts With Better Execution"
-            : "Outbound Shouldn't Depend on 10 Tools"}
+            : "Cold outbound is the handshake of a good company — make sure it's a good one"}
         </Heading>
 
-        {!isFinal && (
+        {isFinal && (
           <Text size="4" align="center" className="text-white/70 block mb-8">
             No 10-tab setup. No handoffs between tools. One workflow for the whole team.
           </Text>
         )}
+        {!isFinal && <div className="mb-8" />}
 
-        {isFinal && <div className="mb-8" />}
-
-        <Button size="3" radius="full" color="gray" highContrast variant="solid" asChild>
-          <a href="https://calendly.com/sadid-boilerroom/30min" target="_blank" rel="noopener noreferrer">
+        <Button size="3" radius="full" color={isFinal ? "gray" : undefined} highContrast variant="solid" asChild style={!isFinal ? { backgroundColor: 'var(--green-9)', color: 'white' } : {}}>
+          <a href="/demo">
             Book a Demo
             <ArrowRight size={16} />
           </a>

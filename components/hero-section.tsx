@@ -70,7 +70,7 @@ export function HeroSection() {
             >
               <Flex gap="4" align="center" wrap="wrap">
                 <Button size="3" radius="full" asChild>
-                  <a href="https://calendly.com/sadid-boilerroom/30min" target="_blank" rel="noopener noreferrer">
+                  <a href="/demo">
                     Book a Demo
                     <ArrowRight size={16} />
                   </a>

@@ -35,7 +35,7 @@ export function Header() {
               <a href="https://app.boilerroom.ai">Log in</a>
             </Button>
             <Button size="2" radius="full" asChild>
-              <a href="https://calendly.com/sadid-boilerroom/30min" target="_blank" rel="noopener noreferrer">
+              <a href="/demo">
                 Book a Demo
               </a>
             </Button>
@@ -64,7 +64,7 @@ export function Header() {
                 <a href="https://app.boilerroom.ai">Log in</a>
               </Button>
               <Button size="2" radius="full" className="w-full" asChild>
-                <a href="https://calendly.com/sadid-boilerroom/30min" target="_blank" rel="noopener noreferrer">
+                <a href="/demo">
                   Book a Demo
                 </a>
               </Button>
