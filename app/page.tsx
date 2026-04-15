@@ -1,8 +1,10 @@
 import { Header } from "@/components/header"
 import { HeroSection } from "@/components/hero-section"
+import { ThreePillarsSection } from "@/components/three-pillars-section"
 import { PainSection } from "@/components/pain-section"
 import { SolutionSection } from "@/components/solution-section"
 import { ProofSection } from "@/components/proof-section"
+import { FollowupSection } from "@/components/followup-section"
 import { IntegrationsSection } from "@/components/integrations-section"
 import { FaqSection } from "@/components/faq-section"
 import { CtaSection } from "@/components/cta-section"
@@ -21,9 +23,11 @@ export default function Home() {
       <Header />
       <main>
         <HeroSection />
+        <ThreePillarsSection />
         <PainSection />
         <SolutionSection />
         <ProofSection />
+        <FollowupSection />
         <IntegrationsSection />
         <CtaSection />
         <FaqSection />

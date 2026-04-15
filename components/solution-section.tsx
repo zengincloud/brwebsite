@@ -38,7 +38,21 @@ const features = [
 
 export function SolutionSection() {
   return (
-    <section id="solution" className="py-28 px-4 sm:px-6 lg:px-8 bg-white">
+    <section id="solution" className="relative py-28 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
+      {/* Grid background — double-size boxes */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(0,0,0,0.055) 1px, transparent 1px),
+            radial-gradient(circle, rgba(0,0,0,0.18) 1.2px, transparent 1.2px)
+          `,
+          backgroundSize: '256px 128px, 256px 128px',
+          backgroundPosition: '0 0, 0 0',
+          WebkitMaskImage: 'linear-gradient(to bottom right, rgba(0,0,0,0.9) 10%, rgba(0,0,0,0.5) 45%, rgba(0,0,0,0) 75%)',
+          maskImage: 'linear-gradient(to bottom right, rgba(0,0,0,0.9) 10%, rgba(0,0,0,0.5) 45%, rgba(0,0,0,0) 75%)',
+        }}
+      />
       <div className="max-w-5xl mx-auto">
         <div className="mb-16">
           <SectionBadge>So how do you get more meetings?</SectionBadge>

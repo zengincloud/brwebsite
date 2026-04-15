@@ -8,6 +8,21 @@ import { motion } from "framer-motion"
 export function HeroSection() {
   return (
     <section className="relative pt-32 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* Grid background — fades out toward the demo dashboard */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(0,0,0,0.055) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(0,0,0,0.055) 1px, transparent 1px),
+            radial-gradient(circle, rgba(0,0,0,0.18) 1.2px, transparent 1.2px)
+          `,
+          backgroundSize: '64px 64px, 64px 64px, 64px 64px',
+          backgroundPosition: '0 0, 0 0, 32px 32px',
+          WebkitMaskImage: 'linear-gradient(to bottom right, rgba(0,0,0,0.9) 10%, rgba(0,0,0,0.5) 45%, rgba(0,0,0,0) 75%)',
+          maskImage: 'linear-gradient(to bottom right, rgba(0,0,0,0.9) 10%, rgba(0,0,0,0.5) 45%, rgba(0,0,0,0) 75%)',
+        }}
+      />
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left: text + CTAs */}
