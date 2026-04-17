@@ -4,7 +4,7 @@ import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
-import { Check, Zap } from "lucide-react"
+import { Check, Zap, ArrowLeft } from "lucide-react"
 import Link from "next/link"
 
 const schema = z.object({
@@ -64,12 +64,16 @@ export default function DemoPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Minimal header */}
-      <header className="px-6 py-5 border-b border-[var(--sand-4)]">
+      <header className="px-6 py-5 border-b border-[var(--sand-4)] flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 w-fit">
           <div className="w-6 h-6 bg-[var(--green-9)] rounded flex items-center justify-center">
             <Zap className="w-3.5 h-3.5 text-white" />
           </div>
           <span className="text-sm font-semibold text-[#1d1d1f]">boilerroom</span>
+        </Link>
+        <Link href="/" className="flex items-center gap-1.5 text-sm text-[var(--sand-10)] hover:text-[#1d1d1f] transition-colors">
+          <ArrowLeft className="w-3.5 h-3.5" />
+          Back to home
         </Link>
       </header>
 
@@ -77,6 +81,11 @@ export default function DemoPage() {
 
         {/* Left */}
         <div className="lg:pt-4">
+          <Link href="/" className="flex items-center gap-1.5 text-sm text-[var(--sand-10)] hover:text-[#1d1d1f] transition-colors mb-8 w-fit">
+            <ArrowLeft className="w-3.5 h-3.5" />
+            Back to home
+          </Link>
+
           <div className="inline-flex items-center gap-2 mb-6">
             <div className="w-4 h-2 rounded-full bg-[var(--green-9)]" />
             <span className="text-sm font-medium text-[var(--green-10)]">Talk to our team</span>
@@ -112,7 +121,11 @@ export default function DemoPage() {
                 <Check className="w-6 h-6 text-[var(--green-10)]" strokeWidth={2.5} />
               </div>
               <h2 className="text-xl font-bold text-[#1d1d1f] mb-2">You're on the list</h2>
-              <p className="text-sm text-[var(--sand-10)]">We'll be in touch within one business day to schedule your demo.</p>
+              <p className="text-sm text-[var(--sand-10)] mb-6">We'll be in touch within one business day to schedule your demo.</p>
+              <Link href="/" className="inline-flex items-center gap-1.5 text-sm text-[var(--sand-10)] hover:text-[#1d1d1f] transition-colors">
+                <ArrowLeft className="w-3.5 h-3.5" />
+                Back to home
+              </Link>
             </div>
           ) : (
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
