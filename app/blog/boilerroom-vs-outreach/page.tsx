@@ -80,12 +80,6 @@ export default function BoilerroomVsOutreachPage() {
             Back to blog
           </Link>
 
-          {/* Meta */}
-          <div className="inline-flex items-center gap-2 mb-4">
-            <div className="w-4 h-2 rounded-full bg-[var(--green-9)]" />
-            <span className="text-xs font-semibold text-[var(--green-10)] uppercase tracking-widest">Comparison</span>
-          </div>
-
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-[#1d1d1f] mb-4 leading-tight">
             boilerroom vs Outreach: Which sales platform is right for your team?
           </h1>

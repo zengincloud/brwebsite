@@ -5,6 +5,15 @@ import Link from "next/link"
 
 const posts = [
   {
+    slug: "how-to-get-your-first-sdr-job",
+    category: "Career",
+    title: "How to get your first SDR job",
+    excerpt:
+      "The skills the role tests are exactly the skills you should use to get the job. Here's how to outbound your way into your first sales development role.",
+    date: "April 21, 2026",
+    readTime: "9 min read",
+  },
+  {
     slug: "the-power-of-boilerroom",
     category: "Product",
     title: "The power of boilerroom: what an AI-native sales platform actually looks like",
@@ -21,6 +30,69 @@ const posts = [
       "Outreach has been the gold standard for a decade. Here's why AI-native teams are making the switch — and what you actually get when you do.",
     date: "April 23, 2026",
     readTime: "8 min read",
+  },
+  {
+    slug: "how-to-make-your-first-cold-call",
+    category: "Playbook",
+    title: "How to make your first cold call (and make it feel warm)",
+    excerpt:
+      "With the right preparation, a cold call doesn't have to feel cold. Here's how to research a prospect, build a hypothesis, and open a conversation that lands.",
+    date: "April 17, 2026",
+    readTime: "9 min read",
+  },
+  {
+    slug: "sales-tools-with-built-in-dialer",
+    category: "Comparison",
+    title: "Sales tools with a built-in dialer: what's actually worth using in 2026",
+    excerpt:
+      "A click-to-call button is not a power dialer. Here's a clear-eyed breakdown of which sales platforms actually include a real dialer — and how they differ.",
+    date: "April 14, 2026",
+    readTime: "7 min read",
+  },
+  {
+    slug: "outreach-alternatives-for-small-sales-teams",
+    category: "Comparison",
+    title: "Outreach alternatives for small sales teams",
+    excerpt:
+      "Outreach was built for enterprise orgs with dedicated RevOps and six-week implementation timelines. Here's what actually works for smaller, faster-moving teams.",
+    date: "March 28, 2026",
+    readTime: "8 min read",
+  },
+  {
+    slug: "apollo-alternatives",
+    category: "Comparison",
+    title: "Apollo alternatives: the best options for B2B sales teams in 2026",
+    excerpt:
+      "Apollo is one of the most commonly used — and most commonly outgrown — tools in B2B sales. Here's a straight assessment of what to switch to and why.",
+    date: "March 20, 2026",
+    readTime: "9 min read",
+  },
+  {
+    slug: "what-is-gtm",
+    category: "Guide",
+    title: "What is GTM? A plain-English guide to go-to-market strategy",
+    excerpt:
+      "GTM gets used in a lot of ways. Here's a clear breakdown of what go-to-market strategy actually means, its core components, and what makes it work.",
+    date: "March 12, 2026",
+    readTime: "7 min read",
+  },
+  {
+    slug: "best-free-b2b-prospecting-tools",
+    category: "Guide",
+    title: "Best free B2B prospecting tools in 2026",
+    excerpt:
+      "Not every team has budget for a full data stack. Here's a clear-eyed look at the best free B2B prospecting tools available, what each one does well, and where each one runs out of road.",
+    date: "January 8, 2026",
+    readTime: "8 min read",
+  },
+  {
+    slug: "best-alternatives-to-apollo",
+    category: "Comparison",
+    title: "8 best alternatives to Apollo in 2025",
+    excerpt:
+      "Apollo put prospecting and sequencing under one roof. But as teams scale, the gaps become obvious. Here are the eight best alternatives — and why boilerroom tops the list.",
+    date: "November 12, 2025",
+    readTime: "10 min read",
   },
 ]
 
