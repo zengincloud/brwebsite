@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react"
 import Link from "next/link"
 import { Button } from "@radix-ui/themes"
-import { Menu, X, ChevronDown, Search, ListOrdered, Phone } from "lucide-react"
+import { Menu, X, ChevronDown, Search, ListOrdered, Phone, BookOpen, Map, Info } from "lucide-react"
 
 const solutionsMenu = [
   {
@@ -34,15 +34,41 @@ const solutionsMenu = [
   },
 ]
 
+const resourcesMenu = [
+  {
+    icon: BookOpen,
+    label: "Blog",
+    description: "Sales tactics and outbound strategies",
+    href: "/blog",
+  },
+  {
+    icon: Map,
+    label: "Playbooks",
+    description: "Templates and step-by-step guides",
+    href: "/playbooks",
+  },
+  {
+    icon: Info,
+    label: "About",
+    description: "Our mission, values, and open roles",
+    href: "/about",
+  },
+]
+
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [solutionsOpen, setSolutionsOpen] = useState(false)
+  const [resourcesOpen, setResourcesOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
+  const resourcesRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
         setSolutionsOpen(false)
+      }
+      if (resourcesRef.current && !resourcesRef.current.contains(e.target as Node)) {
+        setResourcesOpen(false)
       }
     }
     document.addEventListener("mousedown", handleClickOutside)
@@ -113,11 +139,51 @@ export function Header() {
               )}
             </div>
 
-            {/* Resources — placeholder, no dropdown yet */}
-            <button className="flex items-center gap-1 px-3 py-2 rounded-md text-sm font-medium text-[var(--sand-11)] hover:text-[#1d1d1f] hover:bg-[var(--sand-2)] transition-colors">
-              Resources
-              <ChevronDown size={14} />
-            </button>
+            {/* Resources dropdown */}
+            <div className="relative" ref={resourcesRef}>
+              <button
+                onClick={() => setResourcesOpen(!resourcesOpen)}
+                className={`flex items-center gap-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  resourcesOpen
+                    ? "bg-[var(--sand-3)] text-[#1d1d1f]"
+                    : "text-[var(--sand-11)] hover:text-[#1d1d1f] hover:bg-[var(--sand-2)]"
+                }`}
+              >
+                Resources
+                <ChevronDown
+                  size={14}
+                  className={`transition-transform duration-200 ${resourcesOpen ? "rotate-180" : ""}`}
+                />
+              </button>
+
+              {resourcesOpen && (
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 bg-white rounded-xl shadow-xl border border-[var(--sand-5)] p-3">
+                  <ul className="space-y-1">
+                    {resourcesMenu.map((item) => (
+                      <li key={item.label}>
+                        <Link
+                          href={item.href}
+                          onClick={() => setResourcesOpen(false)}
+                          className="flex items-start gap-3 px-3 py-2.5 rounded-lg hover:bg-[var(--sand-2)] transition-colors group"
+                        >
+                          <div className="w-7 h-7 rounded-lg bg-[var(--green-3)] flex items-center justify-center shrink-0 mt-0.5">
+                            <item.icon size={14} className="text-[var(--green-10)]" />
+                          </div>
+                          <div>
+                            <div className="text-sm font-semibold text-[#1d1d1f] group-hover:text-[var(--green-9)] transition-colors">
+                              {item.label}
+                            </div>
+                            <div className="text-xs text-[var(--sand-10)] mt-0.5 leading-snug">
+                              {item.description}
+                            </div>
+                          </div>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
 
             {/* Pricing → /demo */}
             <Link
@@ -148,39 +214,95 @@ export function Header() {
       {/* Mobile menu */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-white border-b border-[var(--sand-5)]">
-          <div className="px-4 py-4 space-y-1">
-            {solutionsMenu.map((group) => (
-              <div key={group.category} className="pt-2">
-                <div className="text-xs font-medium text-[var(--sand-10)] uppercase tracking-widest px-2 mb-1">
-                  {group.category}
-                </div>
-                {group.items.map((item) => (
+          <div className="px-4 py-3">
+
+            {/* Solutions — collapsible */}
+            <button
+              onClick={() => setSolutionsOpen(!solutionsOpen)}
+              className="flex items-center justify-between w-full px-2 py-3.5 text-sm font-semibold text-[#1d1d1f]"
+            >
+              Solutions
+              <ChevronDown size={15} className={`text-[var(--sand-9)] transition-transform duration-200 ${solutionsOpen ? "rotate-180" : ""}`} />
+            </button>
+            {solutionsOpen && (
+              <div className="mb-2 space-y-4 pl-2">
+                {solutionsMenu.map((group) => (
+                  <div key={group.category}>
+                    <div className="flex items-center gap-1.5 text-[10px] font-bold text-[var(--sand-9)] uppercase tracking-widest mb-1.5">
+                      <group.icon size={11} />
+                      {group.category}
+                    </div>
+                    {group.items.map((item) => (
+                      <Link
+                        key={item.label}
+                        href={item.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="flex items-center gap-2 py-2.5 text-sm text-[var(--sand-11)] hover:text-[var(--green-9)] transition-colors"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <div className="border-t border-[var(--sand-4)]" />
+
+            {/* Resources — collapsible */}
+            <button
+              onClick={() => setResourcesOpen(!resourcesOpen)}
+              className="flex items-center justify-between w-full px-2 py-3.5 text-sm font-semibold text-[#1d1d1f]"
+            >
+              Resources
+              <ChevronDown size={15} className={`text-[var(--sand-9)] transition-transform duration-200 ${resourcesOpen ? "rotate-180" : ""}`} />
+            </button>
+            {resourcesOpen && (
+              <div className="mb-2 pl-2">
+                {resourcesMenu.map((item) => (
                   <Link
                     key={item.label}
                     href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block px-2 py-2 text-sm text-[#1d1d1f] hover:text-[var(--green-9)] transition-colors"
+                    className="flex items-center gap-3 py-2.5 text-sm text-[var(--sand-11)] hover:text-[var(--green-9)] transition-colors"
                   >
+                    <div className="w-6 h-6 rounded-md bg-[var(--green-3)] flex items-center justify-center shrink-0">
+                      <item.icon size={12} className="text-[var(--green-10)]" />
+                    </div>
                     {item.label}
                   </Link>
                 ))}
               </div>
-            ))}
+            )}
+
+            <div className="border-t border-[var(--sand-4)]" />
+
+            {/* Pricing */}
             <Link
               href="/demo"
-              className="block px-2 py-2 text-sm text-[var(--sand-11)] hover:text-[#1d1d1f]"
               onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center w-full px-2 py-3.5 text-sm font-semibold text-[#1d1d1f]"
             >
               Pricing
             </Link>
-            <div className="pt-4 border-t border-[var(--sand-5)] space-y-2">
-              <Button size="2" variant="ghost" color="gray" className="w-full" asChild>
-                <a href="https://app.boilerroom.ai">Log in</a>
-              </Button>
-              <Button size="2" radius="full" className="w-full" asChild style={{ backgroundColor: "var(--green-9)", color: "white" }}>
-                <a href="/demo">Book a Demo</a>
-              </Button>
+
+            {/* CTAs */}
+            <div className="pt-3 pb-2 space-y-2 border-t border-[var(--sand-4)]">
+              <a
+                href="https://app.boilerroom.ai"
+                className="flex items-center justify-center w-full py-3 rounded-xl border border-[var(--sand-5)] text-sm font-semibold text-[#1d1d1f] hover:bg-[var(--sand-2)] transition-colors"
+              >
+                Log in
+              </a>
+              <a
+                href="/demo"
+                className="flex items-center justify-center w-full py-3 rounded-xl text-sm font-semibold text-white transition-colors"
+                style={{ backgroundColor: "var(--green-9)" }}
+              >
+                Book a Demo
+              </a>
             </div>
+
           </div>
         </div>
       )}
