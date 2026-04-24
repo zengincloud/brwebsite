@@ -59,6 +59,8 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [solutionsOpen, setSolutionsOpen] = useState(false)
   const [resourcesOpen, setResourcesOpen] = useState(false)
+  const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false)
+  const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
   const resourcesRef = useRef<HTMLDivElement>(null)
 
@@ -218,13 +220,13 @@ export function Header() {
 
             {/* Solutions — collapsible */}
             <button
-              onClick={() => setSolutionsOpen(!solutionsOpen)}
+              onClick={() => setMobileSolutionsOpen(!mobileSolutionsOpen)}
               className="flex items-center justify-between w-full px-2 py-3.5 text-sm font-semibold text-[#1d1d1f]"
             >
               Solutions
-              <ChevronDown size={15} className={`text-[var(--sand-9)] transition-transform duration-200 ${solutionsOpen ? "rotate-180" : ""}`} />
+              <ChevronDown size={15} className={`text-[var(--sand-9)] transition-transform duration-200 ${mobileSolutionsOpen ? "rotate-180" : ""}`} />
             </button>
-            {solutionsOpen && (
+            {mobileSolutionsOpen && (
               <div className="mb-2 space-y-4 pl-2">
                 {solutionsMenu.map((group) => (
                   <div key={group.category}>
@@ -251,13 +253,13 @@ export function Header() {
 
             {/* Resources — collapsible */}
             <button
-              onClick={() => setResourcesOpen(!resourcesOpen)}
+              onClick={() => setMobileResourcesOpen(!mobileResourcesOpen)}
               className="flex items-center justify-between w-full px-2 py-3.5 text-sm font-semibold text-[#1d1d1f]"
             >
               Resources
-              <ChevronDown size={15} className={`text-[var(--sand-9)] transition-transform duration-200 ${resourcesOpen ? "rotate-180" : ""}`} />
+              <ChevronDown size={15} className={`text-[var(--sand-9)] transition-transform duration-200 ${mobileResourcesOpen ? "rotate-180" : ""}`} />
             </button>
-            {resourcesOpen && (
+            {mobileResourcesOpen && (
               <div className="mb-2 pl-2">
                 {resourcesMenu.map((item) => (
                   <Link
