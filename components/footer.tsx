@@ -27,15 +27,17 @@ const productLinks = [
   },
 ]
 
-const companyLinks = [
-  { label: "Contact us", href: "/contact" },
-  { label: "About us", href: "/about" },
-  { label: "Book a Demo", href: "/demo" },
+const resourceLinks = [
+  { label: "Blog", href: "/blog" },
+  { label: "Playbooks", href: "/playbooks" },
+  { label: "Resources", href: "/resources" },
+  { label: "Case Studies", href: "/case-studies" },
 ]
 
-const legalLinks = [
-  { label: "Terms of Service", href: "/terms" },
-  { label: "Privacy Policy", href: "/privacy" },
+const companyLinks = [
+  { label: "About us", href: "/about" },
+  { label: "Careers", href: "/careers" },
+  { label: "Book a Demo", href: "/demo" },
 ]
 
 export function Footer() {
@@ -75,16 +77,13 @@ export function Footer() {
             </div>
           ))}
 
-          {/* Spacer */}
-          <div />
-
-          {/* Company */}
+          {/* Resources */}
           <div>
             <Text size="1" weight="medium" className="text-[var(--sand-10)] uppercase tracking-widest mb-4 block">
-              Company
+              Resources
             </Text>
             <ul className="space-y-3">
-              {companyLinks.map((link) => (
+              {resourceLinks.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
@@ -97,13 +96,13 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Legal */}
+          {/* Company */}
           <div>
             <Text size="1" weight="medium" className="text-[var(--sand-10)] uppercase tracking-widest mb-4 block">
-              Legal
+              Company
             </Text>
             <ul className="space-y-3">
-              {legalLinks.map((link) => (
+              {companyLinks.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
