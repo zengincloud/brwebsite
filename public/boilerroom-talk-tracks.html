@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>boilerroom — Talk Tracks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:      #30a46c;
+      --green-dark: #1f7a50;
+      --green-bg:   #edfbf2;
+      --green-mid:  #d1f0e0;
+      --ink:        #111111;
+      --ink-mid:    #3a3a3a;
+      --muted:      #6b6b6b;
+      --border:     #e4e4e4;
+      --bg-subtle:  #f8f8f7;
+      --amber:      #b45309;
+      --amber-bg:   #fffbeb;
+      --amber-border: #fcd34d;
+      --r:          12px;
+    }
+
+    html { font-size: 13px; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: var(--ink);
+      background: #f3f3f1;
+      line-height: 1.6;
+    }
+
+    /* ─── Screen wrapper ─── */
+    .page {
+      max-width: 760px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 40px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    /* ─── Cover header ─── */
+    .cover {
+      background: var(--ink);
+      padding: 36px 44px 32px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .cover-left { display: flex; flex-direction: column; gap: 18px; }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      object-fit: cover;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .brand-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.3px;
+    }
+
+    .cover-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.6px;
+      line-height: 1.2;
+    }
+
+    .cover-sub {
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      margin-top: 4px;
+    }
+
+    .cover-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--green);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      margin-top: 6px;
+    }
+
+    .cover-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      flex-shrink: 0;
+    }
+
+    /* ─── Body content ─── */
+    .body {
+      padding: 36px 44px 44px;
+    }
+
+    /* ─── Intro callout ─── */
+    .intro {
+      background: var(--green-bg);
+      border: 1px solid var(--green-mid);
+      border-radius: var(--r);
+      padding: 14px 18px;
+      margin-bottom: 32px;
+      font-size: 12.5px;
+      color: #1a4530;
+      line-height: 1.6;
+    }
+
+    .intro p + p { margin-top: 6px; }
+
+    /* ─── Section ─── */
+    .section {
+      margin-bottom: 28px;
+    }
+
+    /* ─── Section header ─── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .section-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 8px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.2px;
+    }
+
+    .section-tag {
+      margin-left: auto;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      background: var(--green-bg);
+      color: var(--green-dark);
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--green-mid);
+    }
+
+    /* ─── Script block (what to say) ─── */
+    .script-block {
+      background: var(--bg-subtle);
+      border-radius: var(--r);
+      padding: 16px 18px;
+      font-size: 12.5px;
+      color: var(--ink-mid);
+      line-height: 1.7;
+      border-left: 3px solid var(--border);
+    }
+
+    .script-block p + p { margin-top: 8px; }
+
+    .script-block em {
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* ─── Highlight placeholder ─── */
+    .hl {
+      background: var(--amber-bg);
+      color: var(--amber);
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-weight: 500;
+      font-size: 12px;
+    }
+
+    /* ─── Question grid (2-col) ─── */
+    .q-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .q-card {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 14px 16px;
+    }
+
+    .q-card-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .q-card-label span {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border-radius: 5px;
+      background: var(--ink);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: none;
+      letter-spacing: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .q-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 12px;
+      color: var(--ink-mid);
+    }
+
+    .q-list li {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 7px;
+      line-height: 1.5;
+    }
+
+    .q-list li::before {
+      content: '→';
+      color: var(--green);
+      font-weight: 600;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ─── Tip / amber callout ─── */
+    .tip {
+      background: var(--amber-bg);
+      border: 1px solid var(--amber-border);
+      border-radius: var(--r);
+      padding: 13px 16px;
+      margin-bottom: 10px;
+      font-size: 12px;
+      color: #78350f;
+      line-height: 1.65;
+    }
+
+    .tip p + p { margin-top: 6px; }
+
+    .tip-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: #92400e;
+      margin-bottom: 6px;
+    }
+
+    /* ─── Bullet list ─── */
+    .bullet-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 12.5px;
+      color: var(--ink-mid);
+    }
+
+    .bullet-list li {
+      display: flex;
+      gap: 10px;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+      line-height: 1.55;
+    }
+
+    .bullet-list li:last-child { border-bottom: none; }
+
+    .bullet-list li::before {
+      content: '✓';
+      color: var(--green);
+      font-weight: 700;
+      font-size: 12px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ─── Sub-bullet list ─── */
+    .sub-list {
+      list-style: none;
+      padding: 0;
+      margin: 8px 0 0 20px;
+      font-size: 12px;
+      color: var(--ink-mid);
+    }
+
+    .sub-list li {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 6px;
+      line-height: 1.5;
+    }
+
+    .sub-list li::before {
+      content: '·';
+      color: var(--muted);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ─── Numbered list ─── */
+    .num-list {
+      list-style: none;
+      padding: 0;
+      counter-reset: items;
+      font-size: 12.5px;
+      color: var(--ink-mid);
+    }
+
+    .num-list li {
+      display: flex;
+      gap: 12px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      line-height: 1.55;
+      counter-increment: items;
+    }
+
+    .num-list li:last-child { border-bottom: none; }
+
+    .num-list li::before {
+      content: counter(items);
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--green);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ─── Divider ─── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 28px 0;
+    }
+
+    /* ─── Sub-label ─── */
+    .sub-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      margin: 14px 0 6px;
+    }
+
+    /* ─── Page footer ─── */
+    .doc-footer {
+      margin-top: 36px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 10.5px;
+      color: var(--muted);
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .footer-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    /* ─── Page 2 separator ─── */
+    .page-sep {
+      height: 1px;
+      background: var(--border);
+      margin: 0 44px;
+    }
+
+    /* ─── Objection cards ─── */
+    .obj-card {
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+
+    .obj-label {
+      background: var(--ink);
+      color: #fff;
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 9px 14px;
+      letter-spacing: -0.1px;
+    }
+
+    .obj-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .obj-col {
+      padding: 12px 14px;
+      font-size: 12px;
+      color: var(--ink-mid);
+      line-height: 1.6;
+    }
+
+    .obj-col:first-child {
+      border-right: 1px solid var(--border);
+      background: var(--bg-subtle);
+    }
+
+    .obj-col-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .obj-col:first-child .obj-col-label { color: var(--green-dark); }
+
+    /* ─── Print ─── */
+    @page { size: A4; margin: 14mm 16mm; }
+
+    @media print {
+      html { font-size: 11px; }
+      body { background: #fff; }
+      .page {
+        max-width: 100%;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+      }
+      .page-break { page-break-before: always; }
+      .no-break    { page-break-inside: avoid; }
+      .cover { border-radius: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════
+     DOCUMENT WRAPPER
+═══════════════════════════════════ -->
+<div class="page">
+
+  <!-- ══════════════════════════════
+       PAGE 1 — COLD CALL TRACK
+  ══════════════════════════════ -->
+
+  <!-- Cover -->
+  <div class="cover">
+    <div class="cover-left">
+      <div class="brand">
+        <img src="favicon.png" alt="boilerroom" class="brand-icon" />
+        <span class="brand-name">boilerroom</span>
+      </div>
+      <div>
+        <div class="cover-title">Cold Call<br/>Talk Track</div>
+        <div class="cover-sub">Get to a yes or a qualified no — fast</div>
+      </div>
+      <div class="cover-badge">Internal Sales Resource</div>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="body">
+
+    <div class="intro no-break">
+      <p>The goal of a cold call is simple: qualify fast, create enough curiosity to earn a discovery call, and book the next step.</p>
+      <p>Keep it short. Get them talking. Don't pitch — ask.</p>
+    </div>
+
+    <!-- 1. Greeting -->
+    <div class="section no-break">
+      <div class="section-header">
+        <div class="section-num">1</div>
+        <div class="section-title">Greeting</div>
+        <span class="section-tag">Open</span>
+      </div>
+      <div class="script-block">
+        <p>Hey <span class="hl">&lt;First name&gt;</span>, it's Sadid from boilerroom — how's it going?</p>
+        <p style="margin-top:10px; padding-top:10px; border-top:1px solid var(--border)"><em>If they ask where you're from:</em></p>
+        <p>Sadid from boilerroom — we're an outbound platform.</p>
+      </div>
+      <div class="sub-label">Context hook</div>
+      <div class="script-block">
+        <p>I know you're heading up <span class="hl">&lt;role / team / company context&gt;</span>, I was curious if —</p>
+      </div>
+    </div>
+
+    <!-- 2. Trap -->
+    <div class="section no-break">
+      <div class="section-header">
+        <div class="section-num">2</div>
+        <div class="section-title">Trap</div>
+        <span class="section-tag">Qualify</span>
+      </div>
+      <p style="font-size:12px; color:var(--muted); margin-bottom:10px">Pick the one that fits best — you're checking if outbound pipeline is on their radar at all.</p>
+      <ul class="bullet-list">
+        <li>Outbound sales is important to you?</li>
+        <li>Building the outbound motion is important to you?</li>
+        <li>Building outbound pipeline is important to you?</li>
+        <li>Is pipeline generation something you're focused on?</li>
+        <li>Is outbound pipeline something you look after?</li>
+        <li>I know you guys are early stage — curious if you're thinking about generating outbound pipeline?</li>
+      </ul>
+
+      <div class="sub-label" style="margin-top:16px">If they say "Yes" →</div>
+      <div class="script-block">
+        <p>Oh okay sick — what does that look like right now?</p>
+        <p>Is that something you guys are just building out or is it set in stone?</p>
+      </div>
+    </div>
+
+    <!-- 3. Bucket -->
+    <div class="section no-break">
+      <div class="section-header">
+        <div class="section-num">3</div>
+        <div class="section-title">Bucket</div>
+        <span class="section-tag">Pain</span>
+      </div>
+      <p style="font-size:12px; color:var(--muted); margin-bottom:10px">Match the bucket to their situation. Frame your pain statement around what matters to them.</p>
+
+      <div class="sub-label">Larger / more established sales teams</div>
+      <div class="script-block">
+        <p>Usually when I talk to heads of sales, they say they want their reps to <strong>increase selling time without spending new money</strong> — but still get predictable outbound pipeline and visibility into it.</p>
+        <p>Curious — to what extent do you also resonate with that?</p>
+      </div>
+    </div>
+
+    <!-- 4. Pitch -->
+    <div class="section no-break">
+      <div class="section-header">
+        <div class="section-num">4</div>
+        <div class="section-title">Pitch</div>
+        <span class="section-tag">Connect</span>
+      </div>
+      <div class="tip">
+        <div class="tip-label">Rule</div>
+        <p>Don't recite features. Pitch back the exact pains you just uncovered — mirror their language, connect what boilerroom does directly to what they told you.</p>
+      </div>
+      <div class="script-block">
+        <p>So based on what you just said about <span class="hl">&lt;their specific pain&gt;</span> — what we do at boilerroom is consolidate prospecting, sequencing, dialing, and follow-up into one workflow. So instead of your reps stitching together four different tools, everything runs from one place.</p>
+        <p>The reason teams come to us is they want <strong>more pipeline without adding headcount or tools</strong> — and they want visibility into what's actually working.</p>
+        <p>Does that sound like it maps to what you were describing?</p>
+      </div>
+    </div>
+
+    <!-- 5. Objections -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">5</div>
+        <div class="section-title">Common objections</div>
+        <span class="section-tag">Handle</span>
+      </div>
+
+      <div class="intro no-break" style="margin-bottom:16px">
+        <p>An objection generally means your prospect <strong>didn't understand</strong>, <strong>genuinely doesn't need it</strong>, or <strong>isn't the right person</strong>. Your job is to figure out which one.</p>
+        <p style="margin-top:8px">Most objections on a cold call are <strong>smokescreens</strong> — reflexive brush-offs to get off the phone. A <strong>genuine</strong> objection has a real, specific reason behind it.</p>
+        <p style="margin-top:8px">A smokescreen looks like: vague, immediate, no detail — <em>"not interested," "we're all set," "send me an email."</em> The prospect hasn't actually thought about it.</p>
+        <p style="margin-top:8px">A genuine objection looks like: specific, reasoned, unprompted detail — <em>"we just signed a 2-year deal with Outreach last month"</em> or <em>"we don't do outbound at all, our model is fully inbound."</em></p>
+        <p style="margin-top:8px">The best way to get past either is to <strong>poke at it</strong> — ask a clarifying question that forces them to either reveal it's a smokescreen or confirm it's real. If it's real, respect it and move on.</p>
+      </div>
+
+      <!-- Objection cards -->
+      <div class="obj-card no-break">
+        <div class="obj-label">"Send me an email"</div>
+        <div class="obj-body">
+          <div class="obj-col">
+            <div class="obj-col-label">Response</div>
+            <p>For sure, I'll send something over. Just so I don't waste your time with something irrelevant — is outbound pipeline actually something you're working on, or is the timing just off right now?</p>
+          </div>
+          <div class="obj-col">
+            <div class="obj-col-label">Why it works</div>
+            <p>Forces them to actually engage. If it's a smokescreen they'll usually open up. If it's genuine, you get a real answer and can send something actually relevant.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="obj-card no-break">
+        <div class="obj-label">"We already use [Apollo / Outreach / HubSpot]"</div>
+        <div class="obj-body">
+          <div class="obj-col">
+            <div class="obj-col-label">Response</div>
+            <p>Totally — a lot of the teams we work with were using those too. Are you happy with it, or is there anything you wish it did better? I'm curious what your workflow looks like.</p>
+          </div>
+          <div class="obj-col">
+            <div class="obj-col-label">Why it works</div>
+            <p>Almost no one is 100% happy with their current stack. This gets them talking about gaps without you having to pitch against their existing tool.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="obj-card no-break">
+        <div class="obj-label">"Not interested"</div>
+        <div class="obj-body">
+          <div class="obj-col">
+            <div class="obj-col-label">Response</div>
+            <p>Completely fair — can I ask what specifically? Is it that outbound just isn't a priority right now, or is it more that you haven't seen something solve this well?</p>
+          </div>
+          <div class="obj-col">
+            <div class="obj-col-label">Why it works</div>
+            <p>"Not interested" with zero context is almost always a smokescreen. This forces specificity — if they can't give you a reason, they're brushing you off, not genuinely uninterested.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="obj-card no-break">
+        <div class="obj-label">"We don't have budget"</div>
+        <div class="obj-body">
+          <div class="obj-col">
+            <div class="obj-col-label">Response</div>
+            <p>Totally get it — is that more of a timing thing where budget opens up later, or is outbound genuinely not a priority this year?</p>
+          </div>
+          <div class="obj-col">
+            <div class="obj-col-label">Why it works</div>
+            <p>Separates "no budget ever" from "no budget right now." If it's timing, keep the door open. If outbound isn't a priority, that's a genuine objection — don't force it.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="obj-card no-break">
+        <div class="obj-label">"I'm not the right person"</div>
+        <div class="obj-body">
+          <div class="obj-col">
+            <div class="obj-col-label">Response</div>
+            <p>Appreciate you saying that — who would own this on your end? Is that something you could point me toward, or even shoot me a quick intro?</p>
+          </div>
+          <div class="obj-col">
+            <div class="obj-col-label">Why it works</div>
+            <p>Sometimes true, sometimes a dodge. Either way you get a referral or a confirmation it's a smokescreen. A warm intro from this person is far better than a cold call to the right one.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="obj-card no-break">
+        <div class="obj-label">"We're not focused on outbound right now"</div>
+        <div class="obj-body">
+          <div class="obj-col">
+            <div class="obj-col-label">Response</div>
+            <p>Makes sense — is that more of a "we tried it and it didn't work" situation, or more of a "we haven't gotten to it yet"?</p>
+          </div>
+          <div class="obj-col">
+            <div class="obj-col-label">Why it works</div>
+            <p>"Tried it and it didn't work" is an opening — that's a pain point. "Haven't gotten to it yet" means it's on the roadmap. Either way you have something to work with.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="doc-footer">
+      <div class="footer-brand">
+        <div class="footer-dot"></div>
+        <span>boilerroom · Internal Use Only</span>
+      </div>
+      <span>Cold Call Talk Track · 1 of 3</span>
+    </div>
+
+  </div><!-- /body -->
+
+  <!-- ══════════════════════════════
+       PAGE 2 — DISCOVERY TALK TRACK
+  ══════════════════════════════ -->
+  <div class="page-sep page-break"></div>
+
+  <!-- Cover -->
+  <div class="cover">
+    <div class="cover-left">
+      <div class="brand">
+        <img src="favicon.png" alt="boilerroom" class="brand-icon" />
+        <span class="brand-name">boilerroom</span>
+      </div>
+      <div>
+        <div class="cover-title">Discovery<br/>Talk Track</div>
+        <div class="cover-sub">Run a tight disco and earn the right to a demo</div>
+      </div>
+      <div class="cover-badge">Internal Sales Resource</div>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="body">
+
+    <div class="intro no-break">
+      <p>If the prospect is qualified, the next step of the disco is to get them on a demo.</p>
+      <p>The disco should provide enough value and intrigue for the prospect to <strong>want to see a demo</strong>. Give them a reason to want to see you again.</p>
+    </div>
+
+    <!-- 1. Setting the stage -->
+    <div class="section no-break">
+      <div class="section-header">
+        <div class="section-num">1</div>
+        <div class="section-title">Setting the stage</div>
+        <span class="section-tag">Open</span>
+      </div>
+      <div class="script-block">
+        <p><em>(Greetings and small talk)</em></p>
+        <p style="margin-top:10px">Great, so I think the best place to start would be to understand what you're trying to accomplish — <span class="hl">&lt;give context on your product and company&gt;</span></p>
+        <p>If at the end of the call we're not the right solution for you, I'll also be honest and point you in the right direction.</p>
+        <p>If what you're trying to do is a good fit, we'll set up a technical demo on a separate call so I don't waste your time — does that all sound good?</p>
+      </div>
+    </div>
+
+    <!-- 2. Discovery questions -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">2</div>
+        <div class="section-title">Discovery questions</div>
+      </div>
+
+      <div class="q-grid no-break">
+        <!-- Current Situation -->
+        <div class="q-card">
+          <div class="q-card-label"><span>S</span> Current Situation</div>
+          <ul class="q-list">
+            <li>What is your current situation?</li>
+            <li>How much have you explored so far?</li>
+            <li>What tools are you using in these workflows today?</li>
+          </ul>
+        </div>
+        <!-- Problem -->
+        <div class="q-card">
+          <div class="q-card-label"><span>P</span> Problem</div>
+          <ul class="q-list">
+            <li>What challenges have you run into with what you've tried so far?</li>
+          </ul>
+        </div>
+        <!-- Impact -->
+        <div class="q-card">
+          <div class="q-card-label"><span>I</span> Impact</div>
+          <ul class="q-list">
+            <li>Of all the things you are working on, how would you prioritize this? Number 1? Number 10?</li>
+            <li>Why is this being prioritized now? What are the potential negative impacts if you don't address this?</li>
+            <li>How does this purchase align with your team's current priorities?</li>
+            <li>If these challenges are not addressed, what negative consequences would you anticipate?</li>
+          </ul>
+        </div>
+        <!-- Benefits -->
+        <div class="q-card">
+          <div class="q-card-label"><span>N</span> Benefits / Ideal Situation</div>
+          <ul class="q-list">
+            <li>What would an ideal solution/workflow look like to you?</li>
+            <li>What positive (measurable?) business outcomes are you hoping to achieve?</li>
+            <li>What would it mean for the business if you implement this and it is a home run?</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Recap pain points -->
+    <div class="section no-break">
+      <div class="section-header">
+        <div class="section-num">3</div>
+        <div class="section-title">Recap pain points</div>
+      </div>
+      <div class="script-block">
+        <p>Ok great, just to make sure we are on the same page, you want <span class="hl">&lt;give brief recap&gt;</span>. Is there anything I am missing?</p>
+        <p><em>(let them answer)</em></p>
+      </div>
+    </div>
+
+    <!-- 4. Communicate value -->
+    <div class="section no-break">
+      <div class="section-header">
+        <div class="section-num">4</div>
+        <div class="section-title">Communicate value</div>
+      </div>
+      <div class="script-block">
+        <p>Great, to share more about <span class="hl">&lt;Company&gt;</span> — <span class="hl">&lt;share more about the product and company&gt;</span></p>
+        <p>People work with us for X reasons: <span class="hl">&lt;share what kinds of companies work with you&gt;</span></p>
+        <p>Does that all make sense and are there any questions I can answer?</p>
+      </div>
+    </div>
+
+    <!-- 5. Q&A -->
+    <div class="section no-break">
+      <div class="section-header">
+        <div class="section-num">5</div>
+        <div class="section-title">Q&amp;A session</div>
+      </div>
+      <div class="script-block">
+        <p><em>(Let them ask questions, provide value!)</em></p>
+      </div>
+    </div>
+
+    <!-- 6. Schedule demo -->
+    <div class="section no-break">
+      <div class="section-header">
+        <div class="section-num">6</div>
+        <div class="section-title">Schedule the demo</div>
+        <span class="section-tag">Close</span>
+      </div>
+      <div class="script-block">
+        <p>Great! So the next step is to set up a demo. The demo will go over X things — <span class="hl">&lt;share what the demo will go through&gt;</span></p>
+      </div>
+
+      <div class="sub-label">Locking in a time</div>
+      <div class="script-block">
+        <p>How is tomorrow at 2pm PST? <em>(Try not to go more than 2 days out — nail down a definitive time and send a calendar invite immediately.)</em></p>
+        <p>Just sent the invite! Can you see if you got it at the right time? <em>(Wait for them to confirm.)</em></p>
+        <p>Great! I'm super excited for the demo tomorrow. If you have any questions ahead of time just email me — we're happy to help. Have a great rest of your day!</p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="doc-footer">
+      <div class="footer-brand">
+        <div class="footer-dot"></div>
+        <span>boilerroom · Internal Use Only</span>
+      </div>
+      <span>Discovery Talk Track · 2 of 3</span>
+    </div>
+
+  </div><!-- /body -->
+
+
+  <!-- ══════════════════════════════
+       PAGE 2 — DEMO TALK TRACK
+  ══════════════════════════════ -->
+  <div class="page-sep page-break"></div>
+
+  <!-- Cover -->
+  <div class="cover">
+    <div class="cover-left">
+      <div class="brand">
+        <img src="favicon.png" alt="boilerroom" class="brand-icon" />
+        <span class="brand-name">boilerroom</span>
+      </div>
+      <div>
+        <div class="cover-title">Demo<br/>Talk Track</div>
+        <div class="cover-sub">Run a focused demo that ends with a clear next step</div>
+      </div>
+      <div class="cover-badge">Internal Sales Resource</div>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="body">
+
+    <div class="intro no-break">
+      <p>The demo is typically a huge aha moment for end users. <strong>The more end users on the call, the better</strong> — if they like what they see they will be internal champions.</p>
+      <p>Decision makers and non-end users might be less interested in the tech and will want to understand pricing, privacy, and security.</p>
+    </div>
+
+    <!-- 1. Setting the stage -->
+    <div class="section no-break">
+      <div class="section-header">
+        <div class="section-num">1</div>
+        <div class="section-title">Setting the stage</div>
+      </div>
+      <ul class="bullet-list">
+        <li>Go through current situation + confirm this is correct</li>
+        <li>Go through desired outcome + confirm this is correct</li>
+      </ul>
+      <div class="script-block" style="margin-top:10px">
+        <p><em>Ask: "Is this all correct? Has anything changed since we last chatted?"</em></p>
+      </div>
+    </div>
+
+    <!-- 2. Demo -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">2</div>
+        <div class="section-title">Running the demo</div>
+      </div>
+
+      <div class="tip no-break">
+        <div class="tip-label">💡 Delivery tip</div>
+        <p>When it's the first time someone is seeing <span class="hl">&lt;your product&gt;</span>, they can easily get overwhelmed. Go slow, pause a lot, speak clearly, and use your mouse pointer to highlight exactly what you're talking about.</p>
+      </div>
+
+      <div class="tip no-break">
+        <div class="tip-label">💡 Engagement tip</div>
+        <p>Pause at every stage to ask if they have questions. Prod them hard — by default they'll say no, but getting them to ask 1 question makes them progressively more engaged. The goal is to surface all product questions <em>before</em> you get into commercials.</p>
+      </div>
+
+      <div class="sub-label">Prompts to surface the last few questions</div>
+      <ul class="bullet-list no-break">
+        <li>So now we're at the end of the demo — great time for any product or technical questions. Do you have any on how you'd use <span class="hl">&lt;your product&gt;</span>?</li>
+        <li>Does it all make sense from a technical perspective what you need to do to integrate?</li>
+        <li>Does it all make sense from a product perspective what the user experience will be like?</li>
+        <li>OK, so no more product or technical questions before we move on?</li>
+      </ul>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- 3. Pricing -->
+    <div class="section no-break">
+      <div class="section-header">
+        <div class="section-num">3</div>
+        <div class="section-title">Pricing</div>
+      </div>
+      <div class="script-block">
+        <p><span class="hl">&lt;Insert your pricing talk track here&gt;</span></p>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- 4. Wrapping up -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">4</div>
+        <div class="section-title">Wrapping up</div>
+        <span class="section-tag">If hesitation</span>
+      </div>
+
+      <div class="tip no-break">
+        <div class="tip-label">When to use this section</div>
+        <p>Use this when the prospect says "they have to talk internally" or is punting a decision.</p>
+      </div>
+
+      <div class="sub-label">If you sense hesitation</div>
+      <ul class="bullet-list no-break">
+        <li><strong>Call it out:</strong> I sense some hesitation around <em>(perceived hesitation)</em> — how are you feeling about it?</li>
+        <li><strong>Prod them:</strong> Do you see a case where you wouldn't move forward?</li>
+      </ul>
+      <div class="script-block" style="margin-top:8px">
+        <p><span class="hl">&lt;Handle the hesitation / objection&gt;</span></p>
+      </div>
+
+      <div class="sub-label" style="margin-top:16px">If you're running out of time and still sense hesitation</div>
+      <ul class="bullet-list no-break">
+        <li>
+          Would it be helpful to set up some time to walk you through <em>(perceived hesitation)</em>?
+          <ul class="sub-list">
+            <li><strong>Pricing:</strong> Walk through the build vs buy — share why companies like <span class="hl">&lt;companies you work with&gt;</span> chose us over building in-house.</li>
+            <li><strong>Security:</strong> Walk through our security posture, how we handle data, and answer any remaining questions.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <div class="sub-label" style="margin-top:16px">Set up a check-in call</div>
+      <div class="script-block no-break">
+        <p>Would you be open to me setting up a quick check-in call to answer any questions that come up after you chat internally? If you guys chat and it doesn't make sense to move forward, that's not a problem — we can always cancel the call.</p>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- 5. Going for the close -->
+    <div class="section no-break">
+      <div class="section-header">
+        <div class="section-num">5</div>
+        <div class="section-title">Going for the close</div>
+        <span class="section-tag">Close</span>
+      </div>
+      <div class="script-block" style="border-left-color: var(--green); border-left-width: 3px;">
+        <p><em>Ask: <strong>"Do you want to move forward with a trial?"</strong></em></p>
+        <p style="margin-top:8px">Don't say anything and sit in silence until they answer. It might feel awkward — wait it out.</p>
+      </div>
+
+      <div class="sub-label" style="margin-top:16px">Two possible outcomes</div>
+      <ol class="num-list no-break">
+        <li>Handle the objections they express (see section above) and set up a follow-up meeting</li>
+        <li>They say yes — you're done!</li>
+      </ol>
+    </div>
+
+    <!-- Footer -->
+    <div class="doc-footer">
+      <div class="footer-brand">
+        <div class="footer-dot"></div>
+        <span>boilerroom · Internal Use Only</span>
+      </div>
+      <span>Demo Talk Track · 3 of 3</span>
+    </div>
+
+  </div><!-- /body -->
+
+</div><!-- /page -->
+</body>
+</html>
