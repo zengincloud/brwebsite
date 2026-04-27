@@ -37,7 +37,7 @@ const resourceLinks = [
 const companyLinks = [
   { label: "About us", href: "/about" },
   { label: "Careers", href: "/careers" },
-  { label: "Book a Demo", href: "/demo" },
+  { label: "Get Started Free", href: "https://app.boilerroom.ai/signup" },
 ]
 
 export function Footer() {

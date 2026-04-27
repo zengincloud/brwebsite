@@ -208,10 +208,10 @@ export default function ThePowerOfBoilerroomPage() {
               Book a 20-minute demo and we'll walk you through exactly how boilerroom fits your team's outbound workflow.
             </p>
             <Link
-              href="/demo"
+              href="https://app.boilerroom.ai/signup"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--green-9)] text-white text-sm font-semibold hover:bg-[var(--green-10)] transition-colors"
             >
-              Book a Demo
+              Get Started Free
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

@@ -78,14 +78,14 @@ export default function FindPage() {
           </p>
           <div className="flex items-center justify-center gap-4 flex-wrap">
             <Link
-              href="/demo"
+              href="https://app.boilerroom.ai/signup"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--green-9)] text-white text-sm font-semibold hover:bg-[var(--green-10)] transition-colors"
             >
-              Book a Demo
+              Get Started Free
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
-              href="https://app.boilerroom.ai"
+              href="https://app.boilerroom.ai/login"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[var(--sand-5)] text-sm font-medium text-[#1d1d1f] hover:bg-[var(--sand-2)] transition-colors"
             >
               Log in free
@@ -132,7 +132,7 @@ export default function FindPage() {
                     ))}
                   </ul>
                   <Link
-                    href="/demo"
+                    href="https://app.boilerroom.ai/signup"
                     className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--green-10)] hover:text-[var(--green-11)] transition-colors"
                   >
                     See it in action
@@ -164,10 +164,10 @@ export default function FindPage() {
               See how boilerroom finds, enriches, and personalises outreach for your entire team.
             </p>
             <Link
-              href="/demo"
+              href="https://app.boilerroom.ai/signup"
               className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[var(--green-9)] text-white text-sm font-semibold hover:bg-[var(--green-10)] transition-colors"
             >
-              Book a Demo
+              Get Started Free
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

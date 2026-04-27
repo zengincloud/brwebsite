@@ -121,10 +121,10 @@ export default function HowToGetYourFirstSDRJobPage() {
               boilerroom gives SDRs everything they need to prospect, dial, and follow up — in one place, from day one.
             </p>
             <Link
-              href="/demo"
+              href="https://app.boilerroom.ai/signup"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--green-9)] text-white text-sm font-semibold hover:bg-[var(--green-10)] transition-colors"
             >
-              Book a Demo
+              Get Started Free
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

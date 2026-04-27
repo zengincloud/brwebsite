@@ -105,13 +105,13 @@ export default function WhatIsGTMPage() {
           <div className="mt-16 rounded-2xl border border-[var(--green-6)] bg-[var(--green-1)] p-10 text-center">
             <h3 className="text-xl font-bold text-[#1d1d1f] mb-2">Build your outbound GTM motion on boilerroom</h3>
             <p className="text-sm text-[var(--sand-11)] mb-6 max-w-sm mx-auto leading-relaxed">
-              From ICP to booked meeting — all in one platform. Book a demo to see it in action.
+              From ICP to booked meeting — all in one platform. Get started free today.
             </p>
             <Link
-              href="/demo"
+              href="https://app.boilerroom.ai/signup"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--green-9)] text-white text-sm font-semibold hover:bg-[var(--green-10)] transition-colors"
             >
-              Book a Demo
+              Get Started Free
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

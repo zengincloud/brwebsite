@@ -42,8 +42,8 @@ export function CtaSection({ variant = "default" }: CtaSectionProps) {
         {!isFinal && <div className="mb-8" />}
 
         <Button size="3" radius="full" color={isFinal ? "gray" : undefined} highContrast variant="solid" asChild style={!isFinal ? { backgroundColor: 'var(--green-9)', color: 'white' } : {}}>
-          <a href="/demo">
-            Book a Demo
+          <a href="https://app.boilerroom.ai/signup">
+            Get Started Free
             <ArrowRight size={16} />
           </a>
         </Button>

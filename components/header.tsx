@@ -187,22 +187,22 @@ export function Header() {
               )}
             </div>
 
-            {/* Pricing → /demo */}
-            <Link
-              href="/demo"
+            {/* Pricing → /upgrade */}
+            <a
+              href="https://app.boilerroom.ai/upgrade"
               className="px-3 py-2 rounded-md text-sm font-medium text-[var(--sand-11)] hover:text-[#1d1d1f] hover:bg-[var(--sand-2)] transition-colors"
             >
               Pricing
-            </Link>
+            </a>
           </nav>
 
           {/* CTA buttons */}
           <div className="hidden md:flex items-center gap-3">
             <Button size="2" variant="ghost" color="gray" asChild>
-              <a href="https://app.boilerroom.ai">Log in</a>
+              <a href="https://app.boilerroom.ai/login">Log in</a>
             </Button>
             <Button size="2" radius="full" asChild style={{ backgroundColor: "var(--green-9)", color: "white" }}>
-              <a href="/demo">Book a Demo</a>
+              <a href="https://app.boilerroom.ai/signup">Get Started Free</a>
             </Button>
           </div>
 
@@ -280,28 +280,28 @@ export function Header() {
             <div className="border-t border-[var(--sand-4)]" />
 
             {/* Pricing */}
-            <Link
-              href="/demo"
+            <a
+              href="https://app.boilerroom.ai/upgrade"
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center w-full px-2 py-3.5 text-sm font-semibold text-[#1d1d1f]"
             >
               Pricing
-            </Link>
+            </a>
 
             {/* CTAs */}
             <div className="pt-3 pb-2 space-y-2 border-t border-[var(--sand-4)]">
               <a
-                href="https://app.boilerroom.ai"
+                href="https://app.boilerroom.ai/login"
                 className="flex items-center justify-center w-full py-3 rounded-xl border border-[var(--sand-5)] text-sm font-semibold text-[#1d1d1f] hover:bg-[var(--sand-2)] transition-colors"
               >
                 Log in
               </a>
               <a
-                href="/demo"
+                href="https://app.boilerroom.ai/signup"
                 className="flex items-center justify-center w-full py-3 rounded-xl text-sm font-semibold text-white transition-colors"
                 style={{ backgroundColor: "var(--green-9)" }}
               >
-                Book a Demo
+                Get Started Free
               </a>
             </div>
 

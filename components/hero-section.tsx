@@ -70,19 +70,17 @@ export function HeroSection() {
             >
               <Flex gap="4" align="center" wrap="wrap">
                 <Button size="3" radius="full" asChild>
-                  <a href="/demo">
-                    Book a Demo
+                  <a href="https://app.boilerroom.ai/signup">
+                    Get Started Free
                     <ArrowRight size={16} />
                   </a>
                 </Button>
                 <a
-                  href="https://boilerroom.navattic.com/h1q0ur6?g=cmlzrrhkj002400ip5bjodc97&s=0"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="/demo"
                   className="inline-flex items-center gap-2 text-base text-[var(--sand-11)] hover:text-[#1d1d1f] transition-colors h-10"
                 >
                   <Play size={16} />
-                  Take a Walkthrough
+                  Book a Demo
                   <ArrowRight size={16} />
                 </a>
               </Flex>

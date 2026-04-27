@@ -61,10 +61,10 @@ export function PainSection() {
         {/* ARR Calculator */}
         <div className="border-t border-[var(--sand-5)] pt-10">
           <Text size="5" weight="bold" className="text-[#1d1d1f] block mb-1">
-            Admin tasks are bogging down your reps, and letting high-potential meetings slip by
+            Here's how much you're leaving on the table every year
           </Text>
           <Text size="3" className="text-[var(--sand-11)] block mb-6">
-            Recovering lost revenue activities, at a modest 1 extra meeting per rep/per week, could mean:
+            at a modest 1 extra meeting per rep/per week:
           </Text>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
@@ -95,7 +95,7 @@ export function PainSection() {
             <Heading size="9" weight="bold" className="text-[#1d1d1f] mb-1">
               {formatARR(additionalARR)}
             </Heading>
-            <Text size="3" color="gray">left on the table per year</Text>
+            <Text size="3" color="gray">lost to slippage</Text>
           </div>
 
           <Text size="3" className="text-[var(--sand-11)]">
