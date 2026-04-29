@@ -59,7 +59,7 @@ export function HeroSection() {
               className="mb-10"
             >
               <Text size="4" color="gray" className="text-pretty block leading-relaxed">
-                boilerroom consolidates prospecting, sequencing, dialing, and follow-up into one workflow — so reps spend more time selling and teams generate pipeline more consistently.
+                boilerroom consolidates prospecting, sequencing, dialing, and follow-up into one workflow so reps spend more time selling
               </Text>
             </motion.div>
 

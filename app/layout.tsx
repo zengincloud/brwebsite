@@ -7,13 +7,13 @@ import "./globals.css"
 export const metadata: Metadata = {
   title: "boilerroom | Execute Faster",
   description:
-    "boilerroom consolidates prospecting, sequencing, dialing, and follow-up into one workflow — so reps spend more time selling and teams generate pipeline more consistently.",
+    "boilerroom consolidates prospecting, sequencing, dialing, and follow-up into one workflow so reps spend more time selling",
   generator: "v0.app",
 
   openGraph: {
     title: "boilerroom | Superhuman Outbounding",
     description:
-      "boilerroom consolidates prospecting, sequencing, dialing, and follow-up into one workflow — so reps spend more time selling and teams generate pipeline more consistently.",
+      "boilerroom consolidates prospecting, sequencing, dialing, and follow-up into one workflow so reps spend more time selling",
     images: [
       {
         url: "/og-image.png",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "boilerroom | Superhuman Outbounding",
     description:
-      "boilerroom consolidates prospecting, sequencing, dialing, and follow-up into one workflow — so reps spend more time selling and teams generate pipeline more consistently.",
+      "boilerroom consolidates prospecting, sequencing, dialing, and follow-up into one workflow so reps spend more time selling",
     images: ["/og-image.png"],
   },
 
