@@ -52,6 +52,11 @@ export default function RootLayout({
           {children}
         </Theme>
         <Analytics />
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-JDLS2XH893" strategy="afterInteractive" />
+        <Script id="ga4" strategy="afterInteractive">{`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-JDLS2XH893');`}</Script>
         <Script id="rb2b" strategy="afterInteractive">{`!function(key) {
 if (window.reb2b) return;
 window.reb2b = {loaded: true};
