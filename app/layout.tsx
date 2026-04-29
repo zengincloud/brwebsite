@@ -3,7 +3,15 @@ import type { Metadata } from "next"
 import { Analytics } from "@vercel/analytics/next"
 import { Theme } from "@radix-ui/themes"
 import Script from "next/script"
+import CookieBanner from "@/components/cookie-banner"
 import "./globals.css"
+
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void
+    dataLayer?: unknown[]
+  }
+}
 
 export const metadata: Metadata = {
   title: "boilerroom | Execute Faster",
@@ -52,9 +60,11 @@ export default function RootLayout({
           {children}
         </Theme>
         <Analytics />
+        <CookieBanner />
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-JDLS2XH893" strategy="afterInteractive" />
         <Script id="ga4" strategy="afterInteractive">{`window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
+gtag('consent', 'default', { analytics_storage: 'denied' });
 gtag('js', new Date());
 gtag('config', 'G-JDLS2XH893');`}</Script>
         <Script id="rb2b" strategy="afterInteractive">{`!function(key) {
