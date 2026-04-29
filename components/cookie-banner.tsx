@@ -6,23 +6,18 @@ export default function CookieBanner() {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
-    const consent = localStorage.getItem("cookie_consent")
-    if (!consent) {
+    if (!localStorage.getItem("cookie_consent")) {
       setVisible(true)
-    } else if (consent === "accepted") {
-      window.gtag?.("consent", "update", { analytics_storage: "granted" })
     }
   }, [])
 
   function accept() {
     localStorage.setItem("cookie_consent", "accepted")
-    window.gtag?.("consent", "update", { analytics_storage: "granted" })
     setVisible(false)
   }
 
   function reject() {
     localStorage.setItem("cookie_consent", "rejected")
-    window.gtag?.("consent", "update", { analytics_storage: "denied" })
     setVisible(false)
   }
 
