@@ -1,6 +1,6 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { BookOpen, Map, Info, ArrowRight } from "lucide-react"
+import { BookOpen, Map, Info, Mic, ArrowRight } from "lucide-react"
 import Link from "next/link"
 
 const sections = [
@@ -21,6 +21,15 @@ const sections = [
     description:
       "Download proven templates and step-by-step guides for cold calling, email sequencing, ICP definition, and more.",
     cta: "Browse playbooks",
+  },
+  {
+    icon: Mic,
+    label: "Cold Call Practice",
+    href: "/resources/cold-call-practice",
+    title: "AI roleplays for real conversations",
+    description:
+      "Practice cold calls against AI personas that push back like real buyers. Get live coaching, call scores, and shareable replays.",
+    cta: "Try it free",
   },
   {
     icon: Info,
@@ -62,7 +71,7 @@ export default function ResourcesPage() {
 
         {/* Resource cards */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-32">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {sections.map((s) => {
               const Icon = s.icon
               return (
