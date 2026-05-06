@@ -70,7 +70,11 @@ export default function ColdCallPracticePage() {
           <p className="text-lg text-[var(--sand-11)] max-w-2xl mx-auto mb-4 leading-relaxed">
             AI roleplays and coaching that help you master real sales conversations. Give you and your team a place to practice the moments that drive revenue — so everyone improves before stepping into a real customer conversation.
           </p>
-          <div className="flex items-center justify-center gap-4 flex-wrap mt-10">
+          <div className="inline-flex items-center gap-2 mt-6 mb-2 px-3 py-1.5 rounded-full bg-[var(--green-3)] border border-[var(--green-6)]">
+            <div className="w-1.5 h-1.5 rounded-full bg-[var(--green-9)]" />
+            <span className="text-xs font-semibold text-[var(--green-10)]">Free to use — no credit card required</span>
+          </div>
+          <div className="flex items-center justify-center gap-4 flex-wrap mt-6">
             <a
               href="https://app.boilerroom.ai/activity/ai-roleplay"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--green-9)] text-white text-sm font-semibold hover:bg-[var(--green-10)] transition-colors"
@@ -201,6 +205,7 @@ export default function ColdCallPracticePage() {
               Start Practicing Free
               <ArrowRight className="w-4 h-4" />
             </a>
+            <p className="text-xs text-[var(--sand-9)] mt-3">Free to use — no credit card needed</p>
           </div>
         </section>
 
