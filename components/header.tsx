@@ -49,7 +49,7 @@ const resourcesMenu = [
   },
   {
     icon: Mic,
-    label: "Cold Call Practice",
+    label: "AI Roleplay",
     description: "AI roleplays to sharpen your pitch",
     href: "/resources/cold-call-practice",
   },

@@ -24,7 +24,7 @@ const sections = [
   },
   {
     icon: Mic,
-    label: "Cold Call Practice",
+    label: "AI Roleplay",
     href: "/resources/cold-call-practice",
     title: "AI roleplays for real conversations",
     description:

@@ -61,7 +61,7 @@ export default function ColdCallPracticePage() {
           <div className="inline-flex items-center gap-2 mb-6">
             <div className="w-4 h-2 rounded-full bg-[var(--green-9)]" />
             <span className="text-sm font-medium text-[var(--green-10)] uppercase tracking-widest">
-              Cold Call Practice
+              AI Roleplay
             </span>
           </div>
           <h1 className="text-5xl sm:text-6xl font-bold tracking-tight text-[#1d1d1f] mb-5 leading-tight">
@@ -79,7 +79,7 @@ export default function ColdCallPracticePage() {
               <ArrowRight className="w-4 h-4" />
             </a>
             <a
-              href="https://app.boilerroom.ai/activity/ai-roleplay"
+              href="https://app.boilerroom.ai/login"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[var(--sand-5)] text-sm font-medium text-[#1d1d1f] hover:bg-[var(--sand-2)] transition-colors"
             >
               Log in and practice
@@ -242,7 +242,7 @@ export default function ColdCallPracticePage() {
                 Your team should win deals before they ever dial a real number
               </h2>
               <p className="text-sm text-[#999] leading-relaxed mb-8">
-                Cold Call Practice is free to try — no setup, no sales call with us. Just open the app and start your first session in under a minute.
+                AI Roleplay is free to try — no setup, no sales call with us. Just open the app and start your first session in under a minute.
               </p>
               <ul className="space-y-3 mb-8">
                 {bullets.map((b) => (
@@ -263,7 +263,7 @@ export default function ColdCallPracticePage() {
                   <ArrowRight className="w-4 h-4" />
                 </a>
                 <a
-                  href="https://app.boilerroom.ai/activity/ai-roleplay"
+                  href="https://app.boilerroom.ai/login"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[#333] text-sm font-medium text-white hover:bg-[#2a2a2a] transition-colors"
                 >
                   Log in
