@@ -80,6 +80,7 @@ const plans = [
       "Advanced analytics",
       "10 teammate seats",
       "Custom integrations",
+      "Virtual salesfloor",
       "Dedicated support",
     ],
     highlighted: false,
