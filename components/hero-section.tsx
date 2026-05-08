@@ -48,7 +48,7 @@ export function HeroSection() {
                 weight="bold"
                 className="tracking-tight text-balance mb-6"
               >
-                More Pipeline.<br />Fewer Tools.
+                More Pipeline.<br />Less Tools.
               </Heading>
             </motion.div>
 
