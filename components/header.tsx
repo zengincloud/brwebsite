@@ -193,13 +193,12 @@ export function Header() {
               )}
             </div>
 
-            {/* Pricing → /upgrade */}
-            <a
-              href="https://app.boilerroom.ai/upgrade"
+            <Link
+              href="/pricing"
               className="px-3 py-2 rounded-md text-sm font-medium text-[var(--sand-11)] hover:text-[#1d1d1f] hover:bg-[var(--sand-2)] transition-colors"
             >
               Pricing
-            </a>
+            </Link>
           </nav>
 
           {/* CTA buttons */}
@@ -285,14 +284,13 @@ export function Header() {
 
             <div className="border-t border-[var(--sand-4)]" />
 
-            {/* Pricing */}
-            <a
-              href="https://app.boilerroom.ai/upgrade"
+            <Link
+              href="/pricing"
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center w-full px-2 py-3.5 text-sm font-semibold text-[#1d1d1f]"
             >
               Pricing
-            </a>
+            </Link>
 
             {/* CTAs */}
             <div className="pt-3 pb-2 space-y-2 border-t border-[var(--sand-4)]">
