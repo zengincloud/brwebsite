@@ -58,6 +58,7 @@ const plans = [
     features: [
       "500 credits / month",
       "Everything in Starter",
+      "30 mins AI Roleplay / month",
       "5 teammate seats",
       "HubSpot integration",
       "Priority support",
