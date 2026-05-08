@@ -37,7 +37,7 @@ function SmartFollowupCard() {
 
         {/* Call notes */}
         <div className="px-5 py-4 border-b border-[var(--sand-4)]">
-          <p className="text-[11px] font-medium text-[var(--sand-10)] uppercase tracking-wide mb-2.5">Call notes · 2h ago</p>
+          <p className="text-[11px] font-medium text-[var(--sand-10)] uppercase tracking-wide mb-2.5">Call notes · 18 days ago</p>
           <div className="space-y-2">
             <div className="flex items-start gap-2">
               <Phone className="w-3 h-3 text-[var(--green-10)] mt-0.5 shrink-0" />
@@ -45,7 +45,7 @@ function SmartFollowupCard() {
             </div>
             <div className="flex items-start gap-2">
               <Clock className="w-3 h-3 text-[var(--sand-10)] mt-0.5 shrink-0" />
-              <p className="text-xs text-[var(--sand-11)]">Agreed to meeting next week — asked for ROI breakdown and a case study before then.</p>
+              <p className="text-xs text-[var(--sand-11)]">Agreed to meeting in Q2 — asked for ROI breakdown and a case study before then.</p>
             </div>
           </div>
         </div>
