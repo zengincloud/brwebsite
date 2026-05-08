@@ -33,7 +33,7 @@ export function ProofSection() {
         <div className="max-w-3xl">
           <blockquote className="pl-6 border-l-4 border-[var(--green-9)]">
             <Text size="4" className="text-[#1d1d1f] block mb-3 leading-relaxed">
-              "Stop managing activity and start managing outcomes. Create predictable pipeline."
+              Stop managing activity and start managing outcomes. Create predictable pipeline.
             </Text>
           </blockquote>
         </div>
