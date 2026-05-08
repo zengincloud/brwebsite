@@ -34,6 +34,11 @@ const features = [
     title: "Chrome Extension",
     description: "On any LinkedIn profile, pull verified contact info in one click — then sequence them, save as a contact, or do both. No copy-pasting, no switching tabs.",
   },
+  {
+    number: "07",
+    title: "AI Roleplay",
+    description: "Practice cold calls against AI personas that push back like real buyers. Get live coaching, call scores, and shareable session replays — so reps improve before they ever dial a real prospect.",
+  },
 ]
 
 export function SolutionSection() {
