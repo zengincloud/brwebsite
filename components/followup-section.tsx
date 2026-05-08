@@ -97,7 +97,7 @@ export function FollowupSection() {
               Never miss a follow-up again
             </Heading>
             <Text size="4" color="gray" className="block leading-relaxed mb-3">
-              Manage all prospects from a unified platform, automatically prioritized so reps know where to act first.
+              Manage all prospects flagged for reminder from a unified platform, automatically prioritized so reps know where to act first.
             </Text>
             <Text size="4" color="gray" className="block leading-relaxed">
               Use AI-assisted follow-ups to respond faster, find new champions, and send contextual messages.
