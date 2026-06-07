@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Phone, Mail, BarChart2, ListTodo, Search, TrendingUp, Zap, ArrowRight } from "lucide-react"
+import { Phone, Mail, BarChart2, ListTodo, Search, TrendingUp, Zap, ArrowRight, PlayCircle } from "lucide-react"
 
 const navItems = [
   { icon: BarChart2, label: "Dashboard", id: "dashboard" },
@@ -9,6 +9,7 @@ const navItems = [
   { icon: Phone, label: "Dialer", id: "dialer" },
   { icon: Mail, label: "Emailer", id: "emailer" },
   { icon: ListTodo, label: "Sequences", id: "sequences" },
+  { icon: PlayCircle, label: "Recordings", id: "recordings" },
   { icon: TrendingUp, label: "Reports", id: "reports" },
 ]
 
@@ -294,6 +295,82 @@ function SequencesView() {
   )
 }
 
+// ── Recordings ───────────────────────────────────────────────────────────────
+function RecordingsView() {
+  const recordings = [
+    { name: "Marc Benioff", company: "Salesforce", duration: "12:48", date: "Today, 2:14 PM", tag: "Meeting Booked", tagColor: "bg-[var(--green-3)] text-[var(--green-11)]", playing: true },
+    { name: "Thomas Weaver", company: "VisualVisitor", duration: "6:32", date: "Today, 11:02 AM", tag: "Follow-up Needed", tagColor: "bg-amber-50 text-amber-700", playing: false },
+    { name: "Nicole Roessner", company: "Pipewise", duration: "3:15", date: "Yesterday, 4:47 PM", tag: "No Answer", tagColor: "bg-[var(--sand-3)] text-[var(--sand-11)]", playing: false },
+    { name: "Jenny Park", company: "Clearbit", duration: "9:01", date: "Yesterday, 1:30 PM", tag: "Meeting Booked", tagColor: "bg-[var(--green-3)] text-[var(--green-11)]", playing: false },
+  ]
+  const bars = [4, 9, 6, 12, 8, 14, 7, 10, 5, 13, 9, 6, 11, 8, 4, 10, 7, 12, 6, 9]
+  return (
+    <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="px-5 pt-5 pb-4 border-b border-[var(--sand-4)] flex items-center justify-between">
+        <div>
+          <h2 className="text-sm font-semibold text-[#1d1d1f]">Call Recordings</h2>
+          <p className="text-[10px] text-[var(--sand-11)] mt-0.5">AI-transcribed · Searchable by keyword</p>
+        </div>
+        <span className="text-[10px] px-2 py-0.5 rounded-full bg-[var(--green-3)] text-[var(--green-11)]">● Recording</span>
+      </div>
+
+      <div className="flex-1 flex overflow-hidden">
+        {/* Recording list */}
+        <div className="w-60 shrink-0 border-r border-[var(--sand-4)] divide-y divide-[var(--sand-3)] overflow-hidden">
+          {recordings.map((r, i) => (
+            <div key={i} className={`px-4 py-3 flex items-center gap-3 ${r.playing ? "bg-[var(--green-1)]" : ""}`}>
+              <div className="w-7 h-7 rounded-full bg-[var(--sand-4)] flex items-center justify-center text-[11px] font-semibold text-[var(--sand-11)] shrink-0">
+                {r.name[0]}
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-[10px] font-medium text-[#1d1d1f] truncate">{r.name}</p>
+                <p className="text-[9px] text-[var(--sand-10)] truncate">{r.company} · {r.duration}</p>
+              </div>
+              {r.playing && <PlayCircle className="w-3.5 h-3.5 text-[var(--green-10)] shrink-0" />}
+            </div>
+          ))}
+        </div>
+
+        {/* Playback + transcript pane */}
+        <div className="flex-1 flex flex-col overflow-hidden">
+          <div className="px-5 pt-5 pb-4 border-b border-[var(--sand-4)]">
+            <div className="flex items-center justify-between mb-3">
+              <div>
+                <p className="text-xs font-medium text-[#1d1d1f]">Marc Benioff · Salesforce</p>
+                <p className="text-[10px] text-[var(--sand-11)] mt-0.5">Today, 2:14 PM · 12:48</p>
+              </div>
+              <span className={`text-[9px] px-2 py-0.5 rounded-full shrink-0 ${recordings[0].tagColor}`}>{recordings[0].tag}</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <button className="flex items-center justify-center w-7 h-7 rounded-full bg-[var(--green-9)] text-white shrink-0">
+                <PlayCircle className="w-4 h-4" />
+              </button>
+              <div className="flex-1 flex items-end gap-[2px] h-8">
+                {bars.map((h, i) => (
+                  <div key={i} className={`flex-1 rounded-sm ${i < 8 ? "bg-[var(--green-9)]" : "bg-[var(--sand-5)]"}`} style={{ height: `${h * 2}px` }} />
+                ))}
+              </div>
+              <span className="text-[9px] text-[var(--sand-10)] shrink-0">4:02 / 12:48</span>
+            </div>
+          </div>
+          <div className="px-5 py-4 flex-1 overflow-hidden">
+            <p className="text-[10px] font-medium text-[var(--sand-11)] mb-3">AI Summary</p>
+            <div className="space-y-2.5 text-[10px] text-[#1d1d1f] leading-relaxed">
+              <p>Prospect expressed strong interest in consolidating outbound tools. Currently juggling 3 platforms and frustrated with lack of rep visibility.</p>
+              <p>Asked for an ROI breakdown and a 20-minute walkthrough with their VP of Sales next week.</p>
+              <p className="text-[var(--sand-10)]">Key moment <span className="text-[var(--green-10)] font-medium">6:14</span> — "Send over a case study and let's get your VP on a call."</p>
+            </div>
+          </div>
+          <div className="px-5 py-2.5 border-t border-[var(--sand-3)] flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[var(--green-9)] shrink-0" />
+            <p className="text-[9px] text-[var(--sand-10)]">Follow-up email drafted and queued automatically</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 // ── Reports ──────────────────────────────────────────────────────────────────
 function ReportsView() {
   const reps = [
@@ -375,6 +452,7 @@ const views: Record<string, React.FC> = {
   dialer: DialerView,
   emailer: EmailerView,
   sequences: SequencesView,
+  recordings: RecordingsView,
   reports: ReportsView,
 }
 
