@@ -2,6 +2,11 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
+import { getLastUpdatedDate } from "@/lib/last-updated"
+
+// Renders per-request so "last updated" reflects the current week's Sunday
+// instead of being frozen at build time.
+export const dynamic = "force-dynamic"
 
 const posts = [
   {
@@ -10,7 +15,6 @@ const posts = [
     title: "How to get your first SDR job",
     excerpt:
       "The skills the role tests are exactly the skills you should use to get the job. Here's how to outbound your way into your first sales development role.",
-    date: "April 21, 2026",
     readTime: "9 min read",
   },
   {
@@ -19,7 +23,6 @@ const posts = [
     title: "The power of boilerroom: what an AI-native sales platform actually looks like",
     excerpt:
       "There's a fundamental difference between a tool that uses AI as a feature and a platform architected around AI from day one. Here's what the latter actually looks like.",
-    date: "April 23, 2026",
     readTime: "7 min read",
   },
   {
@@ -28,7 +31,6 @@ const posts = [
     title: "boilerroom vs Outreach: Which sales platform is right for your team?",
     excerpt:
       "Outreach has been the gold standard for a decade. Here's why AI-native teams are making the switch — and what you actually get when you do.",
-    date: "April 23, 2026",
     readTime: "8 min read",
   },
   {
@@ -37,7 +39,6 @@ const posts = [
     title: "How to make your first cold call (and make it feel warm)",
     excerpt:
       "With the right preparation, a cold call doesn't have to feel cold. Here's how to research a prospect, build a hypothesis, and open a conversation that lands.",
-    date: "April 17, 2026",
     readTime: "9 min read",
   },
   {
@@ -46,7 +47,6 @@ const posts = [
     title: "Sales tools with a built-in dialer: what's actually worth using in 2026",
     excerpt:
       "A click-to-call button is not a power dialer. Here's a clear-eyed breakdown of which sales platforms actually include a real dialer — and how they differ.",
-    date: "April 14, 2026",
     readTime: "7 min read",
   },
   {
@@ -55,7 +55,6 @@ const posts = [
     title: "Outreach alternatives for small sales teams",
     excerpt:
       "Outreach was built for enterprise orgs with dedicated RevOps and six-week implementation timelines. Here's what actually works for smaller, faster-moving teams.",
-    date: "March 28, 2026",
     readTime: "8 min read",
   },
   {
@@ -64,7 +63,6 @@ const posts = [
     title: "Apollo alternatives: the best options for B2B sales teams in 2026",
     excerpt:
       "Apollo is one of the most commonly used — and most commonly outgrown — tools in B2B sales. Here's a straight assessment of what to switch to and why.",
-    date: "March 20, 2026",
     readTime: "9 min read",
   },
   {
@@ -73,7 +71,6 @@ const posts = [
     title: "What is GTM? A plain-English guide to go-to-market strategy",
     excerpt:
       "GTM gets used in a lot of ways. Here's a clear breakdown of what go-to-market strategy actually means, its core components, and what makes it work.",
-    date: "March 12, 2026",
     readTime: "7 min read",
   },
   {
@@ -82,7 +79,6 @@ const posts = [
     title: "Best free B2B prospecting tools in 2026",
     excerpt:
       "Not every team has budget for a full data stack. Here's a clear-eyed look at the best free B2B prospecting tools available, what each one does well, and where each one runs out of road.",
-    date: "January 8, 2026",
     readTime: "8 min read",
   },
   {
@@ -91,12 +87,13 @@ const posts = [
     title: "8 best alternatives to Apollo in 2025",
     excerpt:
       "Apollo put prospecting and sequencing under one roof. But as teams scale, the gaps become obvious. Here are the eight best alternatives — and why boilerroom tops the list.",
-    date: "November 12, 2025",
     readTime: "10 min read",
   },
 ]
 
 export default function BlogPage() {
+  const lastUpdated = getLastUpdatedDate()
+
   return (
     <div className="min-h-screen bg-white relative">
       <div
@@ -134,7 +131,7 @@ export default function BlogPage() {
                   {post.category}
                 </span>
                 <span className="text-xs text-[var(--sand-8)]">·</span>
-                <span className="text-xs text-[var(--sand-9)]">{post.date}</span>
+                <span className="text-xs text-[var(--sand-9)]">Updated {lastUpdated}</span>
                 <span className="text-xs text-[var(--sand-8)]">·</span>
                 <span className="text-xs text-[var(--sand-9)]">{post.readTime}</span>
               </div>
