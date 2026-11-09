@@ -100,8 +100,6 @@ const posts = [
 ]
 
 export default function BlogPage() {
-  const lastUpdated = getLastUpdatedDate()
-
   return (
     <div className="min-h-screen bg-white relative">
       <div
@@ -128,7 +126,7 @@ export default function BlogPage() {
         </section>
 
         <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-32 space-y-6">
-          {posts.map((post) => (
+          {posts.map((post, i) => (
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
@@ -139,7 +137,7 @@ export default function BlogPage() {
                   {post.category}
                 </span>
                 <span className="text-xs text-[var(--sand-8)]">·</span>
-                <span className="text-xs text-[var(--sand-9)]">Updated {lastUpdated}</span>
+                <span className="text-xs text-[var(--sand-9)]">Updated {getLastUpdatedDate(i)}</span>
                 <span className="text-xs text-[var(--sand-8)]">·</span>
                 <span className="text-xs text-[var(--sand-9)]">{post.readTime}</span>
               </div>
