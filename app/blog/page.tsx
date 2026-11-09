@@ -10,6 +10,14 @@ export const dynamic = "force-dynamic"
 
 const posts = [
   {
+    slug: "smb-vs-mid-market-vs-enterprise-sales",
+    category: "Guide",
+    title: "SMB vs mid-market vs enterprise sales: what actually changes",
+    excerpt:
+      "Selling to a 15-person agency and a Fortune 500 bank are not the same job. Here's how deal size, cycle length, and stakeholders change across segments.",
+    readTime: "8 min read",
+  },
+  {
     slug: "how-to-get-your-first-sdr-job",
     category: "Career",
     title: "How to get your first SDR job",
