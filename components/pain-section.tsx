@@ -40,7 +40,7 @@ export function PainSection() {
                 6 hrs
               </Heading>
               <Text size="3" color="gray">
-                per day jumping between logins and tools to research one prospect
+                per day jumping between logins and tools to research an account or prospect
               </Text>
             </div>
           </Grid>
