@@ -12,7 +12,7 @@ const features = [
   {
     number: "02",
     title: "Prospecting",
-    description: "Find and enrich contacts in seconds. Build targeted lists from firmographic and intent data — no spreadsheets, no manual research, no bounced emails.",
+    description: "Find and enrich contacts in seconds. Waterfall enrichment across 30+ providers and 1B+ profiles means you never hit a dead end on a prospect — no spreadsheets, no manual research, no bounced emails.",
   },
   {
     number: "03",

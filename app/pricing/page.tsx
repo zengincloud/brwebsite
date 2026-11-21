@@ -37,6 +37,7 @@ const plans = [
     ctaStyle: "dark",
     features: [
       "100 credits / month",
+      "Waterfall enrichment (30+ providers, 1B+ profiles)",
       "Power Dialer",
       "Email sequences",
       "1 teammate seat",

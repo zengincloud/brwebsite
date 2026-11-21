@@ -11,7 +11,7 @@ const solutionsMenu = [
     icon: Search,
     items: [
       { label: "Find Prospects", description: "Search prospects by describing your ICP to AI", href: "/find" },
-      { label: "Enrich Prospects", description: "Verified contact data from 30+ sources", href: "/find#enrich" },
+      { label: "Enrich Prospects", description: "Waterfall enrichment: 30+ providers, 1B+ profiles", href: "/find#enrich" },
       { label: "Write Notes", description: "AI-generated personalized outreach notes", href: "/find#notes" },
     ],
   },

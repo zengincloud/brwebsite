@@ -23,6 +23,10 @@ const faqs = [
     answer: "Outbound teams running volume who want more pipeline per rep without more tools.",
   },
   {
+    question: "Where does your contact data come from?",
+    answer: "boilerroom uses waterfall enrichment across 30+ data providers and 1B+ profiles. If one provider doesn't have a prospect's email or direct dial, it automatically tries the next, so you rarely hit a dead end.",
+  },
+  {
     question: "Does this work with our CRM?",
     answer: "Yes. Activity, call notes, and outcomes sync to your CRM automatically — no manual logging, no data entry.",
   },

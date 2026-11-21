@@ -24,10 +24,11 @@ const features = [
     icon: UserSearch,
     label: "Enrich",
     title: "Enrich Prospects",
-    tagline: "Verified contact data from 30+ sources",
+    tagline: "Waterfall enrichment across 30+ providers, 1B+ profiles",
     description:
-      "No more bounced emails or wrong numbers. boilerroom cross-references 30+ data providers to give you verified emails, direct dials, and LinkedIn URLs for every prospect on your list.",
+      "No more bounced emails, wrong numbers, or dead ends. boilerroom uses waterfall enrichment across 30+ providers and 1B+ profiles: if one source is missing a prospect's email or direct dial, it automatically tries the next, so you get verified contact data and LinkedIn URLs for every prospect on your list.",
     bullets: [
+      "Waterfall enrichment: if one provider misses, the next one tries",
       "Verified work emails with deliverability scores",
       "Mobile and direct dial numbers",
       "LinkedIn profile enrichment",
