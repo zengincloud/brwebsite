@@ -67,7 +67,7 @@ export default function BuildYourOwnStackPage() {
 
             <h2 className="text-2xl font-bold text-[#1d1d1f] pt-8">What we&apos;re trying to match</h2>
             <p>
-              boilerroom bundles four things in one platform: prospect data, a power dialer with voicemail drop, email sequences, and AI call transcription with follow-up drafts. Higher tiers add AI roleplay for practice and a HubSpot integration. To rebuild that, you need a data and sequencing tool, a real dialer, a call-intelligence tool, and, if you want roleplay, a coaching tool on top.
+              boilerroom bundles four things in one platform: prospect data (pulled from multiple sources through waterfall enrichment), a power dialer with voicemail drop, email sequences, and AI call transcription with follow-up drafts. Higher tiers add AI roleplay for practice and a HubSpot integration. To rebuild that, you need a data and sequencing tool, a real dialer, a call-intelligence tool, and, if you want roleplay, a coaching tool on top.
             </p>
 
             <h2 className="text-2xl font-bold text-[#1d1d1f] pt-8">The competitor entry plans</h2>
@@ -171,7 +171,10 @@ export default function BuildYourOwnStackPage() {
 
             <h2 className="text-2xl font-bold text-[#1d1d1f] pt-8">Where the separate tools win</h2>
             <p>
-              This isn&apos;t a clean sweep. Close has a deeper CRM than boilerroom, and Apollo has a very large contact database. Teams that already live in a CRM, or that need enterprise features such as complex permissions and custom reporting, may be better served by a dedicated tool. Salesloft and Outreach are built for larger, more process-heavy organisations, and a small team probably doesn&apos;t need them.
+              This isn&apos;t a clean sweep. Close has a deeper CRM than boilerroom. Teams that already live in a CRM, or that need enterprise features such as complex permissions and custom reporting, may be better served by a dedicated tool. Salesloft and Outreach are built for larger, more process-heavy organisations, and a small team probably doesn&apos;t need them.
+            </p>
+            <p>
+              Data is the one place where the conventional wisdom doesn&apos;t hold up. It&apos;s easy to assume that Apollo wins on data because it has a big contact database of its own. But a single database, however large, still has gaps: missing emails, outdated numbers, people it simply doesn&apos;t cover. boilerroom doesn&apos;t rely on one source. It connects to platforms that provide over a billion profiles, and it uses waterfall enrichment, which means that if one provider doesn&apos;t have a contact&apos;s email or phone number, it automatically tries the next. The result is that your reps are far less likely to hit a dead end on a prospect they should be able to reach.
             </p>
             <p>
               Cost isn&apos;t the only factor either. Credits, seats, and usage limits work differently in each product, so a like-for-like comparison depends on how much your reps actually dial and email.
