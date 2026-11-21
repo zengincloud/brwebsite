@@ -10,6 +10,14 @@ export const dynamic = "force-dynamic"
 
 const posts = [
   {
+    slug: "build-your-own-boilerroom-stack-cost",
+    category: "Comparison",
+    title: "What it costs to rebuild boilerroom from separate tools",
+    excerpt:
+      "No single competitor covers data, dialer, sequences, and AI call notes. Here's what stitching it together from Apollo, Close, and others actually costs.",
+    readTime: "6 min read",
+  },
+  {
     slug: "smb-vs-mid-market-vs-enterprise-sales",
     category: "Guide",
     title: "SMB vs mid-market vs enterprise sales: what actually changes",
