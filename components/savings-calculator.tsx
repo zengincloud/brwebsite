@@ -12,85 +12,66 @@ function boilerroomCost(reps: number) {
   return { monthly: 159 * reps, label: "Pro Max, $159 per rep" }
 }
 
-type Tool = { id: string; name: string; price: number; est?: boolean }
-type Group = { title: string; tools: Tool[] }
+type Tool = { name: string; price: number; est?: boolean; roleplay?: boolean }
 
 // Entry paid plans, price per user per month, annual billing where offered.
 // Small-business tools only: no enterprise platforms. `est` = no public price or sources
 // disagree, so treat as a rough estimate.
-const GROUPS: Group[] = [
-  {
-    title: "Lead search & data",
-    tools: [
-      { id: "apollo", name: "Apollo", price: 49 },
-      { id: "lusha", name: "Lusha", price: 50 },
-      { id: "seamless", name: "Seamless.AI", price: 79, est: true },
-      { id: "salesnav", name: "LinkedIn Sales Navigator", price: 80, est: true },
-    ],
-  },
-  {
-    title: "Power dialer & calling",
-    tools: [
-      { id: "justcall", name: "JustCall", price: 49 },
-      { id: "aircall", name: "Aircall", price: 50 },
-      { id: "dialpad", name: "Dialpad", price: 39, est: true },
-    ],
-  },
-  {
-    title: "Email & LinkedIn sequences",
-    tools: [
-      { id: "instantly", name: "Instantly", price: 30, est: true },
-      { id: "lemlist", name: "lemlist", price: 55 },
-      { id: "mailshake", name: "Mailshake", price: 29, est: true },
-      { id: "dripify", name: "LinkedIn automation (Dripify, Expandi)", price: 59, est: true },
-    ],
-  },
-  {
-    title: "Meeting & call notetaker",
-    tools: [
-      { id: "fireflies", name: "Fireflies", price: 10 },
-      { id: "fathom", name: "Fathom", price: 16 },
-      { id: "otter", name: "Otter", price: 8 },
-    ],
-  },
-  {
-    title: "AI roleplay & coaching",
-    tools: [
-      { id: "yoodli", name: "Yoodli", price: 50, est: true },
-      { id: "hyperbound", name: "Hyperbound", price: 70, est: true },
-    ],
-  },
-  {
-    title: "CRM",
-    tools: [
-      { id: "close", name: "Close", price: 35 },
-      { id: "hubspot", name: "HubSpot Sales Hub", price: 15, est: true },
-      { id: "pipedrive", name: "Pipedrive", price: 14 },
-      { id: "salesforce", name: "Salesforce Starter", price: 25, est: true },
-    ],
-  },
+const TOOLS: Record<string, Tool> = {
+  apollo: { name: "Apollo", price: 49 },
+  lusha: { name: "Lusha", price: 50 },
+  seamless: { name: "Seamless.AI", price: 79, est: true },
+  salesnav: { name: "LinkedIn Sales Navigator", price: 80, est: true },
+  justcall: { name: "JustCall", price: 49 },
+  aircall: { name: "Aircall", price: 50 },
+  dialpad: { name: "Dialpad", price: 39, est: true },
+  instantly: { name: "Instantly", price: 30, est: true },
+  lemlist: { name: "lemlist", price: 55 },
+  mailshake: { name: "Mailshake", price: 29, est: true },
+  fireflies: { name: "Fireflies", price: 10 },
+  fathom: { name: "Fathom", price: 16 },
+  otter: { name: "Otter", price: 8 },
+  yoodli: { name: "Yoodli", price: 50, est: true, roleplay: true },
+  hyperbound: { name: "Hyperbound", price: 70, est: true, roleplay: true },
+  close: { name: "Close", price: 35 },
+  hubspot: { name: "HubSpot Sales Hub", price: 15, est: true },
+  pipedrive: { name: "Pipedrive", price: 14 },
+  salesforce: { name: "Salesforce Starter", price: 25, est: true },
+}
+
+type Stack = { id: string; group: string; tools: string[] }
+
+const STACKS: Stack[] = [
+  { id: "r1", group: "With AI roleplay", tools: ["apollo", "justcall", "instantly", "hyperbound", "close", "fireflies"] },
+  { id: "r2", group: "With AI roleplay", tools: ["lusha", "aircall", "lemlist", "yoodli", "hubspot", "fathom"] },
+  { id: "r3", group: "With AI roleplay", tools: ["seamless", "dialpad", "mailshake", "yoodli", "salesforce", "otter"] },
+  { id: "n1", group: "Without AI roleplay", tools: ["apollo", "justcall", "instantly", "close", "fireflies"] },
+  { id: "n2", group: "Without AI roleplay", tools: ["lusha", "aircall", "lemlist", "hubspot", "fathom"] },
+  { id: "n3", group: "Without AI roleplay", tools: ["salesnav", "dialpad", "mailshake", "pipedrive", "otter"] },
+  { id: "b1", group: "Just the basics", tools: ["apollo", "close", "fireflies"] },
+  { id: "b2", group: "Just the basics", tools: ["lusha", "pipedrive", "otter"] },
 ]
 
-const ALL_TOOLS = GROUPS.flatMap(g => g.tools)
+const stackLabel = (st: Stack) => st.tools.map(t => TOOLS[t].name).join(" + ")
+const GROUP_ORDER = ["With AI roleplay", "Without AI roleplay", "Just the basics"]
 
 const fmt = (n: number) => `$${Math.round(n).toLocaleString("en-US")}`
 
 export function SavingsCalculator() {
   const [reps, setReps] = useState(5)
-  const [selected, setSelected] = useState<string[]>(["apollo", "close", "fireflies"])
+  const [stackId, setStackId] = useState("r1")
   const [other, setOther] = useState(0)
 
-  const toggle = (id: string) =>
-    setSelected(prev => (prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]))
-
-  const perRep = ALL_TOOLS.filter(t => selected.includes(t.id)).reduce((sum, t) => sum + t.price, 0) + other
+  const stack = STACKS.find(x => x.id === stackId)!
+  const stackTools = stack.tools.map(t => TOOLS[t])
+  const hasRoleplay = stackTools.some(t => t.roleplay)
+  const perRep = stackTools.reduce((sum, t) => sum + t.price, 0) + other
   const currentYearly = perRep * reps * 12
   const br = boilerroomCost(reps)
   const brYearly = br.monthly * 12
   const savings = currentYearly - brYearly
   const pct = currentYearly > 0 ? Math.round((savings / currentYearly) * 100) : 0
   const brCostsMore = savings < -currentYearly * 0.05
-  const hasStack = perRep > 0
 
   return (
     <div>
@@ -98,7 +79,7 @@ export function SavingsCalculator() {
         Here&apos;s how much you could save every year
       </Text>
       <Text size="3" className="text-[var(--sand-11)] block mb-6">
-        by replacing your current sales tools with boilerroom. Check everything you pay for today:
+        by replacing your current sales tools with boilerroom:
       </Text>
 
       <div className="mb-8 max-w-sm">
@@ -109,59 +90,45 @@ export function SavingsCalculator() {
         <input type="range" min={1} max={50} value={reps} onChange={e => setReps(Number(e.target.value))} className="w-full accent-[#1d1d1f]" />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-6 mb-6">
-        {GROUPS.map(group => (
-          <fieldset key={group.title}>
-            <legend className="text-xs font-semibold uppercase tracking-[0.08em] text-[var(--sand-10)] mb-2">
-              {group.title}
-            </legend>
-            <div className="space-y-2">
-              {group.tools.map(tool => {
-                const checked = selected.includes(tool.id)
-                return (
-                  <label
-                    key={tool.id}
-                    className={`flex items-center gap-3 rounded-lg border px-3 py-2 cursor-pointer transition-colors ${
-                      checked
-                        ? "border-[var(--green-7)] bg-white"
-                        : "border-[var(--sand-5)] bg-white hover:border-[var(--sand-7)]"
-                    }`}
-                  >
-                    <input
-                      type="checkbox"
-                      checked={checked}
-                      onChange={() => toggle(tool.id)}
-                      className="w-4 h-4 accent-[var(--green-9)] shrink-0"
-                    />
-                    <span className="text-sm text-[#1d1d1f] flex-1 leading-snug">{tool.name}</span>
-                    <span className="text-xs text-[var(--sand-10)] whitespace-nowrap">
-                      {tool.est ? "~" : ""}${tool.price}/mo
-                    </span>
-                  </label>
-                )
-              })}
-            </div>
-          </fieldset>
-        ))}
+      <div className="mb-6 max-w-xl">
+        <label htmlFor="current-stack" className="text-xs text-[var(--sand-11)] block mb-1">
+          Pick the stack closest to yours
+        </label>
+        <select
+          id="current-stack"
+          value={stackId}
+          onChange={e => setStackId(e.target.value)}
+          className="w-full rounded-lg border border-[var(--sand-6)] bg-white px-3 py-2 text-sm text-[#1d1d1f]"
+        >
+          {GROUP_ORDER.map(g => (
+            <optgroup key={g} label={g}>
+              {STACKS.filter(x => x.group === g).map(x => (
+                <option key={x.id} value={x.id}>{stackLabel(x)}</option>
+              ))}
+            </optgroup>
+          ))}
+        </select>
+        <p className="text-xs text-[var(--sand-10)] mt-2 leading-relaxed">
+          {stackTools.map((t, i) => (
+            <span key={t.name}>
+              {i > 0 ? " · " : ""}
+              {t.name} {t.est ? "~" : ""}${t.price}
+            </span>
+          ))}
+          {" "}per rep / month
+        </p>
       </div>
 
       <div className="mb-10 max-w-sm">
         <div className="flex justify-between mb-1">
-          <label className="text-xs text-[var(--sand-11)]">Other tools you pay for, per rep / month</label>
+          <label className="text-xs text-[var(--sand-11)]">Anything else you pay for, per rep / month</label>
           <span className="text-xs font-semibold text-[#1d1d1f]">${other}</span>
         </div>
         <input type="range" min={0} max={300} step={5} value={other} onChange={e => setOther(Number(e.target.value))} className="w-full accent-[#1d1d1f]" />
       </div>
 
       <div className="mb-6">
-        {!hasStack ? (
-          <>
-            <Heading size="9" weight="bold" className="text-[#1d1d1f] mb-1">
-              $0
-            </Heading>
-            <Text size="3" color="gray">Check the tools you use today to see your savings.</Text>
-          </>
-        ) : savings > 0 ? (
+        {savings > 0 ? (
           <>
             <Heading size="9" weight="bold" className="text-[#1d1d1f] mb-1">
               {fmt(savings)}
@@ -174,7 +141,7 @@ export function SavingsCalculator() {
               {fmt(-savings)} more
             </Heading>
             <Text size="3" color="gray">
-              per year on price alone. Check more of the tools you use, since boilerroom replaces them all: data, dialer, sequences, notes, and roleplay in one platform.
+              per year on price alone. What you get for it: data, dialer, sequences, notes, and roleplay in one platform instead of several.
             </Text>
           </>
         ) : (
@@ -202,7 +169,7 @@ export function SavingsCalculator() {
         </div>
       </div>
 
-      {reps === 1 && selected.some(id => id === "yoodli" || id === "hyperbound") && (
+      {reps === 1 && hasRoleplay && (
         <Text size="2" className="text-[var(--sand-10)] block mb-3">
           Note: AI roleplay is included on boilerroom Pro and above, not on Starter.
         </Text>
