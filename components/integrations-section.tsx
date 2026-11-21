@@ -70,7 +70,7 @@ export function IntegrationsSection() {
               Always in sync with your stack.
             </Heading>
             <Text size="4" color="gray" className="block leading-relaxed mb-8">
-              Boilerroom connects natively with your CRM and sales tools — so activity, notes, and outcomes sync automatically. No manual logging. No data gaps.
+              Boilerroom connects natively with HubSpot, Salesforce, and your sales tools — so activity, notes, and outcomes sync automatically. No manual logging. No data gaps.
             </Text>
 
             <div className="flex items-center gap-3 flex-wrap mb-8">

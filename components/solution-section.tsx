@@ -27,7 +27,7 @@ const features = [
   {
     number: "05",
     title: "CRM Sync",
-    description: "Activity, notes, and outcomes push to your CRM automatically. Reps stop doing data entry and managers get a live, accurate view of pipeline.",
+    description: "Activity, notes, and outcomes push to HubSpot or Salesforce automatically. Reps stop doing data entry and managers get a live, accurate view of pipeline.",
   },
   {
     number: "06",

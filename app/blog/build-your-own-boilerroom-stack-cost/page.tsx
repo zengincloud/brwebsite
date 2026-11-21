@@ -67,7 +67,7 @@ export default function BuildYourOwnStackPage() {
 
             <h2 className="text-2xl font-bold text-[#1d1d1f] pt-8">What we&apos;re trying to match</h2>
             <p>
-              boilerroom bundles four things in one platform: prospect data (pulled from multiple sources through waterfall enrichment), a power dialer with voicemail drop, email sequences, and AI call transcription with follow-up drafts. Higher tiers add AI roleplay for practice and a HubSpot integration. To rebuild that, you need a data and sequencing tool, a real dialer, a call-intelligence tool, and, if you want roleplay, a coaching tool on top.
+              boilerroom bundles four things in one platform: prospect data (pulled from multiple sources through waterfall enrichment), a power dialer with voicemail drop, email sequences, and AI call transcription with follow-up drafts. Higher tiers add AI roleplay for practice and a HubSpot/Salesforce integration. To rebuild that, you need a data and sequencing tool, a real dialer, a call-intelligence tool, and, if you want roleplay, a coaching tool on top.
             </p>
 
             <h2 className="text-2xl font-bold text-[#1d1d1f] pt-8">The competitor entry plans</h2>
@@ -131,7 +131,7 @@ export default function BuildYourOwnStackPage() {
               <li><strong className="text-[#1d1d1f]">AI roleplay</strong> from a tool like <Brand name="Hyperbound" logo="/logos/hyperbound.png" /> or <Brand name="Second Nature" logo="/logos/secondnature.png" />: these are typically sold by quote, so we haven&apos;t priced them, and they add to the total</li>
             </ul>
             <p>
-              Before roleplay, that&apos;s already about <strong className="text-[#1d1d1f]">$890 a month</strong>. boilerroom Pro is $79–$99 per rep per month, so five reps cost $395–$495 a month, and that includes 500 credits, a HubSpot integration, and 30 minutes of AI roleplay a month. Even without counting roleplay, the stack costs roughly twice as much.
+              Before roleplay, that&apos;s already about <strong className="text-[#1d1d1f]">$890 a month</strong>. boilerroom Pro is $79–$99 per rep per month, so five reps cost $395–$495 a month, and that includes 500 credits, a HubSpot/Salesforce integration, and 30 minutes of AI roleplay a month. Even without counting roleplay, the stack costs roughly twice as much.
             </p>
 
             <h2 className="text-2xl font-bold text-[#1d1d1f]">Side by side</h2>

@@ -28,7 +28,7 @@ const faqs = [
   },
   {
     question: "Does this work with our CRM?",
-    answer: "Yes. Activity, call notes, and outcomes sync to your CRM automatically — no manual logging, no data entry.",
+    answer: "Yes. boilerroom integrates with HubSpot and Salesforce. Activity, call notes, and outcomes sync to your CRM automatically — no manual logging, no data entry.",
   },
 ]
 

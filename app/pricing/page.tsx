@@ -61,7 +61,7 @@ const plans = [
       "Everything in Starter",
       "30 mins AI Roleplay / month",
       "5 teammate seats",
-      "HubSpot integration",
+      "HubSpot / Salesforce integration",
       "Priority support",
     ],
     highlighted: true,
