@@ -4,36 +4,15 @@ import { useState } from "react"
 import Link from "next/link"
 import { Heading, Text } from "@radix-ui/themes"
 
-// boilerroom yearly-billed prices (see app/pricing/page.tsx)
-const BR_PLANS = [
-  { name: "Starter", seats: 1, monthly: 39 },
-  { name: "Pro", seats: 5, monthly: 79 },
-  { name: "Pro Max", seats: 10, monthly: 159 },
-]
-
-// Cheapest combination of plans that covers `reps` seats.
+// boilerroom yearly-billed prices: Starter $39, Pro $79, Pro Max $159 per month (see app/pricing/page.tsx)
+// One plan per team size: Starter (1 seat), Pro (up to 5), Pro Max (up to 10).
+// Beyond 10 reps, one Pro Max per 10 reps.
 function boilerroomCost(reps: number) {
-  const best: { cost: number; counts: number[] }[] = [{ cost: 0, counts: [0, 0, 0] }]
-  for (let n = 1; n <= reps; n++) {
-    let bestCost = Infinity
-    let bestCounts = [0, 0, 0]
-    for (let i = 0; i < BR_PLANS.length; i++) {
-      const prev = best[Math.max(0, n - BR_PLANS[i].seats)]
-      const cost = prev.cost + BR_PLANS[i].monthly
-      if (cost < bestCost) {
-        bestCost = cost
-        bestCounts = [...prev.counts]
-        bestCounts[i] += 1
-      }
-    }
-    best.push({ cost: bestCost, counts: bestCounts })
-  }
-  const { cost, counts } = best[reps]
-  const label = counts
-    .map((c, i) => (c > 0 ? `${c > 1 ? `${c}× ` : ""}${BR_PLANS[i].name}` : ""))
-    .filter(Boolean)
-    .join(" + ")
-  return { monthly: cost, label }
+  if (reps <= 1) return { monthly: 39, label: "Starter plan" }
+  if (reps <= 5) return { monthly: 79, label: "Pro plan, up to 5 seats" }
+  if (reps <= 10) return { monthly: 159, label: "Pro Max plan, up to 10 seats" }
+  const n = Math.ceil(reps / 10)
+  return { monthly: n * 159, label: `${n} Pro Max plans, 10 seats each` }
 }
 
 // Entry-tier list prices per rep per month, annual billing.

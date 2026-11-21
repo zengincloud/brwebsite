@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react"
 import Link from "next/link"
 import { Button } from "@radix-ui/themes"
-import { Menu, X, ChevronDown, Search, ListOrdered, Phone, BookOpen, Map, Info, Mic } from "lucide-react"
+import { Menu, X, ChevronDown, Search, ListOrdered, Phone, BookOpen, Map, Info, Mic, Calculator } from "lucide-react"
 
 const solutionsMenu = [
   {
@@ -52,6 +52,12 @@ const resourcesMenu = [
     label: "AI Roleplay",
     description: "AI roleplays to sharpen your pitch",
     href: "/resources/cold-call-practice",
+  },
+  {
+    icon: Calculator,
+    label: "Calculator",
+    description: "Estimate revenue lost to rep admin time",
+    href: "/resources/outbound-calculator",
   },
   {
     icon: Info,

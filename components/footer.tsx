@@ -30,6 +30,7 @@ const productLinks = [
 const resourceLinks = [
   { label: "Blog", href: "/blog" },
   { label: "Playbooks", href: "/playbooks" },
+  { label: "Pipeline Calculator", href: "/resources/outbound-calculator" },
   { label: "Resources", href: "/resources" },
   { label: "Case Studies", href: "/case-studies" },
 ]
