@@ -1,6 +1,6 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { BookOpen, Map, Info, Mic, ArrowRight } from "lucide-react"
+import { BookOpen, Map, Info, Mic, Calculator, ArrowRight } from "lucide-react"
 import Link from "next/link"
 
 const sections = [
@@ -30,6 +30,15 @@ const sections = [
     description:
       "Practice cold calls against AI personas that push back like real buyers. Get live coaching, call scores, and shareable replays.",
     cta: "Try it free",
+  },
+  {
+    icon: Calculator,
+    label: "Calculator",
+    href: "/resources/outbound-calculator",
+    title: "Outbound pipeline calculator",
+    description:
+      "Estimate how much revenue slips away every year when reps lose selling time to admin, research, and prep.",
+    cta: "Open the calculator",
   },
   {
     icon: Info,
@@ -71,7 +80,7 @@ export default function ResourcesPage() {
 
         {/* Resource cards */}
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-32">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {sections.map((s) => {
               const Icon = s.icon
               return (
