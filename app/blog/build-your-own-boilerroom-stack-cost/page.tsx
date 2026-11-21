@@ -123,7 +123,7 @@ export default function BuildYourOwnStackPage() {
 
             <h2 className="text-2xl font-bold text-[#1d1d1f] pt-8">Pro-equivalent: a five-person team</h2>
             <p>
-              Scale to five seats and add roleplay, and the gap widens:
+              Scale to a five-person team and add roleplay, and the gap widens:
             </p>
             <ul className="list-disc pl-5 space-y-2">
               <li><strong className="text-[#1d1d1f]"><Brand name="Apollo" logo="/logos/apollo.png" /> Professional</strong>, 5 seats at $79: $395</li>
@@ -131,7 +131,7 @@ export default function BuildYourOwnStackPage() {
               <li><strong className="text-[#1d1d1f]">AI roleplay</strong> from a tool like <Brand name="Hyperbound" logo="/logos/hyperbound.png" /> or <Brand name="Second Nature" logo="/logos/secondnature.png" />: these are typically sold by quote, so we haven&apos;t priced them, and they add to the total</li>
             </ul>
             <p>
-              Before roleplay, that&apos;s already about <strong className="text-[#1d1d1f]">$890 a month</strong>. boilerroom Pro is $79–$99 a month and includes five teammate seats, 500 credits, and 30 minutes of AI roleplay. Even without counting roleplay, the stack costs roughly nine to eleven times as much.
+              Before roleplay, that&apos;s already about <strong className="text-[#1d1d1f]">$890 a month</strong>. boilerroom Pro is $79–$99 per rep per month, so five reps cost $395–$495 a month, and that includes 500 credits, a HubSpot integration, and 30 minutes of AI roleplay a month. Even without counting roleplay, the stack costs roughly twice as much.
             </p>
 
             <h2 className="text-2xl font-bold text-[#1d1d1f]">Side by side</h2>
@@ -153,7 +153,7 @@ export default function BuildYourOwnStackPage() {
                   <tr className="border-b border-[var(--sand-4)]">
                     <td className="py-3 pr-4 font-medium text-[#1d1d1f]">5 reps</td>
                     <td className="py-3 pr-4">~$890/mo, before roleplay</td>
-                    <td className="py-3">$79–$99/mo (Pro, 5 seats)</td>
+                    <td className="py-3">$395–$495/mo (Pro, $79–$99 per rep)</td>
                   </tr>
                   <tr className="border-b border-[var(--sand-4)]">
                     <td className="py-3 pr-4 font-medium text-[#1d1d1f]">Logins</td>
@@ -182,7 +182,7 @@ export default function BuildYourOwnStackPage() {
 
             <h2 className="text-2xl font-bold text-[#1d1d1f] pt-8">The bottom line</h2>
             <p>
-              If you want prospecting, dialing, sequences, call intelligence, and coaching, you can assemble it from three or four products. You&apos;ll pay several times more per rep and spend time keeping the pieces in sync. If you&apos;d rather have it in one place, that&apos;s what boilerroom is for.
+              If you want prospecting, dialing, sequences, call intelligence, and coaching, you can assemble it from three or four products. You&apos;ll pay roughly twice as much per rep and spend time keeping the pieces in sync. If you&apos;d rather have it in one place, that&apos;s what boilerroom is for.
             </p>
           </div>
 

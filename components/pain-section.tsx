@@ -34,13 +34,13 @@ export function PainSection() {
                 placeholder
               </Text>
               <Heading size="8" weight="bold" className="tracking-tight mb-4">
-                Only
+                More than
               </Heading>
               <Heading size="9" weight="bold" className="text-[#1d1d1f] mb-2">
-                2 hrs
+                6 hrs
               </Heading>
               <Text size="3" color="gray">
-                per day spent making cold calls/emails
+                per day jumping between logins and tools to research one prospect
               </Text>
             </div>
           </Grid>

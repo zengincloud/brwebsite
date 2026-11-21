@@ -4,26 +4,25 @@ import { useState } from "react"
 import Link from "next/link"
 import { Heading, Text } from "@radix-ui/themes"
 
-// boilerroom yearly-billed prices: Starter $39, Pro $79, Pro Max $159 per month (see app/pricing/page.tsx)
-// One plan per team size: Starter (1 seat), Pro (up to 5), Pro Max (up to 10).
-// Beyond 10 reps, one Pro Max per 10 reps.
+// boilerroom is priced per rep (yearly billing): Starter $39 (1 seat), Pro $79 (teams up to 5),
+// Pro Max $159 (unlimited seats). The plan is set by team size.
 function boilerroomCost(reps: number) {
-  if (reps <= 1) return { monthly: 39, label: "Starter plan" }
-  if (reps <= 5) return { monthly: 79, label: "Pro plan, up to 5 seats" }
-  if (reps <= 10) return { monthly: 159, label: "Pro Max plan, up to 10 seats" }
-  const n = Math.ceil(reps / 10)
-  return { monthly: n * 159, label: `${n} Pro Max plans, 10 seats each` }
+  if (reps <= 1) return { perRep: 39, monthly: 39 * reps, label: "Starter, $39 per rep" }
+  if (reps <= 5) return { perRep: 79, monthly: 79 * reps, label: `Pro, $79 per rep` }
+  return { perRep: 159, monthly: 159 * reps, label: `Pro Max, $159 per rep` }
 }
 
-// Entry-tier list prices per rep per month, annual billing.
+// Competitor list prices per rep per month, annual billing. Small teams (1 rep) are matched
+// against entry plans; teams of 2+ need the higher tiers that cover roleplay, integrations
+// and reporting, so they're matched against those (Apollo Professional, Close Growth).
 // Salesloft/Outreach have no public pricing; these are the low end of third-party estimates.
 const STACKS = [
-  { id: "apollo-close", label: "Apollo + Close + a call notetaker", perRep: 94, note: "Apollo Basic $49 + Close Essentials $35 + ~$10 notetaker" },
-  { id: "apollo", label: "Apollo", perRep: 49, note: "Apollo Basic $49. No power dialer or AI call notes" },
-  { id: "close", label: "Close", perRep: 35, note: "Close Essentials $35, plus calling usage. No prospect data" },
-  { id: "salesloft", label: "Salesloft", perRep: 125, note: "Estimate. Salesloft doesn't publish pricing" },
-  { id: "outreach", label: "Outreach", perRep: 100, note: "Estimate. Outreach doesn't publish pricing" },
-  { id: "custom", label: "Something else (enter your own)", perRep: 0, note: "" },
+  { id: "apollo-close", label: "Apollo + Close", small: 94, team: 178, note: "Solo: Apollo Basic + Close Essentials + notetaker. Teams: Apollo Professional $79 + Close Growth $99" },
+  { id: "apollo", label: "Apollo", small: 49, team: 79, note: "Solo: Basic $49. Teams: Professional $79. No power dialer or AI call notes" },
+  { id: "close", label: "Close", small: 35, team: 99, note: "Solo: Essentials $35. Teams: Growth $99. Calling billed extra, no prospect data" },
+  { id: "salesloft", label: "Salesloft", small: 125, team: 125, note: "Estimate. Salesloft doesn't publish pricing" },
+  { id: "outreach", label: "Outreach", small: 100, team: 100, note: "Estimate. Outreach doesn't publish pricing" },
+  { id: "custom", label: "Something else (enter your own)", small: 0, team: 0, note: "" },
 ]
 
 const fmt = (n: number) => `$${Math.round(n).toLocaleString("en-US")}`
@@ -34,12 +33,13 @@ export function SavingsCalculator() {
   const [customPerRep, setCustomPerRep] = useState(100)
 
   const stack = STACKS.find(s => s.id === stackId)!
-  const perRep = stackId === "custom" ? customPerRep : stack.perRep
+  const perRep = stackId === "custom" ? customPerRep : reps === 1 ? stack.small : stack.team
 
   const currentYearly = perRep * reps * 12
   const br = boilerroomCost(reps)
   const brYearly = br.monthly * 12
   const savings = currentYearly - brYearly
+  const brCostsMore = savings < -currentYearly * 0.05
   const pct = currentYearly > 0 ? Math.round((savings / currentYearly) * 100) : 0
 
   return (
@@ -93,6 +93,15 @@ export function SavingsCalculator() {
             </Heading>
             <Text size="3" color="gray">saved per year ({pct}% less)</Text>
           </>
+        ) : brCostsMore ? (
+          <>
+            <Heading size="9" weight="bold" className="text-[#1d1d1f] mb-1">
+              {fmt(-savings)} more
+            </Heading>
+            <Text size="3" color="gray">
+              per year on price alone. What you get for it: dialer, sequences, data enrichment, AI call notes, and roleplay in one platform instead of several.
+            </Text>
+          </>
         ) : (
           <>
             <Heading size="9" weight="bold" className="text-[#1d1d1f] mb-1">
@@ -119,7 +128,7 @@ export function SavingsCalculator() {
       </div>
 
       <Text size="2" className="text-[var(--sand-10)] block">
-        Based on list prices with annual billing, using each tool&apos;s entry plan. Real costs vary with seats, usage, and add-ons.{" "}
+        Based on list prices with annual billing. Real costs vary with seats, usage, and add-ons.{" "}
         <Link href="/blog/build-your-own-boilerroom-stack-cost" className="underline underline-offset-2 hover:text-[#1d1d1f]">
           See how we priced it
         </Link>

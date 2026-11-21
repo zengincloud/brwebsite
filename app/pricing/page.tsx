@@ -80,7 +80,7 @@ const plans = [
       "1,000 credits / month",
       "Everything in Pro",
       "Advanced analytics",
-      "10 teammate seats",
+      "Unlimited teammate seats",
       "Custom integrations",
       "Unlimited AI Roleplay minutes",
       "Virtual salesfloor",
@@ -202,7 +202,7 @@ export default function PricingPage() {
                         ${billing === "yearly" ? plan.yearly : plan.monthly}
                       </span>
                       <p className={`text-xs mt-1 ${plan.highlighted ? "text-[#666]" : "text-[var(--sand-9)]"}`}>
-                        per month{billing === "yearly" ? ", billed yearly" : ""}
+                        per rep / month{billing === "yearly" ? ", billed yearly" : ""}
                       </p>
                     </div>
                   )}
