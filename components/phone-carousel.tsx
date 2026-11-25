@@ -243,7 +243,7 @@ export function PhoneCarousel() {
               onClick={() => abs === 1 && setActive(i)}
               className="absolute top-1/2 left-1/2 transition-all duration-500 ease-out"
               style={{
-                transform: `translate(-50%, -50%) translateX(${o * 200}px) translateZ(${-abs * 140}px) rotateY(${o * 38}deg) scale(${1 - abs * 0.08})`,
+                transform: `translate(-50%, -50%) translateX(${o * 280}px) translateZ(${-abs * 140}px) rotateY(${o * 38}deg) scale(${1 - abs * 0.08})`,
                 opacity: abs === 0 ? 1 : abs === 1 ? 0.7 : 0,
                 // outer phones fade out toward the edge they tilt away to
                 ...(abs === 0
