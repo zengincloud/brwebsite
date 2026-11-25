@@ -43,7 +43,7 @@ function DialerScreen() {
       </div>
       <div className="mx-4 mt-3 rounded-xl bg-[var(--green-3)] p-3">
         <div className="text-[10px] font-semibold text-[var(--green-10)] uppercase tracking-wider mb-1">AI note</div>
-        <div className="text-[11px] text-[#1d1d1f] leading-snug">Sarah's team just hired 6 SDRs. Open with their outbound ramp.</div>
+        <div className="text-[11px] text-[#1d1d1f] leading-snug">Sarah's team just hired 6 SDRs. Open with their outbound ramp. You spoke to their manager last week about replacing their manual dialer.</div>
       </div>
       <div className="mx-4 mt-3">
         <div className="text-[10px] font-semibold text-[var(--sand-10)] uppercase tracking-wider mb-1.5">Up next</div>
