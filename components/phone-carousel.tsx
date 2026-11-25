@@ -50,7 +50,7 @@ function DialerScreen() {
         <div className="space-y-1.5">
           {[
             ["MW", "Marcus Webb", "Head of RevOps, Acme"],
-            ["PP", "Priya Patel", "CRO, Lumen"],
+            ["MP", "Marcus Patel", "CRO, Lumen"],
           ].map(([i, n, r]) => (
             <div key={n} className="flex items-center gap-2 rounded-lg border border-[var(--sand-5)] px-2.5 py-2">
               <div className="w-7 h-7 rounded-full bg-[var(--sand-3)] flex items-center justify-center text-[10px] font-semibold text-[var(--sand-11)]">{i}</div>
@@ -70,7 +70,7 @@ function ProspectsScreen() {
   const rows = [
     ["SC", "Sarah Chen", "VP Sales · Northwind", "Hot"],
     ["MW", "Marcus Webb", "Head of RevOps · Acme", "Warm"],
-    ["PP", "Priya Patel", "CRO · Lumen", "New"],
+    ["MP", "Marcus Patel", "CRO · Lumen", "New"],
     ["DO", "Daniel Okafor", "Dir. Sales · Fathom", "Warm"],
     ["EL", "Elena Lopez", "VP Growth · Brightly", "New"],
   ]
@@ -140,7 +140,7 @@ function SummaryScreen() {
 
 function ActivityScreen() {
   const items = [
-    [MessageSquare, "Priya Patel replied", "\"Sounds interesting, can we chat Thursday?\"", "2m"],
+    [MessageSquare, "Marcus Patel replied", "\"Sounds interesting, can we chat Thursday?\"", "2m"],
     [Calendar, "Meeting booked", "Marcus Webb · Thu 2:00 PM", "1h"],
     [Phone, "Missed call", "Daniel Okafor called you back", "3h"],
     [Bell, "Sequence finished", "Q4 VP Sales outreach · 12 replies", "5h"],
