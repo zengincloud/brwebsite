@@ -1,6 +1,7 @@
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { Phone, Users, Mic, MessageSquare, Bell, Check, Apple, Play, PhoneCall, Voicemail } from "lucide-react"
+import { PhoneCarousel } from "@/components/phone-carousel"
+import { Phone, Users, Mic, MessageSquare, Bell, Check, Voicemail } from "lucide-react"
 
 // TODO: replace with real store listings once published
 const APP_STORE_URL = "#"
@@ -15,109 +16,17 @@ const features = [
   { icon: Bell, title: "Never miss a reply", description: "Get push notifications when a prospect replies, books a meeting, or calls you back." },
 ]
 
-const prospects = [
-  { name: "Sarah Chen", role: "VP Sales, Northwind", initials: "SC" },
-  { name: "Marcus Webb", role: "Head of RevOps, Acme", initials: "MW" },
-  { name: "Priya Patel", role: "CRO, Lumen", initials: "PP" },
-]
-
 function StoreButtons() {
   return (
-    <div className="flex items-center justify-center lg:justify-start gap-3 flex-wrap">
-      <a
-        href={APP_STORE_URL}
-        className="inline-flex items-center gap-3 px-5 py-3 rounded-xl bg-[#1d1d1f] text-white hover:bg-black transition-colors"
-      >
-        <Apple className="w-6 h-6" />
-        <span className="text-left leading-tight">
-          <span className="block text-[10px] opacity-80">Download on the</span>
-          <span className="block text-base font-semibold">App Store</span>
-        </span>
+    <div className="flex items-center justify-center lg:justify-start gap-1 flex-wrap">
+      <a href={APP_STORE_URL} aria-label="Download on the App Store">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/badges/app-store.svg" alt="Download on the App Store" className="h-[52px] w-auto" />
       </a>
-      <a
-        href={PLAY_STORE_URL}
-        className="inline-flex items-center gap-3 px-5 py-3 rounded-xl bg-[#1d1d1f] text-white hover:bg-black transition-colors"
-      >
-        <Play className="w-6 h-6" />
-        <span className="text-left leading-tight">
-          <span className="block text-[10px] opacity-80">Get it on</span>
-          <span className="block text-base font-semibold">Google Play</span>
-        </span>
+      <a href={PLAY_STORE_URL} aria-label="Get it on Google Play">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/badges/google-play.png" alt="Get it on Google Play" className="h-[78px] w-auto -my-3" />
       </a>
-    </div>
-  )
-}
-
-function IPhoneMockup() {
-  return (
-    <div className="relative mx-auto w-[280px] h-[580px] rounded-[48px] bg-[#1d1d1f] p-[10px] shadow-2xl ring-1 ring-black/10">
-      {/* side buttons */}
-      <div className="absolute -left-[3px] top-28 w-[3px] h-8 rounded-l bg-[#1d1d1f]" />
-      <div className="absolute -left-[3px] top-44 w-[3px] h-12 rounded-l bg-[#1d1d1f]" />
-      <div className="absolute -right-[3px] top-40 w-[3px] h-16 rounded-r bg-[#1d1d1f]" />
-
-      <div className="relative w-full h-full rounded-[38px] bg-white overflow-hidden flex flex-col">
-        {/* dynamic island */}
-        <div className="absolute top-2 left-1/2 -translate-x-1/2 w-24 h-6 rounded-full bg-[#1d1d1f] z-10" />
-
-        {/* status bar */}
-        <div className="flex items-center justify-between px-6 pt-3 text-[11px] font-semibold text-[#1d1d1f]">
-          <span>9:41</span>
-          <span className="opacity-0">.</span>
-          <span>100%</span>
-        </div>
-
-        {/* active call card */}
-        <div className="mt-8 mx-4 rounded-2xl bg-[var(--green-9)] text-white p-4 text-center">
-          <div className="text-[10px] uppercase tracking-widest opacity-80 mb-2">Power Dialer · 4 of 25</div>
-          <div className="w-14 h-14 rounded-full bg-white/20 flex items-center justify-center mx-auto mb-2 text-lg font-semibold">
-            SC
-          </div>
-          <div className="text-base font-semibold">Sarah Chen</div>
-          <div className="text-xs opacity-90">VP Sales, Northwind</div>
-          <div className="text-xs mt-2 font-mono">02:14</div>
-          <div className="flex items-center justify-center gap-3 mt-3">
-            <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center">
-              <Mic className="w-4 h-4" />
-            </div>
-            <div className="w-11 h-11 rounded-full bg-red-500 flex items-center justify-center">
-              <PhoneCall className="w-5 h-5 rotate-[135deg]" />
-            </div>
-            <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center">
-              <Voicemail className="w-4 h-4" />
-            </div>
-          </div>
-        </div>
-
-        {/* AI note */}
-        <div className="mx-4 mt-3 rounded-xl bg-[var(--green-3)] p-3">
-          <div className="text-[10px] font-semibold text-[var(--green-10)] uppercase tracking-wider mb-1">AI note</div>
-          <div className="text-[11px] text-[#1d1d1f] leading-snug">
-            Sarah's team just hired 6 SDRs. Open with their outbound ramp.
-          </div>
-        </div>
-
-        {/* up next */}
-        <div className="mx-4 mt-3">
-          <div className="text-[10px] font-semibold text-[var(--sand-10)] uppercase tracking-wider mb-1.5">Up next</div>
-          <div className="space-y-1.5">
-            {prospects.slice(1).map((p) => (
-              <div key={p.name} className="flex items-center gap-2 rounded-lg border border-[var(--sand-5)] px-2.5 py-2">
-                <div className="w-7 h-7 rounded-full bg-[var(--sand-3)] flex items-center justify-center text-[10px] font-semibold text-[var(--sand-11)]">
-                  {p.initials}
-                </div>
-                <div className="min-w-0">
-                  <div className="text-[11px] font-semibold text-[#1d1d1f] truncate">{p.name}</div>
-                  <div className="text-[10px] text-[var(--sand-10)] truncate">{p.role}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* home indicator */}
-        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-28 h-1 rounded-full bg-[#1d1d1f]" />
-      </div>
     </div>
   )
 }
@@ -147,7 +56,7 @@ export default function MobileAppPage() {
             </p>
             <StoreButtons />
           </div>
-          <IPhoneMockup />
+          <PhoneCarousel />
         </section>
 
         {/* What it's for */}
