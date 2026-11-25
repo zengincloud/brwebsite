@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react"
 import Link from "next/link"
 import { Button } from "@radix-ui/themes"
-import { Menu, X, ChevronDown, Search, ListOrdered, Phone, BookOpen, Map, Info, Mic, Calculator } from "lucide-react"
+import { Menu, X, ChevronDown, Search, ListOrdered, Phone, BookOpen, Map, Info, Mic, Calculator, Smartphone } from "lucide-react"
 
 const solutionsMenu = [
   {
@@ -209,6 +209,12 @@ export function Header() {
 
           {/* CTA buttons */}
           <div className="hidden md:flex items-center gap-3">
+            <Button size="2" radius="full" variant="outline" color="gray" asChild>
+              <Link href="/mobile">
+                <Smartphone size={14} />
+                Download mobile app
+              </Link>
+            </Button>
             <Button size="2" variant="ghost" color="gray" asChild>
               <a href="https://app.boilerroom.ai/login">Log in</a>
             </Button>
@@ -300,6 +306,14 @@ export function Header() {
 
             {/* CTAs */}
             <div className="pt-3 pb-2 space-y-2 border-t border-[var(--sand-4)]">
+              <Link
+                href="/mobile"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-center gap-2 w-full py-3 rounded-xl border border-[var(--sand-5)] text-sm font-semibold text-[#1d1d1f] hover:bg-[var(--sand-2)] transition-colors"
+              >
+                <Smartphone size={15} />
+                Download mobile app
+              </Link>
               <a
                 href="https://app.boilerroom.ai/login"
                 className="flex items-center justify-center w-full py-3 rounded-xl border border-[var(--sand-5)] text-sm font-semibold text-[#1d1d1f] hover:bg-[var(--sand-2)] transition-colors"
